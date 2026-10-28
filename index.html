@@ -3,130 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiệm Đặt Hàng & Quản Lý Pastel Style</title>
+    <title>Tiệm Đặt Hàng & Quản Lý Doanh Thu</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: linear-gradient(135deg, #fbcfe8 0%, #e0e7ff 50%, #ccfbf1 100%);
-            background-attachment: fixed;
+            background: #f8fafc;
         }
-        .pastel-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 182, 193, 0.4);
+
+        /* Hiệu ứng Rung khi nhập sai mật khẩu */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-15px); }
+            40%, 80% { transform: translateX(15px); }
+        }
+        .animate-shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
         }
     </style>
 </head>
 <body class="text-slate-700 min-h-screen relative overflow-x-hidden">
 
-    <!-- PHẦN 1: MÀN HÌNH CHỌN VAI TRÒ (TRANG CHỦ) -->
-    <div id="roleSelectScreen" class="min-h-screen flex items-center justify-center p-4">
-        <div class="pastel-card p-8 rounded-[35px] shadow-2xl max-w-md w-full text-center">
-            <div class="w-20 h-20 bg-gradient-to-tr from-pink-300 to-sky-300 rounded-3xl mx-auto flex items-center justify-center text-white text-3xl shadow-lg mb-6">
-                <i class="fa-solid fa-cloud-moon text-pink-600"></i>
+    <!-- PHẦN 1: MÀN HÌNH CHỌN VAI TRÒ (TRANG CHỦ - PHỐI CỤM MÀU HỒNG & XANH SEPARATE) -->
+    <div id="roleSelectScreen" class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+        <div class="bg-white rounded-[40px] shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200">
+            <div class="text-center pt-8 pb-4 px-6">
+                <h1 class="text-3xl font-black text-slate-800 tracking-tight">CỔNG DỊCH VỤ ĐẶT HÀNG</h1>
+                <p class="text-xs text-slate-400 font-bold uppercase mt-1 tracking-widest">Vui lòng chọn cổng truy cập phù hợp</p>
             </div>
-            <h1 class="text-2xl font-extrabold text-pink-500 mb-1">Tiệm Order Xinh Xắn</h1>
-            <p class="text-xs text-slate-500 mb-8">Hệ thống đặt hàng & quản lý tone Pastel</p>
-            
-            <div class="space-y-4">
-                <button type="button" onclick="openCustomerPortal()" class="w-full py-4 px-6 bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-2xl shadow-lg shadow-pink-300/50 transition transform active:scale-95 flex items-center justify-center gap-3 text-base cursor-pointer">
-                    <i class="fa-solid fa-heart text-white"></i> Khách Hàng Đặt Đơn
-                </button>
-                <button type="button" onclick="promptAdminLogin()" class="w-full py-4 px-6 bg-gradient-to-r from-sky-400 to-indigo-400 hover:from-sky-500 hover:to-indigo-500 text-white font-bold rounded-2xl shadow-lg shadow-sky-300/50 transition transform active:scale-95 flex items-center justify-center gap-3 text-base cursor-pointer">
-                    <i class="fa-solid fa-key text-white"></i> Chủ Shop (Quản Trị)
+
+            <!-- Phân tách 2 Cụm Màu Riêng Biệt -->
+            <div class="grid grid-cols-1 md:grid-cols-2 p-6 gap-6">
+                
+                <!-- Cụm KHÁCH HÀNG (MÀU HỒNG PASTEL) -->
+                <div class="bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 p-8 rounded-[30px] border-2 border-pink-200 text-center flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                    <div>
+                        <div class="w-16 h-16 bg-pink-400 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-lg shadow-pink-300">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-pink-600 mb-2">KHÁCH HÀNG</h2>
+                        <p class="text-xs text-pink-700/70 mb-6">Gửi thông tin đặt đơn hàng online nhanh chóng & tiện lợi</p>
+                    </div>
+                    <button type="button" onclick="openCustomerPortal()" class="w-full py-3.5 px-4 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-2xl shadow-lg shadow-pink-300 transition active:scale-95 cursor-pointer">
+                        Vào Cổng Đặt Đơn <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+                <!-- Cụm CHỦ SHOP (MÀU XANH PASTEL) -->
+                <div class="bg-gradient-to-br from-sky-100 via-indigo-50 to-sky-200 p-8 rounded-[30px] border-2 border-sky-200 text-center flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                    <div>
+                        <div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-lg shadow-sky-300">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-sky-600 mb-2">CHỦ SHOP</h2>
+                        <p class="text-xs text-sky-700/70 mb-6">Quản lý danh sách đơn, tính chi phí TQ-VN & lợi nhuận</p>
+                    </div>
+                    <button type="button" onclick="promptAdminLogin()" class="w-full py-3.5 px-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-2xl shadow-lg shadow-sky-300 transition active:scale-95 cursor-pointer">
+                        Vào Cổng Quản Trị <i class="fa-solid fa-key ml-1"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="text-center pb-6">
+                <button type="button" onclick="changeAdminPasswordPrompt()" class="text-xs text-slate-400 hover:text-indigo-600 font-bold transition cursor-pointer">
+                    <i class="fa-solid fa-lock"></i> Đổi Mật Khẩu Chủ Shop
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- PHẦN 2: GIAO DIỆN KHÁCH HÀNG -->
-    <div id="customerPortal" class="hidden min-h-screen pb-12">
-        <header class="bg-white/70 backdrop-blur-md shadow-sm border-b border-pink-100">
+    <!-- PHẦN 2: GIAO DIỆN KHÁCH HÀNG (TONE HỒNG PASTEL CỤM RIÊNG) -->
+    <div id="customerPortal" class="hidden min-h-screen bg-pink-50/50 pb-12">
+        <header class="bg-white shadow-sm border-b border-pink-200">
             <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-pink-200 text-pink-600 rounded-full flex items-center justify-center font-bold">
+                    <div class="w-10 h-10 bg-pink-500 text-white rounded-2xl flex items-center justify-center font-bold shadow-md shadow-pink-200">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
-                    <h1 class="text-base font-bold text-pink-600">Góc Đặt Hàng Của Bạn</h1>
+                    <h1 class="text-lg font-black text-pink-600">GÓC ĐẶT HÀNG KHÁCH HÀNG</h1>
                 </div>
-                <button type="button" onclick="backToHome()" class="bg-pink-100 hover:bg-pink-200 text-pink-600 px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-house"></i> Quay lại
+                <button type="button" onclick="backToHome()" class="bg-pink-100 hover:bg-pink-200 text-pink-700 px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-house"></i> Trang Chủ
                 </button>
             </div>
         </header>
 
         <main class="max-w-2xl mx-auto px-4 mt-8">
-            <div class="pastel-card rounded-[30px] shadow-xl p-6 sm:p-8">
+            <div class="bg-white rounded-[35px] shadow-xl border-2 border-pink-200 p-6 sm:p-8">
                 <div class="text-center mb-6">
-                    <h2 class="text-xl font-extrabold text-pink-600">Phiếu Gửi Thông Tin Đơn Hàng</h2>
-                    <p class="text-xs text-slate-500 mt-1">Điền đầy đủ thông tin để shop lên đơn cho bạn nha!</p>
+                    <h2 class="text-2xl font-black text-pink-600">Phiếu Gửi Thông Tin Order</h2>
+                    <p class="text-xs text-slate-400 font-medium mt-1">Điền địa chỉ và chi tiết mặt hàng để shop hỗ trợ nha!</p>
                 </div>
 
                 <form onsubmit="submitCustomerOrder(event)" class="space-y-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-pink-500 mb-1">Họ và Tên *</label>
-                            <input type="text" id="cusName" required placeholder="Tên của bạn..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Họ và Tên Khách Hàng *</label>
+                            <input type="text" id="cusName" required placeholder="Nhập tên của bạn..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-pink-50/30">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-pink-500 mb-1">Số Điện Thoại *</label>
-                            <input type="text" id="cusPhone" required placeholder="SĐT liên hệ..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Số Điện Thoại Liên Hệ *</label>
+                            <input type="text" id="cusPhone" required placeholder="Số điện thoại nhận hàng..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-pink-50/30">
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
-                        <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">Tỉnh / Thành Phố Mới *</label>
-                            <select id="cusProvNew" onchange="toggleCustomInput(this, 'cusProvNewCustom')" class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm mb-2 bg-white">
-                                <option value="">-- Chọn Tỉnh/Thành --</option>
-                                <option value="Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                                <option value="Hà Nội">Hà Nội</option>
-                                <option value="Đà Nẵng">Đà Nẵng</option>
-                                <option value="Bình Dương">Bình Dương</option>
-                                <option value="Đồng Nai">Đồng Nai</option>
-                                <option value="Khác">Khác (Tự nhập tay)...</option>
-                            </select>
-                            <input type="text" id="cusProvNewCustom" placeholder="Nhập tên tỉnh/thành..." class="hidden w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white">
+                    <!-- CHỌN ĐỊA CHÍNH TỰ ĐỘNG -->
+                    <div class="p-4 bg-pink-100/40 rounded-2xl border border-pink-200 space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh / Thành Phố *</label>
+                                <select id="provinceSelect" onchange="loadDistricts()" required class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
+                                    <option value="">-- Chọn Tỉnh/Thành --</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-pink-700 mb-1">Quận / Huyện *</label>
+                                <select id="districtSelect" onchange="loadWards()" required class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
+                                    <option value="">-- Chọn Quận/Huyện --</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">Tỉnh / Thành Phố Cũ (Nếu có)</label>
-                            <select id="cusProvOld" onchange="toggleCustomInput(this, 'cusProvOldCustom')" class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm mb-2 bg-white">
-                                <option value="">-- Không có / Chọn Tỉnh cũ --</option>
-                                <option value="Hà Tây cũ">Hà Tây cũ</option>
-                                <option value="Sông Bé cũ">Sông Bé cũ</option>
-                                <option value="Khác">Khác (Tự nhập tay)...</option>
-                            </select>
-                            <input type="text" id="cusProvOldCustom" placeholder="Nhập tên tỉnh cũ..." class="hidden w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-pink-700 mb-1">Phường / Xã *</label>
+                                <select id="wardSelect" required class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
+                                    <option value="">-- Chọn Phường/Xã --</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh Cũ (Nếu có lịch sử sáp nhập)</label>
+                                <select id="cusProvOld" class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
+                                    <option value="">-- Không có / Chọn Tỉnh cũ --</option>
+                                    <option value="Sông Bé">Sông Bé cũ</option>
+                                    <option value="Hà Tây">Hà Tây cũ</option>
+                                    <option value="Hà Sơn Bình">Hà Sơn Bình cũ</option>
+                                    <option value="Vĩnh Phú">Vĩnh Phú cũ</option>
+                                    <option value="Minh Hải">Minh Hải cũ</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-pink-500 mb-1">Địa Chỉ Nhận Hàng Chi Tiết *</label>
-                        <textarea id="cusAddress" required rows="2" placeholder="Số nhà, tên đường, phường/xã..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80"></textarea>
+                        <label class="block text-xs font-bold text-pink-600 mb-1">Số Nhà, Tên Đường Cụ Thể *</label>
+                        <input type="text" id="cusStreet" required placeholder="Ví dụ: 123 Lê Văn Việt..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-pink-50/30">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-pink-500 mb-1">Tên Sản Phẩm / Link Đặt Hàng *</label>
-                        <input type="text" id="cusProduct" required placeholder="Dán link sản phẩm hoặc mô tả..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80">
+                        <label class="block text-xs font-bold text-pink-600 mb-1">Mô Tả Sản Phẩm Muốn Đặt *</label>
+                        <input type="text" id="cusProduct" required placeholder="Mô tả món đồ muốn mua (Ví dụ: Áo khoác màu hồng size L...)" class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-pink-50/30">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-pink-500 mb-1">Số Lượng</label>
-                            <input type="number" id="cusQty" value="1" min="1" class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm bg-white/80">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Số Lượng</label>
+                            <input type="number" id="cusQty" value="1" min="1" class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm bg-pink-50/30 font-bold">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-pink-500 mb-1">Ghi Chú Thêm (Màu, size...)</label>
-                            <input type="text" id="cusNote" placeholder="Ví dụ: Màu hồng, size M" class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm bg-white/80">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Khung Giờ Giao / Ghi Chú Địa Điểm</label>
+                            <input type="text" id="cusDeliveryNote" placeholder="Ví dụ: Giao giờ hành chính, gọi trước 15p..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm bg-pink-50/30">
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-2xl shadow-lg shadow-pink-300/50 transition text-base mt-4 flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="submit" class="w-full py-4 bg-pink-500 hover:bg-pink-600 text-white font-extrabold rounded-2xl shadow-lg shadow-pink-300 transition text-base mt-4 flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-paper-plane"></i> Gửi Đơn Hàng Ngay
                     </button>
                 </form>
@@ -134,27 +178,30 @@
         </main>
     </div>
 
-    <!-- PHẦN 3: GIAO DIỆN CHỦ SHOP (ADMIN) -->
-    <div id="adminPortal" class="hidden min-h-screen pb-12">
-        <header class="bg-white/70 backdrop-blur-md shadow-sm border-b border-sky-100">
+    <!-- PHẦN 3: GIAO DIỆN CHỦ SHOP (TONE XANH PASTEL CỤM RIÊNG) -->
+    <div id="adminPortal" class="hidden min-h-screen bg-sky-50/50 pb-12">
+        <header class="bg-white shadow-sm border-b border-sky-200">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-sky-200 text-sky-700 rounded-2xl flex items-center justify-center text-xl font-bold shadow-inner">
+                    <div class="w-10 h-10 bg-sky-500 text-white rounded-2xl flex items-center justify-center font-bold shadow-md shadow-sky-200">
                         <i class="fa-solid fa-chart-pie"></i>
                     </div>
                     <div>
-                        <h1 class="text-base font-extrabold text-sky-700">Trang Quản Lý Doanh Thu Shop</h1>
-                        <p class="text-xs text-sky-500">Tính chi phí TQ - VN & Lợi nhuận Pastel</p>
+                        <h1 class="text-lg font-black text-sky-700">TRANG QUẢN LÝ DOANH THU & LỢI NHUẬN</h1>
+                        <p class="text-xs text-sky-500 font-medium">Bảng điều hành đơn hàng Trung - Việt</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openSettingsModal()" class="bg-sky-100 hover:bg-sky-200 text-sky-700 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-gear"></i> Cài Đặt Tỷ Giá
+                <div class="flex items-center gap-2.5">
+                    <button type="button" onclick="changeAdminPasswordPrompt()" class="bg-sky-100 hover:bg-sky-200 text-sky-800 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1 cursor-pointer">
+                        <i class="fa-solid fa-key"></i> Đổi MK
                     </button>
-                    <button type="button" onclick="openAdminModal()" class="bg-emerald-400 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md transition flex items-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-plus"></i> Thêm Đơn Thủ Công
+                    <button type="button" onclick="openSettingsModal()" class="bg-sky-100 hover:bg-sky-200 text-sky-800 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1 cursor-pointer">
+                        <i class="fa-solid fa-gear"></i> Tỷ Giá/Cước
                     </button>
-                    <button type="button" onclick="backToHome()" class="bg-pink-200 hover:bg-pink-300 text-pink-700 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer">
+                    <button type="button" onclick="openAdminModal()" class="bg-emerald-500 hover:bg-emerald-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold shadow-md transition flex items-center gap-1 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i> Thêm Đơn
+                    </button>
+                    <button type="button" onclick="backToHome()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1 cursor-pointer">
                         <i class="fa-solid fa-right-from-bracket"></i> Thoát
                     </button>
                 </div>
@@ -162,54 +209,55 @@
         </header>
 
         <main class="max-w-7xl mx-auto px-4 py-6">
+            <!-- Dashboard Thống kê -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                <div class="pastel-card p-5 rounded-[25px] shadow-sm flex items-center justify-between">
+                <div class="bg-white p-5 rounded-[25px] border-2 border-sky-100 shadow-sm flex items-center justify-between">
                     <div>
                         <p class="text-xs text-slate-400 font-bold uppercase">Tổng Đơn Hàng</p>
-                        <h3 id="statTotalOrders" class="text-2xl font-extrabold text-pink-600 mt-1">0</h3>
+                        <h3 id="statTotalOrders" class="text-2xl font-black text-sky-600 mt-1">0</h3>
                     </div>
-                    <div class="w-12 h-12 bg-pink-100 text-pink-500 rounded-2xl flex items-center justify-center text-xl">
+                    <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center text-xl font-bold">
                         <i class="fa-solid fa-receipt"></i>
                     </div>
                 </div>
-                <div class="pastel-card p-5 rounded-[25px] shadow-sm flex items-center justify-between">
+                <div class="bg-white p-5 rounded-[25px] border-2 border-emerald-100 shadow-sm flex items-center justify-between">
                     <div>
                         <p class="text-xs text-slate-400 font-bold uppercase">Tổng Doanh Thu</p>
-                        <h3 id="statTotalRevenue" class="text-2xl font-extrabold text-emerald-600 mt-1">0 đ</h3>
+                        <h3 id="statTotalRevenue" class="text-2xl font-black text-emerald-600 mt-1">0 đ</h3>
                     </div>
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-500 rounded-2xl flex items-center justify-center text-xl">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl font-bold">
                         <i class="fa-solid fa-wallet"></i>
                     </div>
                 </div>
-                <div class="pastel-card p-5 rounded-[25px] shadow-sm flex items-center justify-between">
+                <div class="bg-white p-5 rounded-[25px] border-2 border-amber-100 shadow-sm flex items-center justify-between">
                     <div>
                         <p class="text-xs text-slate-400 font-bold uppercase">Tổng Chi Phí</p>
-                        <h3 id="statTotalCost" class="text-2xl font-extrabold text-amber-600 mt-1">0 đ</h3>
+                        <h3 id="statTotalCost" class="text-2xl font-black text-amber-600 mt-1">0 đ</h3>
                     </div>
-                    <div class="w-12 h-12 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center text-xl">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-xl font-bold">
                         <i class="fa-solid fa-file-invoice-dollar"></i>
                     </div>
                 </div>
-                <div class="pastel-card p-5 rounded-[25px] shadow-sm flex items-center justify-between">
+                <div class="bg-white p-5 rounded-[25px] border-2 border-indigo-100 shadow-sm flex items-center justify-between">
                     <div>
                         <p class="text-xs text-slate-400 font-bold uppercase">Lợi Nhuận Ròng</p>
-                        <h3 id="statTotalProfit" class="text-2xl font-extrabold text-indigo-600 mt-1">0 đ</h3>
+                        <h3 id="statTotalProfit" class="text-2xl font-black text-indigo-600 mt-1">0 đ</h3>
                     </div>
-                    <div class="w-12 h-12 bg-indigo-100 text-indigo-500 rounded-2xl flex items-center justify-center text-xl">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="pastel-card p-4 rounded-[25px] shadow-sm mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="bg-white p-4 rounded-[25px] border border-sky-100 shadow-sm mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="w-full md:w-1/3 relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
-                    <input type="text" id="searchInput" oninput="filterOrders()" placeholder="Tìm kiếm đơn hàng..." class="w-full pl-11 pr-4 py-2.5 bg-white/80 border border-pink-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <input type="text" id="searchInput" oninput="filterOrders()" placeholder="Tìm kiếm đơn hàng..." class="w-full pl-11 pr-4 py-2.5 bg-sky-50/50 border border-sky-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-400">
                 </div>
                 <div class="w-full md:w-auto flex items-center gap-3">
-                    <select id="statusFilter" onchange="filterOrders()" class="px-4 py-2.5 bg-white/80 border border-pink-200 rounded-2xl text-sm font-semibold focus:outline-none">
+                    <select id="statusFilter" onchange="filterOrders()" class="px-4 py-2.5 bg-sky-50/50 border border-sky-200 rounded-2xl text-sm font-semibold focus:outline-none">
                         <option value="">Tất cả trạng thái</option>
                         <option value="Mới tạo">Mới tạo</option>
                         <option value="Đã đặt TQ">Đã đặt TQ</option>
@@ -217,17 +265,17 @@
                         <option value="Đã giao">Đã giao</option>
                         <option value="Đã hủy">Đã hủy</option>
                     </select>
-                    <button type="button" onclick="exportJSON()" class="bg-white hover:bg-pink-50 text-slate-700 px-4 py-2.5 rounded-2xl text-sm font-bold transition flex items-center gap-2 border border-pink-200 cursor-pointer">
+                    <button type="button" onclick="exportJSON()" class="bg-white hover:bg-sky-50 text-slate-700 px-4 py-2.5 rounded-2xl text-sm font-bold transition flex items-center gap-2 border border-sky-200 cursor-pointer">
                         <i class="fa-solid fa-download"></i> Xuất Dữ Liệu
                     </button>
                 </div>
             </div>
 
-            <div class="pastel-card rounded-[30px] shadow-sm overflow-hidden">
+            <div class="bg-white rounded-[30px] border border-sky-100 shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-pink-50/60 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-pink-100">
+                            <tr class="bg-sky-100/60 text-sky-900 text-xs font-bold uppercase tracking-wider border-b border-sky-200">
                                 <th class="p-4">Mã Đơn / Khách Hàng</th>
                                 <th class="p-4">Sản Phẩm & Địa Chỉ</th>
                                 <th class="p-4">Tỉnh / Thành</th>
@@ -238,39 +286,54 @@
                                 <th class="p-4 text-center">Hành Động</th>
                             </tr>
                         </thead>
-                        <tbody id="adminOrderTable" class="divide-y divide-pink-100/60 text-sm"></tbody>
+                        <tbody id="adminOrderTable" class="divide-y divide-sky-100 text-sm"></tbody>
                     </table>
                 </div>
                 <div id="adminEmpty" class="hidden text-center py-16">
-                    <i class="fa-solid fa-box-open text-5xl text-pink-300 mb-3"></i>
+                    <i class="fa-solid fa-box-open text-5xl text-sky-300 mb-3"></i>
                     <p class="text-slate-500 font-medium">Chưa có đơn hàng nào trong hệ thống.</p>
                 </div>
             </div>
         </main>
     </div>
 
+    <!-- MODAL BÁO LỖI NHẬP SAI MẬT KHẨU (CHỮ SIÊU BỰ BẮT MẮT) -->
+    <div id="wrongPassModal" class="hidden fixed inset-0 bg-rose-950/80 backdrop-blur-md items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-[40px] border-4 border-rose-500 p-8 max-w-md w-full text-center shadow-2xl animate-shake">
+            <div class="w-24 h-24 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-5xl mx-auto mb-4 border-4 border-rose-200">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <!-- DÒNG CHỮ CẢNH BÁO SIÊU BỰ -->
+            <h1 class="text-4xl font-black text-rose-600 tracking-tight mb-2 uppercase">NHẬP SAI RỒI!</h1>
+            <p class="text-base font-bold text-slate-700 mb-6">Mật khẩu bạn vừa nhập không đúng. Vui lòng thử lại!</p>
+            <button type="button" onclick="closeWrongPassModal()" class="w-full py-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-lg rounded-2xl shadow-xl transition cursor-pointer uppercase">
+                Thử Nhập Lại <i class="fa-solid fa-rotate-right ml-1"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- MODAL THÀNH CÔNG CHO KHÁCH -->
     <div id="successModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="pastel-card rounded-[30px] shadow-2xl p-6 max-w-sm w-full text-center">
-            <div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-inner">
+        <div class="bg-white rounded-[30px] border-2 border-pink-200 p-6 max-w-sm w-full text-center shadow-2xl">
+            <div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
                 <i class="fa-solid fa-check"></i>
             </div>
             <h3 class="text-xl font-extrabold text-pink-600 mb-1">Gửi Đơn Thành Công!</h3>
             <p class="text-xs text-slate-500 mb-4">Mã đơn hàng của bạn:</p>
-            <div class="bg-white/90 p-3 rounded-2xl border border-pink-200 mb-6">
-                <span id="displayOrderCode" class="text-lg font-mono font-bold text-pink-600"></span>
+            <div class="bg-pink-50 p-3 rounded-2xl border border-pink-200 mb-6">
+                <span id="displayOrderCode" class="text-xl font-mono font-black text-pink-600"></span>
             </div>
-            <button type="button" onclick="closeSuccessModal()" class="w-full py-3 bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 text-white font-bold rounded-2xl shadow-lg transition cursor-pointer">
+            <button type="button" onclick="closeSuccessModal()" class="w-full py-3.5 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-2xl shadow-lg transition cursor-pointer">
                 Hoàn Tất
             </button>
         </div>
     </div>
 
-    <!-- MODAL ADMIN -->
+    <!-- MODAL ADMIN SỬA ĐƠN HÀNG -->
     <div id="adminModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="pastel-card rounded-[30px] shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div class="p-5 border-b border-pink-100 flex justify-between items-center sticky top-0 bg-white/90 z-10">
-                <h3 class="text-lg font-extrabold text-pink-600">Chi Tiết Đơn Hàng & Tính Lợi Nhuận</h3>
+        <div class="bg-white rounded-[30px] border-2 border-sky-200 shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div class="p-5 border-b border-sky-100 flex justify-between items-center sticky top-0 bg-white z-10">
+                <h3 class="text-lg font-extrabold text-sky-700">Chi Tiết Đơn Hàng & Tính Lợi Nhuận</h3>
                 <button type="button" onclick="closeAdminModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold cursor-pointer">&times;</button>
             </div>
             <form id="adminOrderForm" onsubmit="saveAdminOrder(event)" class="p-6 space-y-4">
@@ -278,11 +341,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Mã Đơn</label>
-                        <input type="text" id="admCode" required class="w-full px-3 py-2.5 bg-white/80 border border-pink-200 rounded-xl text-sm font-mono font-bold">
+                        <input type="text" id="admCode" required class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono font-bold">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Trạng Thái</label>
-                        <select id="admStatus" class="w-full px-3 py-2.5 bg-white border border-pink-200 rounded-xl text-sm font-semibold">
+                        <select id="admStatus" class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-semibold">
                             <option value="Mới tạo">Mới tạo</option>
                             <option value="Đã đặt TQ">Đã đặt TQ</option>
                             <option value="Đang về VN">Đang về VN</option>
@@ -295,64 +358,64 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Khách Hàng</label>
-                        <input type="text" id="admName" required class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                        <input type="text" id="admName" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Số Điện Thoại</label>
-                        <input type="text" id="admPhone" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                        <input type="text" id="admPhone" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 p-3 bg-pink-50/50 rounded-2xl border border-pink-100">
+                <div class="grid grid-cols-2 gap-4 p-3 bg-sky-50/50 rounded-2xl border border-sky-100">
                     <div>
-                        <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh Mới</label>
-                        <input type="text" id="admProvNew" class="w-full px-3 py-2 bg-white border border-pink-200 rounded-xl text-sm">
+                        <label class="block text-xs font-bold text-sky-800 mb-1">Tỉnh Mới</label>
+                        <input type="text" id="admProvNew" class="w-full px-3 py-2 bg-white border border-sky-200 rounded-xl text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh Cũ</label>
-                        <input type="text" id="admProvOld" class="w-full px-3 py-2 bg-white border border-pink-200 rounded-xl text-sm">
+                        <label class="block text-xs font-bold text-sky-800 mb-1">Tỉnh Cũ</label>
+                        <input type="text" id="admProvOld" class="w-full px-3 py-2 bg-white border border-sky-200 rounded-xl text-sm">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Địa Chỉ</label>
-                    <textarea id="admAddress" rows="2" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80"></textarea>
+                    <textarea id="admAddress" rows="2" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm"></textarea>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Sản Phẩm</label>
-                    <input type="text" id="admProduct" required class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                    <input type="text" id="admProduct" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
                 </div>
 
                 <div class="grid grid-cols-3 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Giá Gốc (¥)</label>
-                        <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                        <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Cân Nặng (kg)</label>
-                        <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                        <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Giá Bán (VNĐ)</label>
-                        <input type="number" id="admSellPrice" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                        <input type="number" id="admSellPrice" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Phụ Phí Khác (VNĐ)</label>
-                        <input type="number" id="admExtra" value="0" oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                        <input type="number" id="admExtra" value="0" oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
                     </div>
-                    <div class="bg-pink-50 p-3 rounded-2xl border border-pink-200 flex flex-col justify-center">
-                        <span class="text-[11px] text-pink-600 font-bold uppercase">Lợi Nhuận Dự Kiến:</span>
-                        <span id="admPreviewProfit" class="text-base font-extrabold text-pink-700">0 đ</span>
+                    <div class="bg-sky-50 p-3 rounded-2xl border border-sky-200 flex flex-col justify-center">
+                        <span class="text-[11px] text-sky-700 font-bold uppercase">Lợi Nhuận Dự Kiến:</span>
+                        <span id="admPreviewProfit" class="text-base font-extrabold text-sky-800">0 đ</span>
                     </div>
                 </div>
 
-                <div class="flex justify-end gap-3 pt-3 border-t border-pink-100">
-                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 border border-pink-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-pink-50 cursor-pointer">Hủy</button>
-                    <button type="submit" class="px-5 py-2.5 bg-gradient-to-r from-pink-400 to-rose-400 text-white rounded-xl text-sm font-bold shadow-lg cursor-pointer">Lưu Lại</button>
+                <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
+                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50 cursor-pointer">Hủy</button>
+                    <button type="submit" class="px-5 py-2.5 bg-sky-500 hover:bg-sky-600 text-white rounded-xl text-sm font-bold shadow-lg cursor-pointer">Lưu Lại</button>
                 </div>
             </form>
         </div>
@@ -360,23 +423,23 @@
 
     <!-- MODAL CÀI ĐẶT TỶ GIÁ -->
     <div id="settingsModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="pastel-card rounded-[30px] shadow-2xl w-full max-w-sm">
-            <div class="p-5 border-b border-pink-100 flex justify-between items-center">
-                <h3 class="text-base font-extrabold text-pink-600">Cài Đặt Tỷ Giá & Cước</h3>
+        <div class="bg-white rounded-[30px] border-2 border-sky-200 shadow-2xl w-full max-w-sm">
+            <div class="p-5 border-b border-sky-100 flex justify-between items-center">
+                <h3 class="text-base font-extrabold text-sky-700">Cài Đặt Tỷ Giá & Cước</h3>
                 <button type="button" onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold cursor-pointer">&times;</button>
             </div>
             <div class="p-6 space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)</label>
-                    <input type="number" id="setRate" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm font-bold bg-white/80">
+                    <input type="number" id="setRate" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm font-bold">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Cước Cân Trung - Việt (VNĐ / kg)</label>
-                    <input type="number" id="setShipping" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm font-bold bg-white/80">
+                    <input type="number" id="setShipping" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm font-bold">
                 </div>
-                <div class="flex justify-end gap-3 pt-3 border-t border-pink-100">
-                    <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 border border-pink-200 rounded-xl text-sm font-bold text-slate-600 cursor-pointer">Đóng</button>
-                    <button type="button" onclick="saveSettings()" class="px-4 py-2 bg-gradient-to-r from-sky-400 to-indigo-400 text-white rounded-xl text-sm font-bold shadow-lg cursor-pointer">Lưu Cài Đặt</button>
+                <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
+                    <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 cursor-pointer">Đóng</button>
+                    <button type="button" onclick="saveSettings()" class="px-4 py-2 bg-sky-500 text-white rounded-xl text-sm font-bold shadow-lg cursor-pointer">Lưu Cài Đặt</button>
                 </div>
             </div>
         </div>
@@ -385,13 +448,78 @@
     <!-- JAVASCRIPT XỬ LÝ -->
     <script>
         let settings = JSON.parse(localStorage.getItem('shop_settings')) || { rate: 3500, shippingRate: 25000 };
+        // MẬT KHẨU MẶC ĐỊNH ĐÃ ĐỔI THÀNH 1236
+        let adminPass = localStorage.getItem('admin_pass') || '1236';
+
         let orders = JSON.parse(localStorage.getItem('shop_orders')) || [
             {
                 id: 'ORD-8821', code: 'ORD-8821', customerName: 'Bảo Ngọc', customerPhone: '0905123456',
-                provinceNew: 'TP. Hồ Chí Minh', provinceOld: '', customerAddress: '123 Pasteur, Quận 3',
-                productName: 'Áo len cardigan pastel', costYuan: 88, weightKg: 0.5, sellPriceVnd: 420000, extraFee: 10000, status: 'Đang về VN'
+                provinceNew: 'TP. Hồ Chí Minh', provinceOld: '', customerAddress: '123 Pasteur, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh',
+                productName: 'Áo len cardigan pastel - Giao giờ hành chính', costYuan: 88, weightKg: 0.5, sellPriceVnd: 420000, extraFee: 10000, status: 'Đang về VN'
             }
         ];
+
+        let hostData = [];
+
+        async function fetchProvinces() {
+            try {
+                let res = await fetch('https://provinces.open-api.vn/api/?depth=1');
+                hostData = await res.json();
+                let provSelect = document.getElementById('provinceSelect');
+                provSelect.innerHTML = '<option value="">-- Chọn Tỉnh/Thành --</option>';
+                hostData.forEach(p => {
+                    let opt = document.createElement('option');
+                    opt.value = p.name;
+                    opt.dataset.code = p.code;
+                    opt.text = p.name;
+                    provSelect.appendChild(opt);
+                });
+            } catch (e) { console.log(e); }
+        }
+
+        async function loadDistricts() {
+            let provSelect = document.getElementById('provinceSelect');
+            let code = provSelect.options[provSelect.selectedIndex].dataset.code;
+            let distSelect = document.getElementById('districtSelect');
+            let wardSelect = document.getElementById('wardSelect');
+            
+            distSelect.innerHTML = '<option value="">-- Chọn Quận/Huyện --</option>';
+            wardSelect.innerHTML = '<option value="">-- Chọn Phường/Xã --</option>';
+
+            if(!code) return;
+            try {
+                let res = await fetch(`https://provinces.open-api.vn/api/p/${code}?depth=2`);
+                let data = await res.json();
+                data.districts.forEach(d => {
+                    let opt = document.createElement('option');
+                    opt.value = d.name;
+                    opt.dataset.code = d.code;
+                    opt.text = d.name;
+                    distSelect.appendChild(opt);
+                });
+            } catch (e) { console.log(e); }
+        }
+
+        async function loadWards() {
+            let distSelect = document.getElementById('districtSelect');
+            let code = distSelect.options[distSelect.selectedIndex].dataset.code;
+            let wardSelect = document.getElementById('wardSelect');
+            
+            wardSelect.innerHTML = '<option value="">-- Chọn Phường/Xã --</option>';
+            if(!code) return;
+            try {
+                let res = await fetch(`https://provinces.open-api.vn/api/d/${code}?depth=2`);
+                let data = await res.json();
+                data.wards.forEach(w => {
+                    let opt = document.createElement('option');
+                    opt.value = w.name;
+                    opt.text = w.name;
+                    wardSelect.appendChild(opt);
+                });
+            } catch (e) { console.log(e); }
+        }
+
+        fetchProvinces();
 
         function formatCurrency(num) {
             return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(num).replace('₫', 'đ');
@@ -410,47 +538,67 @@
         }
 
         function promptAdminLogin() {
-            let pass = prompt("Nhập mật khẩu quản trị (Mặc định: admin123):");
-            if (pass === "admin123") {
+            let pass = prompt("Nhập mật khẩu quản trị (Mặc định: 1236):");
+            if (pass === adminPass) {
                 document.getElementById('roleSelectScreen').classList.add('hidden');
                 document.getElementById('customerPortal').classList.add('hidden');
                 document.getElementById('adminPortal').classList.remove('hidden');
                 initAdmin();
             } else if (pass !== null) {
-                alert("Mật khẩu không chính xác!");
+                // Hiện Modal cảnh báo NHẬP SAI RỒI siêu bự
+                showWrongPassModal();
             }
         }
 
-        function toggleCustomInput(selectEl, customInputId) {
-            let customInput = document.getElementById(customInputId);
-            if (selectEl.value === 'Khác') {
-                customInput.classList.remove('hidden');
-                customInput.focus();
-            } else {
-                customInput.classList.add('hidden');
-                customInput.value = '';
+        function showWrongPassModal() {
+            let modal = document.getElementById('wrongPassModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeWrongPassModal() {
+            let modal = document.getElementById('wrongPassModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            promptAdminLogin();
+        }
+
+        function changeAdminPasswordPrompt() {
+            let oldP = prompt("Nhập mật khẩu hiện tại:");
+            if(oldP === adminPass) {
+                let newP = prompt("Nhập mật khẩu mới muốn đổi:");
+                if(newP && newP.trim() !== '') {
+                    adminPass = newP.trim();
+                    localStorage.setItem('admin_pass', adminPass);
+                    alert("Đã đổi mật khẩu thành công!");
+                }
+            } else if(oldP !== null) {
+                showWrongPassModal();
             }
         }
 
         function submitCustomerOrder(e) {
             e.preventDefault();
-            let pNew = document.getElementById('cusProvNew').value;
-            if(pNew === 'Khác') pNew = document.getElementById('cusProvNewCustom').value;
+            let prov = document.getElementById('provinceSelect').value;
+            let dist = document.getElementById('districtSelect').value;
+            let ward = document.getElementById('wardSelect').value;
+            let street = document.getElementById('cusStreet').value;
+            let oldProv = document.getElementById('cusProvOld').value;
 
-            let pOld = document.getElementById('cusProvOld').value;
-            if(pOld === 'Khác') pOld = document.getElementById('cusProvOldCustom').value;
-
+            let fullAddress = `${street}, ${ward}, ${dist}, ${prov}`;
             let newCode = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
             let qty = parseInt(document.getElementById('cusQty').value) || 1;
-            let productStr = document.getElementById('cusProduct').value + (qty > 1 ? ` (SL: ${qty})` : '') + (document.getElementById('cusNote').value ? ` - ${document.getElementById('cusNote').value}` : '');
+            let productDesc = document.getElementById('cusProduct').value + (qty > 1 ? ` (SL: ${qty})` : '');
+            let deliveryNote = document.getElementById('cusDeliveryNote').value;
+            if(deliveryNote) productDesc += ` - Note: ${deliveryNote}`;
 
             let orderObj = {
                 id: newCode, code: newCode,
                 customerName: document.getElementById('cusName').value,
                 customerPhone: document.getElementById('cusPhone').value,
-                provinceNew: pNew, provinceOld: pOld,
-                customerAddress: document.getElementById('cusAddress').value,
-                productName: productStr,
+                provinceNew: prov, provinceOld: oldProv,
+                customerAddress: fullAddress,
+                productName: productDesc,
                 costYuan: 0, weightKg: 0.5, sellPriceVnd: 0, extraFee: 0, status: 'Mới tạo'
             };
 
@@ -501,10 +649,10 @@
                 if(o.status === 'Đã hủy') badgeColor = 'bg-rose-100 text-rose-700 font-bold';
 
                 let tr = document.createElement('tr');
-                tr.className = "hover:bg-pink-50/40 transition";
+                tr.className = "hover:bg-sky-50/50 transition";
                 tr.innerHTML = `
                     <td class="p-4">
-                        <div class="font-extrabold text-pink-600">${o.code}</div>
+                        <div class="font-black text-sky-600">${o.code}</div>
                         <div class="font-bold text-slate-900">${o.customerName}</div>
                         <div class="text-xs text-slate-400">${o.customerPhone || 'Chưa có SĐT'}</div>
                     </td>
@@ -514,7 +662,7 @@
                     </td>
                     <td class="p-4">
                         <div class="text-xs font-bold text-slate-800">${o.provinceNew || 'Chưa cập nhật'}</div>
-                        ${o.provinceOld ? `<div class="text-[11px] text-pink-500 font-semibold">(Cũ: ${o.provinceOld})</div>` : ''}
+                        ${o.provinceOld ? `<div class="text-[11px] text-amber-600 font-semibold">(Cũ: ${o.provinceOld})</div>` : ''}
                     </td>
                     <td class="p-4 text-right">
                         <div class="font-bold text-slate-800">${o.costYuan} ¥</div>
@@ -525,8 +673,8 @@
                         <div class="text-xs text-slate-400">Cước: ${formatCurrency(shipFee)}</div>
                     </td>
                     <td class="p-4 text-right">
-                        <div class="font-extrabold text-slate-900">${formatCurrency(o.sellPriceVnd)}</div>
-                        <div class="text-xs font-extrabold ${profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}">
+                        <div class="font-black text-slate-900">${formatCurrency(o.sellPriceVnd)}</div>
+                        <div class="text-xs font-black ${profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}">
                             Lãi: ${formatCurrency(profit)}
                         </div>
                     </td>
@@ -535,10 +683,10 @@
                     </td>
                     <td class="p-4 text-center">
                         <div class="flex items-center justify-center gap-2">
-                            <button type="button" onclick="openAdminModal('${o.id}')" class="w-8 h-8 bg-pink-50 hover:bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center transition cursor-pointer" title="Sửa">
+                            <button type="button" onclick="openAdminModal('${o.id}')" class="w-8 h-8 bg-sky-100 hover:bg-sky-200 text-sky-700 rounded-xl flex items-center justify-center transition cursor-pointer" title="Sửa">
                                 <i class="fa-solid fa-pen text-xs"></i>
                             </button>
-                            <button type="button" onclick="deleteOrder('${o.id}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center transition cursor-pointer" title="Xóa">
+                            <button type="button" onclick="deleteOrder('${o.id}')" class="w-8 h-8 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded-xl flex items-center justify-center transition cursor-pointer" title="Xóa">
                                 <i class="fa-solid fa-trash text-xs"></i>
                             </button>
                         </div>
@@ -601,7 +749,7 @@
             let p = s - total;
             let el = document.getElementById('admPreviewProfit');
             el.innerText = formatCurrency(p);
-            el.className = p >= 0 ? "text-base font-extrabold text-pink-600" : "text-base font-extrabold text-rose-600";
+            el.className = p >= 0 ? "text-base font-black text-sky-700" : "text-base font-black text-rose-600";
         }
 
         function saveAdminOrder(e) {
