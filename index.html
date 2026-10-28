@@ -390,24 +390,36 @@
                     </button>
                 </div>
 
-                <!-- CHỦ SHOP -->
-                <div class="bg-gradient-to-br from-sky-100 via-indigo-50 to-sky-200 p-8 rounded-[30px] border-2 border-sky-200 text-center flex flex-col justify-between">
-                    <div>
-                        <img
-                            class="role-image"
-                            src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg"
-                            alt="Chủ shop"
-                        >
-                        <h2 class="text-xl font-extrabold text-sky-600 mb-2">
-                            CHỦ SHOP
-                        </h2>
-                    </div>
+              <!-- CHỦ SHOP: CHẠM CẢ KHUNG ĐỂ ĐĂNG NHẬP -->
+<div
+    class="bg-gradient-to-br from-sky-100 via-indigo-50 to-sky-200 p-8 rounded-[30px] border-2 border-sky-200 text-center flex flex-col justify-between cursor-pointer"
+    role="button"
+    tabindex="0"
+    onclick="promptAdminLogin()"
+    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();promptAdminLogin();}"
+    style="touch-action: manipulation;"
+>
+    <div>
+        <img
+            class="role-image"
+            src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg"
+            alt="Chủ shop"
+        >
 
-                    <button type="button" onclick="promptAdminLogin()" class="w-full py-3.5 px-4">
-                        Vào Cổng Quản Trị
-                        <i class="fa-solid fa-key ml-1"></i>
-                    </button>
-                </div>
+        <h2 class="text-xl font-extrabold text-sky-600 mb-2">
+            CHỦ SHOP
+        </h2>
+    </div>
+
+    <button
+        type="button"
+        class="w-full py-3.5 px-4"
+        onclick="event.stopPropagation(); promptAdminLogin();"
+    >
+        Vào Cổng Quản Trị
+        <i class="fa-solid fa-key ml-1"></i>
+    </button>
+</div>
 
             </div>
 
