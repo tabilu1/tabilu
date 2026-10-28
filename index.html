@@ -15,19 +15,9 @@
             --page: #F8F4EA;
             --paper: #FFFDF8;
             --pink: #F0DDE3;
-            --pink-border: #C7A6B1;
             --blue: #DFEAF0;
-            --blue-border: #A8BEC9;
-            --lavender: #E9E2EF;
-            --green: #E3EBDD;
             --ink: #514B52;
-            --muted: #827A82;
             --line: #D8D0D6;
-        }
-
-        * {
-            box-shadow: none !important;
-            text-shadow: none !important;
         }
 
         html, body {
@@ -38,6 +28,11 @@
             font-family: "Plus Jakarta Sans", sans-serif;
         }
 
+        * {
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+
         body [class~="bg-[#FFF8DC]"] {
             background-color: var(--page) !important;
         }
@@ -46,7 +41,6 @@
             background-color: var(--paper) !important;
         }
 
-        /* Hai thẻ chọn vai trò */
         #roleSelectScreen .bg-gradient-to-br {
             background-image: none !important;
             border-width: 2px !important;
@@ -63,7 +57,6 @@
             border-color: #C5D4DC !important;
         }
 
-        /* Màu nền pastel */
         body [class~="bg-pink-50"],
         body [class~="bg-pink-50/30"] {
             background-color: #FCF4F5 !important;
@@ -133,7 +126,6 @@
             background-color: #F0ECEE !important;
         }
 
-        /* Chữ trung tính, không neon */
         body [class~="text-pink-500"],
         body [class~="text-pink-600"],
         body [class~="text-pink-700"],
@@ -193,7 +185,6 @@
             color: var(--ink) !important;
         }
 
-        /* Viền và các khối */
         body [class*="border-pink"] {
             border-color: #DEC4CB !important;
         }
@@ -226,7 +217,6 @@
             border-radius: 4px !important;
         }
 
-        /* Nút phẳng phong cách Y2K pixel */
         button {
             color: var(--ink) !important;
             background-image: none !important;
@@ -303,7 +293,6 @@
             border-color: #BDCFBD !important;
         }
 
-        /* Ô nhập liệu */
         input,
         textarea,
         select {
@@ -312,7 +301,6 @@
             border-color: #D5CBD2 !important;
             border-radius: 3px !important;
             box-shadow: none !important;
-            outline-color: #C8A8B3;
         }
 
         input::placeholder,
@@ -334,7 +322,6 @@
             background-color: #F8F5F3 !important;
         }
 
-        /* Ảnh Pinterest trên hai thẻ vai trò */
         img.role-image {
             display: block;
             width: 112px;
@@ -343,7 +330,19 @@
             border: 2px solid #CFC4CB;
             margin: 0 auto 1rem;
             border-radius: 0 !important;
-            box-shadow: none !important;
+        }
+
+        #wrongPassModal {
+            background-color: rgba(81, 75, 82, 0.48) !important;
+        }
+
+        #successModal {
+            background-color: rgba(81, 75, 82, 0.38) !important;
+        }
+
+        #adminModal,
+        #settingsModal {
+            background-color: rgba(81, 75, 82, 0.34) !important;
         }
 
         @media (max-width: 640px) {
@@ -351,16 +350,6 @@
                 width: 90px;
                 height: 90px;
             }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-8px); }
-            40%, 80% { transform: translateX(8px); }
-        }
-
-        .animate-shake {
-            animation: shake 0.4s ease-in-out;
         }
     </style>
 </head>
@@ -370,6 +359,7 @@
     <!-- TRANG CHỌN VAI TRÒ -->
     <div id="roleSelectScreen" class="min-h-screen bg-[#FFF8DC] flex items-center justify-center p-4">
         <div class="bg-white rounded-[40px] max-w-2xl w-full overflow-hidden border border-slate-200">
+
             <div class="text-center pt-8 pb-4 px-6">
                 <h1 class="text-3xl font-black text-slate-800 tracking-tight">
                     CỔNG DỊCH VỤ ĐẶT HÀNG
@@ -382,63 +372,49 @@
             <div class="grid grid-cols-1 md:grid-cols-2 p-6 gap-6">
 
                 <!-- KHÁCH HÀNG -->
-                <div class="bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 p-8 border-2 border-pink-200 text-center flex flex-col justify-between">
+                <div class="bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 p-8 rounded-[30px] border-2 border-pink-200 text-center flex flex-col justify-between">
                     <div>
                         <img
                             class="role-image"
                             src="https://i.pinimg.com/736x/df/99/3b/df993bf7e87d747090382f0d8b47013e.jpg"
-                            alt="Hình minh họa Khách hàng"
+                            alt="Khách hàng"
                         >
                         <h2 class="text-xl font-extrabold text-pink-600 mb-2">
                             KHÁCH HÀNG
                         </h2>
-                        <p class="text-xs text-pink-700/70 mb-6">    
-                        </p>
                     </div>
 
-                    <button
-                        type="button"
-                        onclick="openCustomerPortal()"
-                        class="w-full py-3.5 px-4 bg-pink-500 text-white font-bold cursor-pointer"
-                    >
-                        Vào Cổng Đặt Đơn <i class="fa-solid fa-arrow-right ml-1"></i>
+                    <button type="button" onclick="openCustomerPortal()" class="w-full py-3.5 px-4">
+                        Vào Cổng Đặt Đơn
+                        <i class="fa-solid fa-arrow-right ml-1"></i>
                     </button>
                 </div>
 
-                <!-- CHỦ SỐP -->
-                <div class="bg-gradient-to-br from-sky-100 via-indigo-50 to-sky-200 p-8 border-2 border-sky-200 text-center flex flex-col justify-between">
+                <!-- CHỦ SHOP -->
+                <div class="bg-gradient-to-br from-sky-100 via-indigo-50 to-sky-200 p-8 rounded-[30px] border-2 border-sky-200 text-center flex flex-col justify-between">
                     <div>
                         <img
                             class="role-image"
                             src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg"
-                            alt="Hình minh họa Chủ sốp"
+                            alt="Chủ shop"
                         >
                         <h2 class="text-xl font-extrabold text-sky-600 mb-2">
-                            CHỦ SỐP
+                            CHỦ SHOP
                         </h2>
-                        <p class="text-xs text-sky-700/70 mb-6">
-                           
-                        </p>
                     </div>
 
-                    <button
-                        type="button"
-                        onclick="promptAdminLogin()"
-                        class="w-full py-3.5 px-4 bg-sky-500 text-white font-bold cursor-pointer"
-                    >
-                        Vào Cổng Quản Trị <i class="fa-solid fa-key ml-1"></i>
+                    <button type="button" onclick="promptAdminLogin()" class="w-full py-3.5 px-4">
+                        Vào Cổng Quản Trị
+                        <i class="fa-solid fa-key ml-1"></i>
                     </button>
                 </div>
+
             </div>
 
             <div class="text-center pb-6">
-                <button
-                    type="button"
-                    onclick="changeAdminPasswordPrompt()"
-                    class="text-xs px-3 py-2"
-                >
+                <button type="button" onclick="changeAdminPasswordPrompt()" class="text-xs px-3 py-2">
                     <i class="fa-solid fa-lock"></i>
-                    Đổi Mật Khẩu Chủ Sốp
+                    Đổi Mật Khẩu Chủ Shop
                 </button>
             </div>
         </div>
@@ -452,9 +428,7 @@
                     <div class="w-10 h-10 bg-pink-100 text-pink-600 flex items-center justify-center">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
-                    <h1 class="text-lg font-black text-pink-600">
-                        GÓC ĐẶT HÀNG KHÁCH HÀNG
-                    </h1>
+                    <h1 class="text-lg font-black text-pink-600">GÓC ĐẶT HÀNG KHÁCH HÀNG</h1>
                 </div>
 
                 <button type="button" onclick="backToHome()" class="px-4 py-2 text-xs">
@@ -466,41 +440,29 @@
         <main class="max-w-2xl mx-auto px-4 mt-8">
             <div class="bg-white border-2 border-pink-200 p-6 sm:p-8">
                 <div class="text-center mb-6">
-                    <h2 class="text-2xl font-black text-pink-600">
-                        Phiếu Gửi Thông Tin Order
-                    </h2>
+                    <h2 class="text-2xl font-black text-pink-600">Phiếu Gửi Thông Tin Order</h2>
                     <p class="text-xs text-slate-400 mt-2">
-                        Điền địa chỉ và chi tiết mặt hàng để shop gửi đơn nha!
+                        Điền địa chỉ và chi tiết mặt hàng để shop hỗ trợ nha!
                     </p>
                 </div>
 
                 <form onsubmit="submitCustomerOrder(event)" class="space-y-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Họ và Tên Khách Hàng *
-                            </label>
-                            <input type="text" id="cusName" required
-                                placeholder="Nhập tên của bạn..."
-                                class="w-full px-4 py-3 border border-pink-200 text-sm">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Họ và Tên Khách Hàng *</label>
+                            <input type="text" id="cusName" required placeholder="Nhập tên của bạn..." class="w-full px-4 py-3 border border-pink-200 text-sm">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Số Điện Thoại Liên Hệ *
-                            </label>
-                            <input type="text" id="cusPhone" required
-                                placeholder="Số điện thoại nhận hàng..."
-                                class="w-full px-4 py-3 border border-pink-200 text-sm">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Số Điện Thoại Liên Hệ *</label>
+                            <input type="text" id="cusPhone" required placeholder="Số điện thoại nhận hàng..." class="w-full px-4 py-3 border border-pink-200 text-sm">
                         </div>
                     </div>
 
                     <div class="p-4 bg-pink-100/40 border border-pink-200 space-y-3">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-xs font-bold text-pink-700 mb-1">
-                                    Tỉnh / Thành Phố *
-                                </label>
+                                <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh / Thành Phố *</label>
                                 <select id="provinceNew" required class="w-full px-3 py-2.5 border text-sm">
                                     <option value="">-- Chọn Tỉnh/Thành --</option>
                                     <option value="Cần Thơ">Cần Thơ</option>
@@ -541,9 +503,7 @@
                             </div>
 
                             <div>
-                                <label class="block text-xs font-bold text-pink-700 mb-1">
-                                    Tỉnh/Thành Cũ
-                                </label>
+                                <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh/Thành Cũ</label>
                                 <select id="cusProvOld" class="w-full px-3 py-2.5 border text-sm">
                                     <option value="">-- Không có / Chọn Tỉnh cũ --</option>
                                     <option value="An Giang">An Giang</option>
@@ -615,39 +575,24 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-pink-600 mb-1">
-                            Quận/Huyện, Phường/Xã & Số Nhà/Tên Đường *
-                        </label>
-                        <textarea id="cusAddress" required rows="2"
-                            placeholder="Ví dụ: Quận 1, Phường Bến Nghé, 123 Nguyễn Huệ..."
-                            class="w-full px-4 py-3 border border-pink-200 text-sm"></textarea>
+                        <label class="block text-xs font-bold text-pink-600 mb-1">Quận/Huyện, Phường/Xã & Số Nhà/Tên Đường *</label>
+                        <textarea id="cusAddress" required rows="2" placeholder="Ví dụ: Quận 1, Phường Bến Nghé, 123 Nguyễn Huệ..." class="w-full px-4 py-3 border border-pink-200 text-sm"></textarea>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-pink-600 mb-1">
-                            Mô Tả Sản Phẩm Muốn Đặt *
-                        </label>
-                        <input type="text" id="cusProduct" required
-                            placeholder="Ví dụ: Áo khoác màu hồng size L..."
-                            class="w-full px-4 py-3 border border-pink-200 text-sm">
+                        <label class="block text-xs font-bold text-pink-600 mb-1">Mô Tả Sản Phẩm Muốn Đặt *</label>
+                        <input type="text" id="cusProduct" required placeholder="Ví dụ: Áo khoác màu hồng size L..." class="w-full px-4 py-3 border border-pink-200 text-sm">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Số Lượng
-                            </label>
-                            <input type="number" id="cusQty" value="1" min="1"
-                                class="w-full px-4 py-3 border border-pink-200 text-sm">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Số Lượng</label>
+                            <input type="number" id="cusQty" value="1" min="1" class="w-full px-4 py-3 border border-pink-200 text-sm">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Khung Giờ Giao / Ghi Chú Địa Điểm
-                            </label>
-                            <input type="text" id="cusDeliveryNote"
-                                placeholder="Ví dụ: Giao giờ hành chính, gọi trước 15p..."
-                                class="w-full px-4 py-3 border border-pink-200 text-sm">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Khung Giờ Giao / Ghi Chú Địa Điểm</label>
+                            <input type="text" id="cusDeliveryNote" placeholder="Ví dụ: Giao giờ hành chính, gọi trước 15p..." class="w-full px-4 py-3 border border-pink-200 text-sm">
                         </div>
                     </div>
 
@@ -669,7 +614,7 @@
                     </div>
                     <div>
                         <h1 class="text-lg font-black text-sky-700">ĐƠN HÀNG</h1>
-                        <p class="text-xs text-sky-500 font-medium">Bảng điều hành đơn hàng </p>
+                        <p class="text-xs text-sky-500 font-medium">Bảng điều hành đơn hàng Trung - Việt</p>
                     </div>
                 </div>
 
@@ -677,15 +622,12 @@
                     <button type="button" onclick="changeAdminPasswordPrompt()" class="px-3 py-2 text-xs">
                         <i class="fa-solid fa-key"></i> Đổi MK
                     </button>
-
                     <button type="button" onclick="openSettingsModal()" class="px-3 py-2 text-xs">
                         <i class="fa-solid fa-gear"></i> Tỷ Giá/Cước
                     </button>
-
                     <button type="button" onclick="openAdminModal()" class="px-3.5 py-2 text-xs">
                         <i class="fa-solid fa-plus"></i> Thêm Đơn
                     </button>
-
                     <button type="button" onclick="backToHome()" class="px-3 py-2 text-xs">
                         <i class="fa-solid fa-right-from-bracket"></i> Thoát
                     </button>
@@ -694,7 +636,6 @@
         </header>
 
         <main class="max-w-7xl mx-auto px-4 py-6">
-            <!-- THỐNG KÊ -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <div class="bg-white p-5 border-2 border-sky-100 flex items-center justify-between">
                     <div>
@@ -737,24 +678,20 @@
                 </div>
             </div>
 
-            <!-- TÌM KIẾM VÀ LỌC -->
             <div class="bg-white p-4 border border-sky-100 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="w-full md:w-1/3 relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
-                    <input type="text" id="searchInput" oninput="filterOrders()"
-                        placeholder="Tìm kiếm đơn hàng..."
-                        class="w-full pl-11 pr-4 py-2.5 border border-sky-200 text-sm">
+                    <input type="text" id="searchInput" oninput="filterOrders()" placeholder="Tìm kiếm đơn hàng..." class="w-full pl-11 pr-4 py-2.5 border border-sky-200 text-sm">
                 </div>
 
                 <div class="w-full md:w-auto flex flex-wrap items-center gap-3">
-                    <select id="statusFilter" onchange="filterOrders()"
-                        class="px-4 py-2.5 border border-sky-200 text-sm font-semibold">
+                    <select id="statusFilter" onchange="filterOrders()" class="px-4 py-2.5 border border-sky-200 text-sm font-semibold">
                         <option value="">Tất cả trạng thái</option>
                         <option value="Mới tạo">Mới tạo</option>
-                        <option value="Đã đặt TQ">Đã đặt</option>
-                        <option value="Đang về VN">Đang về</option>
+                        <option value="Đã đặt TQ">Đã đặt TQ</option>
+                        <option value="Đang về VN">Đang về VN</option>
                         <option value="Đã giao">Đã giao</option>
                         <option value="Đã hủy">Đã hủy</option>
                     </select>
@@ -765,7 +702,6 @@
                 </div>
             </div>
 
-            <!-- BẢNG ĐƠN HÀNG -->
             <div class="bg-white border border-sky-100 overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -783,7 +719,6 @@
                                 <th class="p-4 text-center">Hành Động</th>
                             </tr>
                         </thead>
-
                         <tbody id="adminOrderTable" class="divide-y divide-sky-100 text-sm"></tbody>
                     </table>
                 </div>
@@ -796,24 +731,23 @@
         </main>
     </div>
 
-    <!-- MODAL NHẬP SAI MẬT KHẨU -->
-    <div id="wrongPassModal" class="hidden fixed inset-0 bg-rose-950/40 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="bg-white border-2 border-rose-200 p-8 max-w-md w-full text-center animate-shake">
+    <!-- MODAL SAI MẬT KHẨU -->
+    <div id="wrongPassModal" class="hidden fixed inset-0 items-center justify-center p-4 z-50">
+        <div class="bg-white border-2 border-rose-200 p-8 max-w-md w-full text-center">
             <div class="w-20 h-20 bg-rose-100 text-rose-600 flex items-center justify-center text-4xl mx-auto mb-4">
                 <i class="fa-solid fa-circle-xmark"></i>
             </div>
             <h2 class="text-3xl font-black text-rose-600 mb-2">NHẬP SAI RỒI!</h2>
-            <p class="text-sm text-slate-700 mb-6">
-                Mật khẩu bạn vừa nhập không đúng. Vui lòng thử lại!
-            </p>
+            <p class="text-sm text-slate-700 mb-6">Mật khẩu bạn vừa nhập không đúng. Vui lòng thử lại!</p>
             <button type="button" onclick="closeWrongPassModal()" class="w-full py-3 font-bold">
-                Thử Nhập Lại <i class="fa-solid fa-rotate-right ml-1"></i>
+                Thử Nhập Lại
+                <i class="fa-solid fa-rotate-right ml-1"></i>
             </button>
         </div>
     </div>
 
-    <!-- MODAL GỬI ĐƠN THÀNH CÔNG -->
-    <div id="successModal" class="hidden fixed inset-0 bg-slate-900/30 backdrop-blur-sm items-center justify-center p-4 z-50">
+    <!-- MODAL THÀNH CÔNG -->
+    <div id="successModal" class="hidden fixed inset-0 items-center justify-center p-4 z-50">
         <div class="bg-white border-2 border-pink-200 p-6 max-w-sm w-full text-center">
             <div class="w-16 h-16 bg-pink-100 text-pink-500 flex items-center justify-center text-3xl mx-auto mb-4">
                 <i class="fa-solid fa-check"></i>
@@ -823,19 +757,15 @@
             <div class="bg-pink-50 p-3 border border-pink-200 mb-6">
                 <span id="displayOrderCode" class="text-xl font-mono font-black text-pink-600"></span>
             </div>
-            <button type="button" onclick="closeSuccessModal()" class="w-full py-3.5 font-bold">
-                Hoàn Tất
-            </button>
+            <button type="button" onclick="closeSuccessModal()" class="w-full py-3.5 font-bold">Hoàn Tất</button>
         </div>
     </div>
 
-    <!-- MODAL SỬA / THÊM ĐƠN -->
-    <div id="adminModal" class="hidden fixed inset-0 bg-slate-900/30 backdrop-blur-sm items-center justify-center p-4 z-50">
+    <!-- MODAL THÊM / SỬA ĐƠN -->
+    <div id="adminModal" class="hidden fixed inset-0 items-center justify-center p-4 z-50">
         <div class="bg-white border-2 border-sky-200 w-full max-w-xl max-h-[90vh] overflow-y-auto">
             <div class="p-5 border-b border-sky-100 flex justify-between items-center sticky top-0 bg-white z-10">
-                <h3 class="text-lg font-extrabold text-sky-700">
-                    Chi Tiết Đơn Hàng & Tính Lợi Nhuận
-                </h3>
+                <h3 class="text-lg font-extrabold text-sky-700">Chi Tiết Đơn Hàng & Tính Lợi Nhuận</h3>
                 <button type="button" onclick="closeAdminModal()" class="text-xl font-bold">&times;</button>
             </div>
 
@@ -894,41 +824,33 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Kho</label>
-                        <input type="text" id="admWarehouse"
-                            placeholder="Ví dụ: Kho Hà Nội / Kho TQ"
-                            class="w-full px-3 py-2.5 border text-sm">
+                        <input type="text" id="admWarehouse" placeholder="Ví dụ: Kho Hà Nội / Kho TQ" class="w-full px-3 py-2.5 border text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Ghi Chú Đơn Hàng</label>
-                        <input type="text" id="admOrderNote"
-                            placeholder="Nhập ghi chú đơn hàng..."
-                            class="w-full px-3 py-2.5 border text-sm">
+                        <input type="text" id="admOrderNote" placeholder="Nhập ghi chú đơn hàng..." class="w-full px-3 py-2.5 border text-sm">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Giá Gốc (¥)</label>
-                        <input type="number" step="0.01" id="admCostYuan" required
-                            oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
+                        <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Cân Nặng (kg)</label>
-                        <input type="number" step="0.01" id="admWeight" required
-                            oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
+                        <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Giá Bán (VNĐ)</label>
-                        <input type="number" id="admSellPrice" required
-                            oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
+                        <input type="number" id="admSellPrice" required oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Phụ Phí Khác (VNĐ)</label>
-                        <input type="number" id="admExtra" value="0"
-                            oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
+                        <input type="number" id="admExtra" value="0" oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
                     </div>
                     <div class="bg-sky-50 p-3 border border-sky-200 flex flex-col justify-center">
                         <span class="text-xs text-sky-700 font-bold uppercase">Lợi Nhuận Dự Kiến:</span>
@@ -937,19 +859,15 @@
                 </div>
 
                 <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
-                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 text-sm">
-                        Hủy
-                    </button>
-                    <button type="submit" class="px-5 py-2.5 text-sm font-bold">
-                        Lưu Lại
-                    </button>
+                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 text-sm">Hủy</button>
+                    <button type="submit" class="px-5 py-2.5 text-sm font-bold">Lưu Lại</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- MODAL CÀI ĐẶT -->
-    <div id="settingsModal" class="hidden fixed inset-0 bg-slate-900/30 backdrop-blur-sm items-center justify-center p-4 z-50">
+    <!-- MODAL CÀI ĐẶT TỶ GIÁ -->
+    <div id="settingsModal" class="hidden fixed inset-0 items-center justify-center p-4 z-50">
         <div class="bg-white border-2 border-sky-200 w-full max-w-sm">
             <div class="p-5 border-b border-sky-100 flex justify-between items-center">
                 <h3 class="text-base font-extrabold text-sky-700">Cài Đặt Tỷ Giá & Cước</h3>
@@ -958,47 +876,33 @@
 
             <div class="p-6 space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">
-                        Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)
-                    </label>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)</label>
                     <input type="number" id="setRate" class="w-full px-3 py-2.5 border text-sm font-bold">
                 </div>
-
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">
-                        Cước Cân Trung - Việt (VNĐ / kg)
-                    </label>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Cước Cân Trung - Việt (VNĐ / kg)</label>
                     <input type="number" id="setShipping" class="w-full px-3 py-2.5 border text-sm font-bold">
                 </div>
-
                 <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
-                    <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 text-sm">
-                        Đóng
-                    </button>
-                    <button type="button" onclick="saveSettings()" class="px-4 py-2 text-sm font-bold">
-                        Lưu Cài Đặt
-                    </button>
+                    <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 text-sm">Đóng</button>
+                    <button type="button" onclick="saveSettings()" class="px-4 py-2 text-sm font-bold">Lưu Cài Đặt</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
     <script>
+        /* =========================================
+           MẬT KHẨU DÙNG CHUNG TRÊN MỌI THIẾT BỊ
+           Muốn đổi mật khẩu thì sửa dòng bên dưới,
+           sau đó cập nhật mã HTML lên GitHub.
+        ========================================= */
+        const ADMIN_PASSWORD = '12356';
+
         let settings = JSON.parse(localStorage.getItem("shop_settings")) || {
             rate: 3500,
             shippingRate: 25000
         };
-
-        let storedPassword = localStorage.getItem("admin_pass");
-
-        let adminPass = (
-            !storedPassword ||
-            storedPassword === "1236" ||
-            storedPassword === "admin123"
-        ) ? "12356" : storedPassword;
-
-        localStorage.setItem("admin_pass", adminPass);
 
         let orders = JSON.parse(localStorage.getItem("shop_orders")) || [
             {
@@ -1027,10 +931,6 @@
             }).format(Number(num) || 0).replace("₫", "đ");
         }
 
-        function saveOrders() {
-            localStorage.setItem("shop_orders", JSON.stringify(orders));
-        }
-
         function backToHome() {
             document.getElementById("roleSelectScreen").classList.remove("hidden");
             document.getElementById("customerPortal").classList.add("hidden");
@@ -1043,10 +943,11 @@
             document.getElementById("adminPortal").classList.add("hidden");
         }
 
+        /* Luôn yêu cầu mật khẩu ở bất kỳ thiết bị nào */
         function promptAdminLogin() {
-            const pass = prompt("Nhập mật khẩu quản trị (Mặc định: 12356):");
+            const pass = prompt("Nhập mật khẩu Chủ shop:");
 
-            if (pass === adminPass) {
+            if (pass === ADMIN_PASSWORD) {
                 document.getElementById("roleSelectScreen").classList.add("hidden");
                 document.getElementById("customerPortal").classList.add("hidden");
                 document.getElementById("adminPortal").classList.remove("hidden");
@@ -1069,17 +970,21 @@
             promptAdminLogin();
         }
 
+        /*
+          Mật khẩu được định nghĩa trong mã HTML để giống nhau
+          giữa các thiết bị. Nút này hướng dẫn đổi mật khẩu chung.
+        */
         function changeAdminPasswordPrompt() {
             const oldPass = prompt("Nhập mật khẩu hiện tại:");
 
-            if (oldPass === adminPass) {
-                const newPass = prompt("Nhập mật khẩu mới muốn đổi:");
-
-                if (newPass && newPass.trim() !== "") {
-                    adminPass = newPass.trim();
-                    localStorage.setItem("admin_pass", adminPass);
-                    alert("Đã đổi mật khẩu thành công!");
-                }
+            if (oldPass === ADMIN_PASSWORD) {
+                alert(
+                    "Để đổi mật khẩu chung trên mọi thiết bị:\n\n" +
+                    "1. Mở file index.html trên GitHub.\n" +
+                    "2. Tìm dòng const ADMIN_PASSWORD = '12356';\n" +
+                    "3. Thay 12356 bằng mật khẩu mới.\n" +
+                    "4. Nhấn Commit changes để cập nhật."
+                );
             } else if (oldPass !== null) {
                 showWrongPassModal();
             }
@@ -1118,7 +1023,7 @@
             };
 
             orders.unshift(order);
-            saveOrders();
+            localStorage.setItem("shop_orders", JSON.stringify(orders));
 
             document.getElementById("displayOrderCode").innerText = orderCode;
             document.getElementById("successModal").classList.remove("hidden");
@@ -1135,6 +1040,20 @@
         function initAdmin() {
             renderAdminOrders();
             updateDashboard();
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, char => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[char]);
+        }
+
+        function escapeJS(value) {
+            return String(value ?? "").replace(/\\/g, "\\\\").replace(/'/g, "\\'");
         }
 
         function renderAdminOrders(filteredOrders = null) {
@@ -1158,59 +1077,58 @@
                 const profit = (Number(order.sellPriceVnd) || 0) - totalCost;
 
                 let statusColor = "bg-slate-100 text-slate-700";
-
-                if (order.status === "Mới tạo") {
-                    statusColor = "bg-pink-100 text-pink-700";
-                } else if (order.status === "Đã đặt TQ") {
-                    statusColor = "bg-amber-100 text-amber-700";
-                } else if (order.status === "Đang về VN") {
-                    statusColor = "bg-purple-100 text-purple-700";
-                } else if (order.status === "Đã giao") {
-                    statusColor = "bg-emerald-100 text-emerald-700";
-                } else if (order.status === "Đã hủy") {
-                    statusColor = "bg-rose-100 text-rose-700";
-                }
+                if (order.status === "Mới tạo") statusColor = "bg-pink-100 text-pink-700";
+                if (order.status === "Đã đặt TQ") statusColor = "bg-amber-100 text-amber-700";
+                if (order.status === "Đang về VN") statusColor = "bg-purple-100 text-purple-700";
+                if (order.status === "Đã giao") statusColor = "bg-emerald-100 text-emerald-700";
+                if (order.status === "Đã hủy") statusColor = "bg-rose-100 text-rose-700";
 
                 const row = document.createElement("tr");
-                row.className = "hover:bg-sky-50/50 transition";
 
                 row.innerHTML = `
                     <td class="p-4">
-                        <div class="font-black text-sky-600">${escapeHTML(order.code || "")}</div>
-                        <div class="font-bold text-slate-900">${escapeHTML(order.customerName || "")}</div>
+                        <div class="font-black text-sky-600">${escapeHTML(order.code)}</div>
+                        <div class="font-bold text-slate-900">${escapeHTML(order.customerName)}</div>
                         <div class="text-xs text-slate-400">${escapeHTML(order.customerPhone || "Chưa có SĐT")}</div>
                     </td>
+
                     <td class="p-4">
-                        <div class="font-medium text-slate-800">${escapeHTML(order.productName || "")}</div>
-                        <div class="text-xs text-slate-400 max-w-xs break-words">${escapeHTML(order.customerAddress || "")}</div>
+                        <div class="font-medium text-slate-800">${escapeHTML(order.productName)}</div>
+                        <div class="text-xs text-slate-400 break-words">${escapeHTML(order.customerAddress || "")}</div>
                     </td>
+
                     <td class="p-4">
                         <div class="text-xs font-bold text-slate-800">${escapeHTML(order.provinceNew || "Chưa cập nhật")}</div>
                         ${order.provinceOld ? `<div class="text-xs text-amber-600">(Cũ: ${escapeHTML(order.provinceOld)})</div>` : ""}
                     </td>
+
                     <td class="p-4 text-right">
                         <div class="font-bold text-slate-800">${Number(order.costYuan) || 0} ¥</div>
                         <div class="text-xs text-slate-400">~ ${formatCurrency(costInVnd)}</div>
                     </td>
+
                     <td class="p-4 text-right">
                         <div class="font-bold text-slate-800">${Number(order.weightKg) || 0} kg</div>
                         <div class="text-xs text-slate-400">Cước: ${formatCurrency(shippingFee)}</div>
                     </td>
+
                     <td class="p-4 text-right">
                         <div class="font-black text-slate-900">${formatCurrency(order.sellPriceVnd)}</div>
-                        <div class="text-xs font-black ${profit >= 0 ? "text-emerald-600" : "text-rose-600"}">
-                            Lãi: ${formatCurrency(profit)}
-                        </div>
+                        <div class="text-xs font-black">Lãi: ${formatCurrency(profit)}</div>
                     </td>
+
                     <td class="p-4">
                         <div class="text-xs font-semibold text-slate-700">${escapeHTML(order.warehouse || "—")}</div>
                     </td>
+
                     <td class="p-4">
-                        <div class="text-xs text-slate-600 min-w-40">${escapeHTML(order.orderNote || "—")}</div>
+                        <div class="text-xs text-slate-600">${escapeHTML(order.orderNote || "—")}</div>
                     </td>
+
                     <td class="p-4 text-center">
                         <span class="px-3 py-1 text-xs ${statusColor}">${escapeHTML(order.status || "Mới tạo")}</span>
                     </td>
+
                     <td class="p-4 text-center">
                         <div class="flex items-center justify-center gap-2">
                             <button type="button" onclick="openAdminModal('${escapeJS(order.id)}')" class="px-2 py-2" title="Sửa">
@@ -1225,20 +1143,6 @@
 
                 tbody.appendChild(row);
             });
-        }
-
-        function escapeHTML(value) {
-            return String(value).replace(/[&<>"']/g, char => ({
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;"
-            })[char]);
-        }
-
-        function escapeJS(value) {
-            return String(value).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
         }
 
         function updateDashboard() {
@@ -1307,10 +1211,8 @@
 
             const total = (yuan * settings.rate) + (weight * settings.shippingRate) + extra;
             const profit = salePrice - total;
-            const preview = document.getElementById("admPreviewProfit");
 
-            preview.innerText = formatCurrency(profit);
-            preview.style.color = profit >= 0 ? "#536A78" : "#90616A";
+            document.getElementById("admPreviewProfit").innerText = formatCurrency(profit);
         }
 
         function saveAdminOrder(event) {
@@ -1344,19 +1246,19 @@
                 orders.unshift(data);
             }
 
-            saveOrders();
+            localStorage.setItem("shop_orders", JSON.stringify(orders));
+
             closeAdminModal();
             renderAdminOrders();
             updateDashboard();
         }
 
         function deleteOrder(orderId) {
-            if (!confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
-                return;
-            }
+            if (!confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) return;
 
             orders = orders.filter(order => order.id !== orderId);
-            saveOrders();
+            localStorage.setItem("shop_orders", JSON.stringify(orders));
+
             renderAdminOrders();
             updateDashboard();
         }
@@ -1392,7 +1294,7 @@
             const status = document.getElementById("statusFilter").value;
 
             const filtered = orders.filter(order => {
-                const matchKeyword =
+                const matchesKeyword =
                     String(order.code || "").toLowerCase().includes(keyword) ||
                     String(order.customerName || "").toLowerCase().includes(keyword) ||
                     String(order.customerPhone || "").toLowerCase().includes(keyword) ||
@@ -1400,9 +1302,9 @@
                     String(order.orderNote || "").toLowerCase().includes(keyword) ||
                     String(order.warehouse || "").toLowerCase().includes(keyword);
 
-                const matchStatus = !status || order.status === status;
+                const matchesStatus = !status || order.status === status;
 
-                return matchKeyword && matchStatus;
+                return matchesKeyword && matchesStatus;
             });
 
             renderAdminOrders(filtered);
@@ -1416,6 +1318,7 @@
 
             link.href = url;
             link.download = "du_lieu_don_hang.json";
+
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -1424,4 +1327,6 @@
         }
     </script>
 </body>
-</html>      
+</html>
+
+    
