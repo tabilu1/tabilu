@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiệm Đặt Hàng & Quản Lý Doanh Thu</title>
+    <title>Đơn Hàng</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: #f8fafc;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #FFF8DC;
         }
 
         /* Hiệu ứng Rung khi nhập sai mật khẩu */
@@ -28,18 +28,17 @@
 </head>
 <body class="text-slate-700 min-h-screen relative overflow-x-hidden">
 
-    <!-- PHẦN 1: MÀN HÌNH CHỌN VAI TRÒ (TRANG CHỦ - PHỐI CỤM MÀU HỒNG & XANH SEPARATE) -->
-    <div id="roleSelectScreen" class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+    <!-- PHẦN 1: MÀN HÌNH CHỌN VAI TRÒ -->
+    <div id="roleSelectScreen" class="min-h-screen bg-[#FFF8DC] flex items-center justify-center p-4">
         <div class="bg-white rounded-[40px] shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200">
             <div class="text-center pt-8 pb-4 px-6">
                 <h1 class="text-3xl font-black text-slate-800 tracking-tight">CỔNG DỊCH VỤ ĐẶT HÀNG</h1>
                 <p class="text-xs text-slate-400 font-bold uppercase mt-1 tracking-widest">Vui lòng chọn cổng truy cập phù hợp</p>
             </div>
 
-            <!-- Phân tách 2 Cụm Màu Riêng Biệt -->
             <div class="grid grid-cols-1 md:grid-cols-2 p-6 gap-6">
-                
-                <!-- Cụm KHÁCH HÀNG (MÀU HỒNG PASTEL) -->
+
+                <!-- CỤM KHÁCH HÀNG -->
                 <div class="bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 p-8 rounded-[30px] border-2 border-pink-200 text-center flex flex-col justify-between shadow-sm hover:shadow-md transition">
                     <div>
                         <div class="w-16 h-16 bg-pink-400 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-lg shadow-pink-300">
@@ -53,7 +52,7 @@
                     </button>
                 </div>
 
-                <!-- Cụm CHỦ SHOP (MÀU XANH PASTEL) -->
+                <!-- CỤM CHỦ SHOP -->
                 <div class="bg-gradient-to-br from-sky-100 via-indigo-50 to-sky-200 p-8 rounded-[30px] border-2 border-sky-200 text-center flex flex-col justify-between shadow-sm hover:shadow-md transition">
                     <div>
                         <div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-lg shadow-sky-300">
@@ -77,8 +76,8 @@
         </div>
     </div>
 
-    <!-- PHẦN 2: GIAO DIỆN KHÁCH HÀNG (TONE HỒNG PASTEL CỤM RIÊNG) -->
-    <div id="customerPortal" class="hidden min-h-screen bg-pink-50/50 pb-12">
+    <!-- PHẦN 2: GIAO DIỆN KHÁCH HÀNG -->
+    <div id="customerPortal" class="hidden min-h-screen bg-[#FFF8DC] pb-12">
         <header class="bg-white shadow-sm border-b border-pink-200">
             <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
@@ -112,46 +111,124 @@
                         </div>
                     </div>
 
-                    <!-- CHỌN ĐỊA CHÍNH TỰ ĐỘNG -->
+                    <!-- CHỌN ĐỊA CHỈ -->
                     <div class="p-4 bg-pink-100/40 rounded-2xl border border-pink-200 space-y-3">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh / Thành Phố *</label>
-                                <select id="provinceSelect" onchange="loadDistricts()" required class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
+                                <select id="provinceNew" required class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
                                     <option value="">-- Chọn Tỉnh/Thành --</option>
+                                    <option value="Cần Thơ">Cần Thơ</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="Hải Phòng">Hải Phòng</option>
+                                    <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                                    <option value="Thành phố Hồ Chí Minh">Thành phố Hồ Chí Minh</option>
+                                    <option value="An Giang">An Giang</option>
+                                    <option value="Bắc Ninh">Bắc Ninh</option>
+                                    <option value="Cà Mau">Cà Mau</option>
+                                    <option value="Cao Bằng">Cao Bằng</option>
+                                    <option value="Đắk Lắk">Đắk Lắk</option>
+                                    <option value="Đắk Nông">Đắk Nông</option>
+                                    <option value="Điện Biên">Điện Biên</option>
+                                    <option value="Đồng Nai">Đồng Nai</option>
+                                    <option value="Đồng Tháp">Đồng Tháp</option>
+                                    <option value="Gia Lai">Gia Lai</option>
+                                    <option value="Hà Tĩnh">Hà Tĩnh</option>
+                                    <option value="Hưng Yên">Hưng Yên</option>
+                                    <option value="Khánh Hòa">Khánh Hòa</option>
+                                    <option value="Lai Châu">Lai Châu</option>
+                                    <option value="Lâm Đồng">Lâm Đồng</option>
+                                    <option value="Lạng Sơn">Lạng Sơn</option>
+                                    <option value="Lào Cai">Lào Cai</option>
+                                    <option value="Nghệ An">Nghệ An</option>
+                                    <option value="Ninh Bình">Ninh Bình</option>
+                                    <option value="Phú Thọ">Phú Thọ</option>
+                                    <option value="Quảng Ngãi">Quảng Ngãi</option>
+                                    <option value="Quảng Ninh">Quảng Ninh</option>
+                                    <option value="Quảng Trị">Quảng Trị</option>
+                                    <option value="Sơn La">Sơn La</option>
+                                    <option value="Tây Ninh">Tây Ninh</option>
+                                    <option value="Thái Nguyên">Thái Nguyên</option>
+                                    <option value="Thanh Hóa">Thanh Hóa</option>
+                                    <option value="Vĩnh Long">Vĩnh Long</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-pink-700 mb-1">Quận / Huyện *</label>
-                                <select id="districtSelect" onchange="loadWards()" required class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
-                                    <option value="">-- Chọn Quận/Huyện --</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-bold text-pink-700 mb-1">Phường / Xã *</label>
-                                <select id="wardSelect" required class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
-                                    <option value="">-- Chọn Phường/Xã --</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh Cũ (Nếu có lịch sử sáp nhập)</label>
+                                <label class="block text-xs font-bold text-pink-700 mb-1">Tỉnh/Thành Cũ (Danh sách đầy đủ)</label>
                                 <select id="cusProvOld" class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm bg-white font-medium text-slate-700">
                                     <option value="">-- Không có / Chọn Tỉnh cũ --</option>
-                                    <option value="Sông Bé">Sông Bé cũ</option>
-                                    <option value="Hà Tây">Hà Tây cũ</option>
-                                    <option value="Hà Sơn Bình">Hà Sơn Bình cũ</option>
-                                    <option value="Vĩnh Phú">Vĩnh Phú cũ</option>
-                                    <option value="Minh Hải">Minh Hải cũ</option>
+                                    <option value="An Giang">An Giang</option>
+                                    <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                                    <option value="Bắc Giang">Bắc Giang</option>
+                                    <option value="Bắc Kạn">Bắc Kạn</option>
+                                    <option value="Bạc Liêu">Bạc Liêu</option>
+                                    <option value="Bắc Ninh">Bắc Ninh</option>
+                                    <option value="Bến Tre">Bến Tre</option>
+                                    <option value="Bình Định">Bình Định</option>
+                                    <option value="Bình Dương">Bình Dương</option>
+                                    <option value="Bình Phước">Bình Phước</option>
+                                    <option value="Bình Thuận">Bình Thuận</option>
+                                    <option value="Cà Mau">Cà Mau</option>
+                                    <option value="Cần Thơ">Cần Thơ</option>
+                                    <option value="Cao Bằng">Cao Bằng</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                    <option value="Đắk Lắk">Đắk Lắk</option>
+                                    <option value="Đắk Nông">Đắk Nông</option>
+                                    <option value="Điện Biên">Điện Biên</option>
+                                    <option value="Đồng Nai">Đồng Nai</option>
+                                    <option value="Đồng Tháp">Đồng Tháp</option>
+                                    <option value="Gia Lai">Gia Lai</option>
+                                    <option value="Hà Giang">Hà Giang</option>
+                                    <option value="Hà Nam">Hà Nam</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="Hà Tĩnh">Hà Tĩnh</option>
+                                    <option value="Hải Dương">Hải Dương</option>
+                                    <option value="Hải Phòng">Hải Phòng</option>
+                                    <option value="Hậu Giang">Hậu Giang</option>
+                                    <option value="Hòa Bình">Hòa Bình</option>
+                                    <option value="Hưng Yên">Hưng Yên</option>
+                                    <option value="Khánh Hòa">Khánh Hòa</option>
+                                    <option value="Kiên Giang">Kiên Giang</option>
+                                    <option value="Kon Tum">Kon Tum</option>
+                                    <option value="Lai Châu">Lai Châu</option>
+                                    <option value="Lâm Đồng">Lâm Đồng</option>
+                                    <option value="Lạng Sơn">Lạng Sơn</option>
+                                    <option value="Lào Cai">Lào Cai</option>
+                                    <option value="Long An">Long An</option>
+                                    <option value="Nam Định">Nam Định</option>
+                                    <option value="Nghệ An">Nghệ An</option>
+                                    <option value="Ninh Bình">Ninh Bình</option>
+                                    <option value="Ninh Thuận">Ninh Thuận</option>
+                                    <option value="Phú Thọ">Phú Thọ</option>
+                                    <option value="Phú Yên">Phú Yên</option>
+                                    <option value="Quảng Bình">Quảng Bình</option>
+                                    <option value="Quảng Nam">Quảng Nam</option>
+                                    <option value="Quảng Ngãi">Quảng Ngãi</option>
+                                    <option value="Quảng Ninh">Quảng Ninh</option>
+                                    <option value="Quảng Trị">Quảng Trị</option>
+                                    <option value="Sóc Trăng">Sóc Trăng</option>
+                                    <option value="Sơn La">Sơn La</option>
+                                    <option value="Tây Ninh">Tây Ninh</option>
+                                    <option value="Thái Bình">Thái Bình</option>
+                                    <option value="Thái Nguyên">Thái Nguyên</option>
+                                    <option value="Thanh Hóa">Thanh Hóa</option>
+                                    <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                                    <option value="Tiền Giang">Tiền Giang</option>
+                                    <option value="Trà Vinh">Trà Vinh</option>
+                                    <option value="Tuyên Quang">Tuyên Quang</option>
+                                    <option value="Vĩnh Long">Vĩnh Long</option>
+                                    <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                                    <option value="Yên Bái">Yên Bái</option>
+                                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-pink-600 mb-1">Số Nhà, Tên Đường Cụ Thể *</label>
-                        <input type="text" id="cusStreet" required placeholder="Ví dụ: 123 Lê Văn Việt..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-pink-50/30">
+                        <label class="block text-xs font-bold text-pink-600 mb-1">Quận/Huyện, Phường/Xã & Số Nhà/Tên Đường *</label>
+                        <textarea id="cusAddress" required rows="2" placeholder="Ví dụ: Quận 1, Phường Bến Nghé, 123 Nguyễn Huệ..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-pink-50/30"></textarea>
                     </div>
 
                     <div>
@@ -178,8 +255,8 @@
         </main>
     </div>
 
-    <!-- PHẦN 3: GIAO DIỆN CHỦ SHOP (TONE XANH PASTEL CỤM RIÊNG) -->
-    <div id="adminPortal" class="hidden min-h-screen bg-sky-50/50 pb-12">
+    <!-- PHẦN 3: GIAO DIỆN CHỦ SHOP -->
+    <div id="adminPortal" class="hidden min-h-screen bg-[#FFF8DC] pb-12">
         <header class="bg-white shadow-sm border-b border-sky-200">
             <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center space-x-3">
@@ -187,7 +264,7 @@
                         <i class="fa-solid fa-chart-pie"></i>
                     </div>
                     <div>
-                        <h1 class="text-lg font-black text-sky-700">TRANG QUẢN LÝ DOANH THU & LỢI NHUẬN</h1>
+                        <h1 class="text-lg font-black text-sky-700">ĐƠN HÀNG</h1>
                         <p class="text-xs text-sky-500 font-medium">Bảng điều hành đơn hàng Trung - Việt</p>
                     </div>
                 </div>
@@ -209,7 +286,7 @@
         </header>
 
         <main class="max-w-7xl mx-auto px-4 py-6">
-            <!-- Dashboard Thống kê -->
+            <!-- DASHBOARD THỐNG KÊ -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <div class="bg-white p-5 rounded-[25px] border-2 border-sky-100 shadow-sm flex items-center justify-between">
                     <div>
@@ -271,6 +348,7 @@
                 </div>
             </div>
 
+            <!-- BẢNG ĐƠN HÀNG -->
             <div class="bg-white rounded-[30px] border border-sky-100 shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -282,6 +360,8 @@
                                 <th class="p-4 text-right">Tiền Gốc (¥ / đ)</th>
                                 <th class="p-4 text-right">Cân & Phí TV</th>
                                 <th class="p-4 text-right">Bán & Lợi Nhuận</th>
+                                <th class="p-4">Kho</th>
+                                <th class="p-4">Ghi Chú Đơn Hàng</th>
                                 <th class="p-4 text-center">Trạng Thái</th>
                                 <th class="p-4 text-center">Hành Động</th>
                             </tr>
@@ -297,13 +377,12 @@
         </main>
     </div>
 
-    <!-- MODAL BÁO LỖI NHẬP SAI MẬT KHẨU (CHỮ SIÊU BỰ BẮT MẮT) -->
+    <!-- MODAL BÁO LỖI MẬT KHẨU -->
     <div id="wrongPassModal" class="hidden fixed inset-0 bg-rose-950/80 backdrop-blur-md items-center justify-center p-4 z-50">
         <div class="bg-white rounded-[40px] border-4 border-rose-500 p-8 max-w-md w-full text-center shadow-2xl animate-shake">
             <div class="w-24 h-24 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-5xl mx-auto mb-4 border-4 border-rose-200">
                 <i class="fa-solid fa-circle-xmark"></i>
             </div>
-            <!-- DÒNG CHỮ CẢNH BÁO SIÊU BỰ -->
             <h1 class="text-4xl font-black text-rose-600 tracking-tight mb-2 uppercase">NHẬP SAI RỒI!</h1>
             <p class="text-base font-bold text-slate-700 mb-6">Mật khẩu bạn vừa nhập không đúng. Vui lòng thử lại!</p>
             <button type="button" onclick="closeWrongPassModal()" class="w-full py-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-lg rounded-2xl shadow-xl transition cursor-pointer uppercase">
@@ -312,7 +391,7 @@
         </div>
     </div>
 
-    <!-- MODAL THÀNH CÔNG CHO KHÁCH -->
+    <!-- MODAL THÀNH CÔNG -->
     <div id="successModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4 z-50">
         <div class="bg-white rounded-[30px] border-2 border-pink-200 p-6 max-w-sm w-full text-center shadow-2xl">
             <div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
@@ -329,7 +408,7 @@
         </div>
     </div>
 
-    <!-- MODAL ADMIN SỬA ĐƠN HÀNG -->
+    <!-- MODAL SỬA ĐƠN HÀNG -->
     <div id="adminModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4 z-50">
         <div class="bg-white rounded-[30px] border-2 border-sky-200 shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto">
             <div class="p-5 border-b border-sky-100 flex justify-between items-center sticky top-0 bg-white z-10">
@@ -338,6 +417,7 @@
             </div>
             <form id="adminOrderForm" onsubmit="saveAdminOrder(event)" class="p-6 space-y-4">
                 <input type="hidden" id="editId">
+
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1">Mã Đơn</label>
@@ -385,6 +465,17 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Sản Phẩm</label>
                     <input type="text" id="admProduct" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Kho</label>
+                        <input type="text" id="admWarehouse" placeholder="Ví dụ: Kho Hà Nội / Kho TQ" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Ghi Chú Đơn Hàng</label>
+                        <input type="text" id="admOrderNote" placeholder="Nhập ghi chú đơn hàng..." class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-3 gap-3">
@@ -445,84 +536,44 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT XỬ LÝ -->
+    <!-- JAVASCRIPT -->
     <script>
-        let settings = JSON.parse(localStorage.getItem('shop_settings')) || { rate: 3500, shippingRate: 25000 };
-        // MẬT KHẨU MẶC ĐỊNH ĐÃ ĐỔI THÀNH 1236
-        let adminPass = localStorage.getItem('admin_pass') || '1236';
+        let settings = JSON.parse(localStorage.getItem('shop_settings')) || {
+            rate: 3500,
+            shippingRate: 25000
+        };
+
+        let savedAdminPass = localStorage.getItem('admin_pass');
+        let adminPass = (!savedAdminPass || savedAdminPass === '1236' || savedAdminPass === 'admin123')
+            ? '12356'
+            : savedAdminPass;
+        localStorage.setItem('admin_pass', adminPass);
 
         let orders = JSON.parse(localStorage.getItem('shop_orders')) || [
             {
-                id: 'ORD-8821', code: 'ORD-8821', customerName: 'Bảo Ngọc', customerPhone: '0905123456',
-                provinceNew: 'TP. Hồ Chí Minh', provinceOld: '', customerAddress: '123 Pasteur, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh',
-                productName: 'Áo len cardigan pastel - Giao giờ hành chính', costYuan: 88, weightKg: 0.5, sellPriceVnd: 420000, extraFee: 10000, status: 'Đang về VN'
+                id: 'ORD-8821',
+                code: 'ORD-8821',
+                customerName: 'Bảo Ngọc',
+                customerPhone: '0905123456',
+                provinceNew: 'TP. Hồ Chí Minh',
+                provinceOld: '',
+                customerAddress: 'Quận 3, Phường Võ Thị Sáu, 123 Pasteur',
+                productName: 'Áo len cardigan pastel',
+                warehouse: '',
+                orderNote: 'Giao giờ hành chính',
+                costYuan: 88,
+                weightKg: 0.5,
+                sellPriceVnd: 420000,
+                extraFee: 10000,
+                status: 'Đang về VN'
             }
         ];
 
-        let hostData = [];
-
-        async function fetchProvinces() {
-            try {
-                let res = await fetch('https://provinces.open-api.vn/api/?depth=1');
-                hostData = await res.json();
-                let provSelect = document.getElementById('provinceSelect');
-                provSelect.innerHTML = '<option value="">-- Chọn Tỉnh/Thành --</option>';
-                hostData.forEach(p => {
-                    let opt = document.createElement('option');
-                    opt.value = p.name;
-                    opt.dataset.code = p.code;
-                    opt.text = p.name;
-                    provSelect.appendChild(opt);
-                });
-            } catch (e) { console.log(e); }
-        }
-
-        async function loadDistricts() {
-            let provSelect = document.getElementById('provinceSelect');
-            let code = provSelect.options[provSelect.selectedIndex].dataset.code;
-            let distSelect = document.getElementById('districtSelect');
-            let wardSelect = document.getElementById('wardSelect');
-            
-            distSelect.innerHTML = '<option value="">-- Chọn Quận/Huyện --</option>';
-            wardSelect.innerHTML = '<option value="">-- Chọn Phường/Xã --</option>';
-
-            if(!code) return;
-            try {
-                let res = await fetch(`https://provinces.open-api.vn/api/p/${code}?depth=2`);
-                let data = await res.json();
-                data.districts.forEach(d => {
-                    let opt = document.createElement('option');
-                    opt.value = d.name;
-                    opt.dataset.code = d.code;
-                    opt.text = d.name;
-                    distSelect.appendChild(opt);
-                });
-            } catch (e) { console.log(e); }
-        }
-
-        async function loadWards() {
-            let distSelect = document.getElementById('districtSelect');
-            let code = distSelect.options[distSelect.selectedIndex].dataset.code;
-            let wardSelect = document.getElementById('wardSelect');
-            
-            wardSelect.innerHTML = '<option value="">-- Chọn Phường/Xã --</option>';
-            if(!code) return;
-            try {
-                let res = await fetch(`https://provinces.open-api.vn/api/d/${code}?depth=2`);
-                let data = await res.json();
-                data.wards.forEach(w => {
-                    let opt = document.createElement('option');
-                    opt.value = w.name;
-                    opt.text = w.name;
-                    wardSelect.appendChild(opt);
-                });
-            } catch (e) { console.log(e); }
-        }
-
-        fetchProvinces();
-
         function formatCurrency(num) {
-            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(num).replace('₫', 'đ');
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(num).replace('₫', 'đ');
         }
 
         function backToHome() {
@@ -538,14 +589,14 @@
         }
 
         function promptAdminLogin() {
-            let pass = prompt("Nhập mật khẩu quản trị (Mặc định: 1236):");
+            let pass = prompt("Nhập mật khẩu quản trị (Mặc định: 12356):");
+
             if (pass === adminPass) {
                 document.getElementById('roleSelectScreen').classList.add('hidden');
                 document.getElementById('customerPortal').classList.add('hidden');
                 document.getElementById('adminPortal').classList.remove('hidden');
                 initAdmin();
             } else if (pass !== null) {
-                // Hiện Modal cảnh báo NHẬP SAI RỒI siêu bự
                 showWrongPassModal();
             }
         }
@@ -565,41 +616,56 @@
 
         function changeAdminPasswordPrompt() {
             let oldP = prompt("Nhập mật khẩu hiện tại:");
-            if(oldP === adminPass) {
+
+            if (oldP === adminPass) {
                 let newP = prompt("Nhập mật khẩu mới muốn đổi:");
-                if(newP && newP.trim() !== '') {
+
+                if (newP && newP.trim() !== '') {
                     adminPass = newP.trim();
                     localStorage.setItem('admin_pass', adminPass);
                     alert("Đã đổi mật khẩu thành công!");
                 }
-            } else if(oldP !== null) {
+            } else if (oldP !== null) {
                 showWrongPassModal();
             }
         }
 
         function submitCustomerOrder(e) {
             e.preventDefault();
-            let prov = document.getElementById('provinceSelect').value;
-            let dist = document.getElementById('districtSelect').value;
-            let ward = document.getElementById('wardSelect').value;
-            let street = document.getElementById('cusStreet').value;
-            let oldProv = document.getElementById('cusProvOld').value;
 
-            let fullAddress = `${street}, ${ward}, ${dist}, ${prov}`;
+            let prov = document.getElementById('provinceNew').value;
+            if (prov === 'Khác') {
+                prov = prompt("Nhập tên tỉnh/thành của bạn:") || 'Khác';
+            }
+
+            let oldProv = document.getElementById('cusProvOld').value;
+            let addressDetail = document.getElementById('cusAddress').value;
+            let fullAddress = `${addressDetail}, ${prov}`;
+
             let newCode = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
             let qty = parseInt(document.getElementById('cusQty').value) || 1;
-            let productDesc = document.getElementById('cusProduct').value + (qty > 1 ? ` (SL: ${qty})` : '');
+
+            let productDesc = document.getElementById('cusProduct').value
+                + (qty > 1 ? ` (SL: ${qty})` : '');
+
             let deliveryNote = document.getElementById('cusDeliveryNote').value;
-            if(deliveryNote) productDesc += ` - Note: ${deliveryNote}`;
 
             let orderObj = {
-                id: newCode, code: newCode,
+                id: newCode,
+                code: newCode,
                 customerName: document.getElementById('cusName').value,
                 customerPhone: document.getElementById('cusPhone').value,
-                provinceNew: prov, provinceOld: oldProv,
+                provinceNew: prov,
+                provinceOld: oldProv,
                 customerAddress: fullAddress,
                 productName: productDesc,
-                costYuan: 0, weightKg: 0.5, sellPriceVnd: 0, extraFee: 0, status: 'Mới tạo'
+                warehouse: '',
+                orderNote: deliveryNote,
+                costYuan: 0,
+                weightKg: 0.5,
+                sellPriceVnd: 0,
+                extraFee: 0,
+                status: 'Mới tạo'
             };
 
             orders.unshift(orderObj);
@@ -626,6 +692,7 @@
             let list = listFilter || orders;
             let tbody = document.getElementById('adminOrderTable');
             let emptyDiv = document.getElementById('adminEmpty');
+
             tbody.innerHTML = '';
 
             if (list.length === 0) {
@@ -642,14 +709,15 @@
                 let profit = o.sellPriceVnd - totalCost;
 
                 let badgeColor = 'bg-slate-100 text-slate-700';
-                if(o.status === 'Mới tạo') badgeColor = 'bg-pink-100 text-pink-700 font-bold';
-                if(o.status === 'Đã đặt TQ') badgeColor = 'bg-amber-100 text-amber-700 font-bold';
-                if(o.status === 'Đang về VN') badgeColor = 'bg-purple-100 text-purple-700 font-bold';
-                if(o.status === 'Đã giao') badgeColor = 'bg-emerald-100 text-emerald-700 font-bold';
-                if(o.status === 'Đã hủy') badgeColor = 'bg-rose-100 text-rose-700 font-bold';
+                if (o.status === 'Mới tạo') badgeColor = 'bg-pink-100 text-pink-700 font-bold';
+                if (o.status === 'Đã đặt TQ') badgeColor = 'bg-amber-100 text-amber-700 font-bold';
+                if (o.status === 'Đang về VN') badgeColor = 'bg-purple-100 text-purple-700 font-bold';
+                if (o.status === 'Đã giao') badgeColor = 'bg-emerald-100 text-emerald-700 font-bold';
+                if (o.status === 'Đã hủy') badgeColor = 'bg-rose-100 text-rose-700 font-bold';
 
                 let tr = document.createElement('tr');
                 tr.className = "hover:bg-sky-50/50 transition";
+
                 tr.innerHTML = `
                     <td class="p-4">
                         <div class="font-black text-sky-600">${o.code}</div>
@@ -678,6 +746,12 @@
                             Lãi: ${formatCurrency(profit)}
                         </div>
                     </td>
+                    <td class="p-4">
+                        <div class="text-xs font-semibold text-slate-700">${o.warehouse || '—'}</div>
+                    </td>
+                    <td class="p-4">
+                        <div class="text-xs text-slate-600 min-w-40">${o.orderNote || '—'}</div>
+                    </td>
                     <td class="p-4 text-center">
                         <span class="px-3 py-1 rounded-full text-xs ${badgeColor}">${o.status}</span>
                     </td>
@@ -692,14 +766,21 @@
                         </div>
                     </td>
                 `;
+
                 tbody.appendChild(tr);
             });
         }
 
         function updateDashboard() {
             document.getElementById('statTotalOrders').innerText = orders.length;
+
             let rev = orders.reduce((sum, o) => sum + o.sellPriceVnd, 0);
-            let cost = orders.reduce((sum, o) => sum + (o.costYuan * settings.rate) + (o.weightKg * settings.shippingRate) + (o.extraFee || 0), 0);
+
+            let cost = orders.reduce((sum, o) =>
+                sum + (o.costYuan * settings.rate)
+                + (o.weightKg * settings.shippingRate)
+                + (o.extraFee || 0), 0);
+
             let profit = rev - cost;
 
             document.getElementById('statTotalRevenue').innerText = formatCurrency(rev);
@@ -710,9 +791,11 @@
         function openAdminModal(id = null) {
             document.getElementById('adminModal').classList.remove('hidden');
             document.getElementById('adminModal').classList.add('flex');
-            if(id) {
+
+            if (id) {
                 let o = orders.find(x => x.id === id);
-                if(o) {
+
+                if (o) {
                     document.getElementById('editId').value = o.id;
                     document.getElementById('admCode').value = o.code;
                     document.getElementById('admStatus').value = o.status;
@@ -722,6 +805,8 @@
                     document.getElementById('admProvOld').value = o.provinceOld;
                     document.getElementById('admAddress').value = o.customerAddress;
                     document.getElementById('admProduct').value = o.productName;
+                    document.getElementById('admWarehouse').value = o.warehouse || '';
+                    document.getElementById('admOrderNote').value = o.orderNote || '';
                     document.getElementById('admCostYuan').value = o.costYuan;
                     document.getElementById('admWeight').value = o.weightKg;
                     document.getElementById('admSellPrice').value = o.sellPriceVnd;
@@ -732,6 +817,7 @@
                 document.getElementById('editId').value = '';
                 document.getElementById('admCode').value = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
             }
+
             calcPreview();
         }
 
@@ -745,16 +831,22 @@
             let w = parseFloat(document.getElementById('admWeight').value) || 0;
             let s = parseFloat(document.getElementById('admSellPrice').value) || 0;
             let ex = parseFloat(document.getElementById('admExtra').value) || 0;
+
             let total = (y * settings.rate) + (w * settings.shippingRate) + ex;
             let p = s - total;
+
             let el = document.getElementById('admPreviewProfit');
             el.innerText = formatCurrency(p);
-            el.className = p >= 0 ? "text-base font-black text-sky-700" : "text-base font-black text-rose-600";
+            el.className = p >= 0
+                ? "text-base font-black text-sky-700"
+                : "text-base font-black text-rose-600";
         }
 
         function saveAdminOrder(e) {
             e.preventDefault();
+
             let id = document.getElementById('editId').value;
+
             let data = {
                 id: id || ('ORD-' + Math.floor(1000 + Math.random() * 9000)),
                 code: document.getElementById('admCode').value,
@@ -765,6 +857,8 @@
                 provinceOld: document.getElementById('admProvOld').value,
                 customerAddress: document.getElementById('admAddress').value,
                 productName: document.getElementById('admProduct').value,
+                warehouse: document.getElementById('admWarehouse').value.trim(),
+                orderNote: document.getElementById('admOrderNote').value.trim(),
                 costYuan: parseFloat(document.getElementById('admCostYuan').value) || 0,
                 weightKg: parseFloat(document.getElementById('admWeight').value) || 0,
                 sellPriceVnd: parseFloat(document.getElementById('admSellPrice').value) || 0,
@@ -772,16 +866,22 @@
             };
 
             let idx = orders.findIndex(x => x.id === id);
-            if(idx !== -1) { orders[idx] = data; } else { orders.unshift(data); }
+
+            if (idx !== -1) {
+                orders[idx] = data;
+            } else {
+                orders.unshift(data);
+            }
 
             localStorage.setItem('shop_orders', JSON.stringify(orders));
+
             closeAdminModal();
             renderAdminOrders();
             updateDashboard();
         }
 
         function deleteOrder(id) {
-            if(confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
+            if (confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
                 orders = orders.filter(x => x.id !== id);
                 localStorage.setItem('shop_orders', JSON.stringify(orders));
                 renderAdminOrders();
@@ -804,29 +904,40 @@
         function saveSettings() {
             settings.rate = parseFloat(document.getElementById('setRate').value) || 3500;
             settings.shippingRate = parseFloat(document.getElementById('setShipping').value) || 25000;
+
             localStorage.setItem('shop_settings', JSON.stringify(settings));
+
             closeSettingsModal();
             renderAdminOrders();
             updateDashboard();
+
             alert("Đã lưu cài đặt tỷ giá thành công!");
         }
 
         function filterOrders() {
             let kw = document.getElementById('searchInput').value.toLowerCase();
             let st = document.getElementById('statusFilter').value;
+
             let filtered = orders.filter(o => {
-                let matchKw = o.code.toLowerCase().includes(kw) || o.customerName.toLowerCase().includes(kw) || (o.customerPhone && o.customerPhone.includes(kw));
+                let matchKw = o.code.toLowerCase().includes(kw)
+                    || o.customerName.toLowerCase().includes(kw)
+                    || (o.customerPhone && o.customerPhone.includes(kw));
+
                 let matchSt = !st || o.status === st;
+
                 return matchKw && matchSt;
             });
+
             renderAdminOrders(filtered);
         }
 
         function exportJSON() {
             let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(orders, null, 2));
             let anchor = document.createElement('a');
+
             anchor.setAttribute("href", dataStr);
             anchor.setAttribute("download", "du_lieu_don_hang_pastel.json");
+
             document.body.appendChild(anchor);
             anchor.click();
             anchor.remove();
@@ -834,3 +945,4 @@
     </script>
 </body>
 </html>
+                        
