@@ -20,23 +20,13 @@
             backdrop-filter: blur(12px);
             border: 2px solid rgba(255, 182, 193, 0.4);
         }
-        .floating-sticker {
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
     </style>
 </head>
 <body class="text-slate-700 min-h-screen relative overflow-x-hidden">
 
     <!-- PHẦN 1: MÀN HÌNH CHỌN VAI TRÒ (TRANG CHỦ) -->
     <div id="roleSelectScreen" class="min-h-screen flex items-center justify-center p-4">
-        <div class="pastel-card p-8 rounded-[35px] shadow-2xl max-w-md w-full text-center relative">
-            <img src="https://i.pinimg.com/736x/dd/6c/52/dd6c524f92635cca240512d6c86560f2.jpg" class="absolute -top-10 -left-8 w-20 h-20 object-contain floating-sticker rounded-full shadow-md bg-white p-1" alt="Sticker">
-            <img src="https://i.pinimg.com/736x/bf/3d/68/bf3d681a5841f6511b55621f24a1ff15.jpg" class="absolute -bottom-8 -right-6 w-18 h-18 object-contain floating-sticker rounded-full shadow-md bg-white p-1" style="animation-delay: 1.5s;" alt="Sticker">
-
+        <div class="pastel-card p-8 rounded-[35px] shadow-2xl max-w-md w-full text-center">
             <div class="w-20 h-20 bg-gradient-to-tr from-pink-300 to-sky-300 rounded-3xl mx-auto flex items-center justify-center text-white text-3xl shadow-lg mb-6">
                 <i class="fa-solid fa-cloud-moon text-pink-600"></i>
             </div>
@@ -59,7 +49,9 @@
         <header class="bg-white/70 backdrop-blur-md shadow-sm border-b border-pink-100">
             <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <img src="https://i.pinimg.com/736x/53/3c/04/533c047c159bbe2e89e6681722178989.jpg" class="w-10 h-10 rounded-full object-cover shadow" alt="Icon">
+                    <div class="w-10 h-10 bg-pink-200 text-pink-600 rounded-full flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
                     <h1 class="text-base font-bold text-pink-600">Góc Đặt Hàng Của Bạn</h1>
                 </div>
                 <button type="button" onclick="backToHome()" class="bg-pink-100 hover:bg-pink-200 text-pink-600 px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer">
@@ -69,9 +61,7 @@
         </header>
 
         <main class="max-w-2xl mx-auto px-4 mt-8">
-            <div class="pastel-card rounded-[30px] shadow-xl p-6 sm:p-8 relative">
-                <img src="https://i.pinimg.com/736x/24/30/59/243059932e8608874832bde529f03529.jpg" class="absolute -top-8 right-6 w-16 h-16 object-cover rounded-full shadow-md floating-sticker bg-white p-1" alt="Sticker">
-
+            <div class="pastel-card rounded-[30px] shadow-xl p-6 sm:p-8">
                 <div class="text-center mb-6">
                     <h2 class="text-xl font-extrabold text-pink-600">Phiếu Gửi Thông Tin Đơn Hàng</h2>
                     <p class="text-xs text-slate-500 mt-1">Điền đầy đủ thông tin để shop lên đơn cho bạn nha!</p>
@@ -261,7 +251,7 @@
 
     <!-- MODAL THÀNH CÔNG CHO KHÁCH -->
     <div id="successModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="pastel-card rounded-[30px] shadow-2xl p-6 max-w-sm w-full text-center relative">
+        <div class="pastel-card rounded-[30px] shadow-2xl p-6 max-w-sm w-full text-center">
             <div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-inner">
                 <i class="fa-solid fa-check"></i>
             </div>
@@ -330,4 +320,369 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Sản Phẩm</label>
+                    <input type="text" id="admProduct" required class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                </div>
+
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Giá Gốc (¥)</label>
+                        <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Cân Nặng (kg)</label>
+                        <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Giá Bán (VNĐ)</label>
+                        <input type="number" id="admSellPrice" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Phụ Phí Khác (VNĐ)</label>
+                        <input type="number" id="admExtra" value="0" oninput="calcPreview()" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm bg-white/80">
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-2xl border border-pink-200 flex flex-col justify-center">
+                        <span class="text-[11px] text-pink-600 font-bold uppercase">Lợi Nhuận Dự Kiến:</span>
+                        <span id="admPreviewProfit" class="text-base font-extrabold text-pink-700">0 đ</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-3 border-t border-pink-100">
+                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 border border-pink-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-pink-50 cursor-pointer">Hủy</button>
+                    <button type="submit" class="px-5 py-2.5 bg-gradient-to-r from-pink-400 to-rose-400 text-white rounded-xl text-sm font-bold shadow-lg cursor-pointer">Lưu Lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL CÀI ĐẶT TỶ GIÁ -->
+    <div id="settingsModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4 z-50">
+        <div class="pastel-card rounded-[30px] shadow-2xl w-full max-w-sm">
+            <div class="p-5 border-b border-pink-100 flex justify-between items-center">
+                <h3 class="text-base font-extrabold text-pink-600">Cài Đặt Tỷ Giá & Cước</h3>
+                <button type="button" onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold cursor-pointer">&times;</button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)</label>
+                    <input type="number" id="setRate" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm font-bold bg-white/80">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Cước Cân Trung - Việt (VNĐ / kg)</label>
+                    <input type="number" id="setShipping" class="w-full px-3 py-2.5 border border-pink-200 rounded-xl text-sm font-bold bg-white/80">
+                </div>
+                <div class="flex justify-end gap-3 pt-3 border-t border-pink-100">
+                    <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 border border-pink-200 rounded-xl text-sm font-bold text-slate-600 cursor-pointer">Đóng</button>
+                    <button type="button" onclick="saveSettings()" class="px-4 py-2 bg-gradient-to-r from-sky-400 to-indigo-400 text-white rounded-xl text-sm font-bold shadow-lg cursor-pointer">Lưu Cài Đặt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT XỬ LÝ -->
+    <script>
+        let settings = JSON.parse(localStorage.getItem('shop_settings')) || { rate: 3500, shippingRate: 25000 };
+        let orders = JSON.parse(localStorage.getItem('shop_orders')) || [
+            {
+                id: 'ORD-8821', code: 'ORD-8821', customerName: 'Bảo Ngọc', customerPhone: '0905123456',
+                provinceNew: 'TP. Hồ Chí Minh', provinceOld: '', customerAddress: '123 Pasteur, Quận 3',
+                productName: 'Áo len cardigan pastel', costYuan: 88, weightKg: 0.5, sellPriceVnd: 420000, extraFee: 10000, status: 'Đang về VN'
+            }
+        ];
+
+        function formatCurrency(num) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(num).replace('₫', 'đ');
+        }
+
+        function backToHome() {
+            document.getElementById('roleSelectScreen').classList.remove('hidden');
+            document.getElementById('customerPortal').classList.add('hidden');
+            document.getElementById('adminPortal').classList.add('hidden');
+        }
+
+        function openCustomerPortal() {
+            document.getElementById('roleSelectScreen').classList.add('hidden');
+            document.getElementById('customerPortal').classList.remove('hidden');
+            document.getElementById('adminPortal').classList.add('hidden');
+        }
+
+        function promptAdminLogin() {
+            let pass = prompt("Nhập mật khẩu quản trị (Mặc định: admin123):");
+            if (pass === "admin123") {
+                document.getElementById('roleSelectScreen').classList.add('hidden');
+                document.getElementById('customerPortal').classList.add('hidden');
+                document.getElementById('adminPortal').classList.remove('hidden');
+                initAdmin();
+            } else if (pass !== null) {
+                alert("Mật khẩu không chính xác!");
+            }
+        }
+
+        function toggleCustomInput(selectEl, customInputId) {
+            let customInput = document.getElementById(customInputId);
+            if (selectEl.value === 'Khác') {
+                customInput.classList.remove('hidden');
+                customInput.focus();
+            } else {
+                customInput.classList.add('hidden');
+                customInput.value = '';
+            }
+        }
+
+        function submitCustomerOrder(e) {
+            e.preventDefault();
+            let pNew = document.getElementById('cusProvNew').value;
+            if(pNew === 'Khác') pNew = document.getElementById('cusProvNewCustom').value;
+
+            let pOld = document.getElementById('cusProvOld').value;
+            if(pOld === 'Khác') pOld = document.getElementById('cusProvOldCustom').value;
+
+            let newCode = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+            let qty = parseInt(document.getElementById('cusQty').value) || 1;
+            let productStr = document.getElementById('cusProduct').value + (qty > 1 ? ` (SL: ${qty})` : '') + (document.getElementById('cusNote').value ? ` - ${document.getElementById('cusNote').value}` : '');
+
+            let orderObj = {
+                id: newCode, code: newCode,
+                customerName: document.getElementById('cusName').value,
+                customerPhone: document.getElementById('cusPhone').value,
+                provinceNew: pNew, provinceOld: pOld,
+                customerAddress: document.getElementById('cusAddress').value,
+                productName: productStr,
+                costYuan: 0, weightKg: 0.5, sellPriceVnd: 0, extraFee: 0, status: 'Mới tạo'
+            };
+
+            orders.unshift(orderObj);
+            localStorage.setItem('shop_orders', JSON.stringify(orders));
+
+            document.getElementById('displayOrderCode').innerText = newCode;
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('successModal').classList.add('flex');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('successModal').classList.remove('flex');
+            document.querySelector('#customerPortal form').reset();
+            backToHome();
+        }
+
+        function initAdmin() {
+            renderAdminOrders();
+            updateDashboard();
+        }
+
+        function renderAdminOrders(listFilter = null) {
+            let list = listFilter || orders;
+            let tbody = document.getElementById('adminOrderTable');
+            let emptyDiv = document.getElementById('adminEmpty');
+            tbody.innerHTML = '';
+
+            if (list.length === 0) {
+                emptyDiv.classList.remove('hidden');
+                return;
+            } else {
+                emptyDiv.classList.add('hidden');
+            }
+
+            list.forEach(o => {
+                let yuanVnd = o.costYuan * settings.rate;
+                let shipFee = o.weightKg * settings.shippingRate;
+                let totalCost = yuanVnd + shipFee + (o.extraFee || 0);
+                let profit = o.sellPriceVnd - totalCost;
+
+                let badgeColor = 'bg-slate-100 text-slate-700';
+                if(o.status === 'Mới tạo') badgeColor = 'bg-pink-100 text-pink-700 font-bold';
+                if(o.status === 'Đã đặt TQ') badgeColor = 'bg-amber-100 text-amber-700 font-bold';
+                if(o.status === 'Đang về VN') badgeColor = 'bg-purple-100 text-purple-700 font-bold';
+                if(o.status === 'Đã giao') badgeColor = 'bg-emerald-100 text-emerald-700 font-bold';
+                if(o.status === 'Đã hủy') badgeColor = 'bg-rose-100 text-rose-700 font-bold';
+
+                let tr = document.createElement('tr');
+                tr.className = "hover:bg-pink-50/40 transition";
+                tr.innerHTML = `
+                    <td class="p-4">
+                        <div class="font-extrabold text-pink-600">${o.code}</div>
+                        <div class="font-bold text-slate-900">${o.customerName}</div>
+                        <div class="text-xs text-slate-400">${o.customerPhone || 'Chưa có SĐT'}</div>
+                    </td>
+                    <td class="p-4">
+                        <div class="font-medium text-slate-800">${o.productName}</div>
+                        <div class="text-xs text-slate-400 truncate max-w-xs">${o.customerAddress || ''}</div>
+                    </td>
+                    <td class="p-4">
+                        <div class="text-xs font-bold text-slate-800">${o.provinceNew || 'Chưa cập nhật'}</div>
+                        ${o.provinceOld ? `<div class="text-[11px] text-pink-500 font-semibold">(Cũ: ${o.provinceOld})</div>` : ''}
+                    </td>
+                    <td class="p-4 text-right">
+                        <div class="font-bold text-slate-800">${o.costYuan} ¥</div>
+                        <div class="text-xs text-slate-400">~ ${formatCurrency(yuanVnd)}</div>
+                    </td>
+                    <td class="p-4 text-right">
+                        <div class="font-bold text-slate-800">${o.weightKg} kg</div>
+                        <div class="text-xs text-slate-400">Cước: ${formatCurrency(shipFee)}</div>
+                    </td>
+                    <td class="p-4 text-right">
+                        <div class="font-extrabold text-slate-900">${formatCurrency(o.sellPriceVnd)}</div>
+                        <div class="text-xs font-extrabold ${profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}">
+                            Lãi: ${formatCurrency(profit)}
+                        </div>
+                    </td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 rounded-full text-xs ${badgeColor}">${o.status}</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <div class="flex items-center justify-center gap-2">
+                            <button type="button" onclick="openAdminModal('${o.id}')" class="w-8 h-8 bg-pink-50 hover:bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center transition cursor-pointer" title="Sửa">
+                                <i class="fa-solid fa-pen text-xs"></i>
+                            </button>
+                            <button type="button" onclick="deleteOrder('${o.id}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center transition cursor-pointer" title="Xóa">
+                                <i class="fa-solid fa-trash text-xs"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateDashboard() {
+            document.getElementById('statTotalOrders').innerText = orders.length;
+            let rev = orders.reduce((sum, o) => sum + o.sellPriceVnd, 0);
+            let cost = orders.reduce((sum, o) => sum + (o.costYuan * settings.rate) + (o.weightKg * settings.shippingRate) + (o.extraFee || 0), 0);
+            let profit = rev - cost;
+
+            document.getElementById('statTotalRevenue').innerText = formatCurrency(rev);
+            document.getElementById('statTotalCost').innerText = formatCurrency(cost);
+            document.getElementById('statTotalProfit').innerText = formatCurrency(profit);
+        }
+
+        function openAdminModal(id = null) {
+            document.getElementById('adminModal').classList.remove('hidden');
+            document.getElementById('adminModal').classList.add('flex');
+            if(id) {
+                let o = orders.find(x => x.id === id);
+                if(o) {
+                    document.getElementById('editId').value = o.id;
+                    document.getElementById('admCode').value = o.code;
+                    document.getElementById('admStatus').value = o.status;
+                    document.getElementById('admName').value = o.customerName;
+                    document.getElementById('admPhone').value = o.customerPhone;
+                    document.getElementById('admProvNew').value = o.provinceNew;
+                    document.getElementById('admProvOld').value = o.provinceOld;
+                    document.getElementById('admAddress').value = o.customerAddress;
+                    document.getElementById('admProduct').value = o.productName;
+                    document.getElementById('admCostYuan').value = o.costYuan;
+                    document.getElementById('admWeight').value = o.weightKg;
+                    document.getElementById('admSellPrice').value = o.sellPriceVnd;
+                    document.getElementById('admExtra').value = o.extraFee || 0;
+                }
+            } else {
+                document.getElementById('adminOrderForm').reset();
+                document.getElementById('editId').value = '';
+                document.getElementById('admCode').value = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+            }
+            calcPreview();
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+            document.getElementById('adminModal').classList.remove('flex');
+        }
+
+        function calcPreview() {
+            let y = parseFloat(document.getElementById('admCostYuan').value) || 0;
+            let w = parseFloat(document.getElementById('admWeight').value) || 0;
+            let s = parseFloat(document.getElementById('admSellPrice').value) || 0;
+            let ex = parseFloat(document.getElementById('admExtra').value) || 0;
+            let total = (y * settings.rate) + (w * settings.shippingRate) + ex;
+            let p = s - total;
+            let el = document.getElementById('admPreviewProfit');
+            el.innerText = formatCurrency(p);
+            el.className = p >= 0 ? "text-base font-extrabold text-pink-600" : "text-base font-extrabold text-rose-600";
+        }
+
+        function saveAdminOrder(e) {
+            e.preventDefault();
+            let id = document.getElementById('editId').value;
+            let data = {
+                id: id || ('ORD-' + Math.floor(1000 + Math.random() * 9000)),
+                code: document.getElementById('admCode').value,
+                status: document.getElementById('admStatus').value,
+                customerName: document.getElementById('admName').value,
+                customerPhone: document.getElementById('admPhone').value,
+                provinceNew: document.getElementById('admProvNew').value,
+                provinceOld: document.getElementById('admProvOld').value,
+                customerAddress: document.getElementById('admAddress').value,
+                productName: document.getElementById('admProduct').value,
+                costYuan: parseFloat(document.getElementById('admCostYuan').value) || 0,
+                weightKg: parseFloat(document.getElementById('admWeight').value) || 0,
+                sellPriceVnd: parseFloat(document.getElementById('admSellPrice').value) || 0,
+                extraFee: parseFloat(document.getElementById('admExtra').value) || 0
+            };
+
+            let idx = orders.findIndex(x => x.id === id);
+            if(idx !== -1) { orders[idx] = data; } else { orders.unshift(data); }
+
+            localStorage.setItem('shop_orders', JSON.stringify(orders));
+            closeAdminModal();
+            renderAdminOrders();
+            updateDashboard();
+        }
+
+        function deleteOrder(id) {
+            if(confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
+                orders = orders.filter(x => x.id !== id);
+                localStorage.setItem('shop_orders', JSON.stringify(orders));
+                renderAdminOrders();
+                updateDashboard();
+            }
+        }
+
+        function openSettingsModal() {
+            document.getElementById('setRate').value = settings.rate;
+            document.getElementById('setShipping').value = settings.shippingRate;
+            document.getElementById('settingsModal').classList.remove('hidden');
+            document.getElementById('settingsModal').classList.add('flex');
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').classList.add('hidden');
+            document.getElementById('settingsModal').classList.remove('flex');
+        }
+
+        function saveSettings() {
+            settings.rate = parseFloat(document.getElementById('setRate').value) || 3500;
+            settings.shippingRate = parseFloat(document.getElementById('setShipping').value) || 25000;
+            localStorage.setItem('shop_settings', JSON.stringify(settings));
+            closeSettingsModal();
+            renderAdminOrders();
+            updateDashboard();
+            alert("Đã lưu cài đặt tỷ giá thành công!");
+        }
+
+        function filterOrders() {
+            let kw = document.getElementById('searchInput').value.toLowerCase();
+            let st = document.getElementById('statusFilter').value;
+            let filtered = orders.filter(o => {
+                let matchKw = o.code.toLowerCase().includes(kw) || o.customerName.toLowerCase().includes(kw) || (o.customerPhone && o.customerPhone.includes(kw));
+                let matchSt = !st || o.status === st;
+                return matchKw && matchSt;
+            });
+            renderAdminOrders(filtered);
+        }
+
+        function exportJSON() {
+            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(orders, null, 2));
+            let anchor = document.createElement('a');
+            anchor.setAttribute("href", dataStr);
+            anchor.setAttribute("download", "du_lieu_don_hang_pastel.json");
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+        }
+    </script>
+</body>
+</html>
