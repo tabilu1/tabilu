@@ -3,33 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Đặt Hàng & Quản Lý Lợi Nhuận Trung - Việt</title>
+    <title>Tiệm Đặt Hàng & Quản Lý Pastel Style</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            /* Tone màu nền Pastel Hồng - Xanh nhẹ nhàng */
+            background: linear-gradient(135deg, #fbcfe8 0%, #e0e7ff 50%, #ccfbf1 100%);
+            background-attachment: fixed;
+        }
+        .pastel-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+        /* Hiệu ứng sticker trôi nổi đáng yêu */
+        .floating-sticker {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 text-slate-800 min-h-screen">
+<body class="text-slate-700 min-h-screen relative overflow-x-hidden">
 
     <!-- PHẦN 1: MÀN HÌNH CHỌN VAI TRÒ (TRANG CHỦ) -->
     <div id="roleSelectScreen" class="min-h-screen flex items-center justify-center p-4">
-        <div class="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/50 max-w-md w-full text-center">
-            <div class="w-20 h-20 bg-gradient-to-tr from-indigo-600 to-violet-500 rounded-2xl mx-auto flex items-center justify-center text-white text-3xl shadow-lg shadow-indigo-500/30 mb-6">
-                <i class="fa-solid fa-store"></i>
+        <div class="pastel-card p-8 rounded-[35px] shadow-2xl max-w-md w-full text-center relative">
+            <!-- Icon sticker trang trí góc -->
+            <img src="https://i.pinimg.com/736x/dd/6c/52/dd6c524f92635cca240512d6c86560f2.jpg" class="absolute -top-10 -left-8 w-20 h-20 object-contain floating-sticker rounded-full shadow-md bg-white p-1" alt="Sticker">
+            <img src="https://i.pinimg.com/736x/bf/3d/68/bf3d681a5841f6511b55621f24a1ff15.jpg" class="absolute -bottom-8 -right-6 w-18 h-18 object-contain floating-sticker rounded-full shadow-md bg-white p-1" style="animation-delay: 1.5s;" alt="Sticker">
+
+            <div class="w-20 h-20 bg-gradient-to-tr from-pink-300 to-sky-300 rounded-3xl mx-auto flex items-center justify-center text-white text-3xl shadow-lg mb-6">
+                <i class="fa-solid fa-cloud-moon text-pink-600"></i>
             </div>
-            <h1 class="text-2xl font-extrabold text-slate-900 mb-2">Hệ Thống Order & Quản Lý</h1>
-            <p class="text-sm text-slate-500 mb-8">Vui lòng chọn vai trò truy cập của bạn để tiếp tục</p>
+            <h1 class="text-2xl font-extrabold text-pink-500 mb-1">Tiệm Order Xinh Xắn</h1>
+            <p class="text-xs text-slate-500 mb-8">Hệ thống đặt hàng & quản lý tone Pastel</p>
             
             <div class="space-y-4">
-                <button onclick="openCustomerPortal()" class="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold rounded-2xl shadow-lg shadow-emerald-500/25 transition transform active:scale-95 flex items-center justify-center gap-3 text-base">
-                    <i class="fa-solid fa-cart-shopping text-xl"></i> Khách Hàng Đặt Đơn
+                <button onclick="openCustomerPortal()" class="w-full py-4 px-6 bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-2xl shadow-lg shadow-pink-300/50 transition transform active:scale-95 flex items-center justify-center gap-3 text-base">
+                    <i class="fa-solid fa-heart text-white"></i> Khách Hàng Đặt Đơn
                 </button>
-                <button onclick="promptAdminLogin()" class="w-full py-4 px-6 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition transform active:scale-95 flex items-center justify-center gap-3 text-base">
-                    <i class="fa-solid fa-user-shield text-xl"></i> Chủ Shop (Quản Trị)
+                <button onclick="promptAdminLogin()" class="w-full py-4 px-6 bg-gradient-to-r from-sky-400 to-indigo-400 hover:from-sky-500 hover:to-indigo-500 text-white font-bold rounded-2xl shadow-lg shadow-sky-300/50 transition transform active:scale-95 flex items-center justify-center gap-3 text-base">
+                    <i class="fa-solid fa-key text-white"></i> Chủ Shop (Quản Trị)
                 </button>
             </div>
         </div>
@@ -37,42 +59,44 @@
 
     <!-- PHẦN 2: GIAO DIỆN KHÁCH HÀNG -->
     <div id="customerPortal" class="hidden min-h-screen pb-12">
-        <header class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg">
+        <header class="bg-white/70 backdrop-blur-md shadow-sm border-b border-pink-100">
             <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <i class="fa-solid fa-bag-shopping text-2xl"></i>
-                    <h1 class="text-lg font-bold">Cổng Đặt Hàng Trực Tuyến</h1>
+                    <img src="https://i.pinimg.com/736x/53/3c/04/533c047c159bbe2e89e6681722178989.jpg" class="w-10 h-10 rounded-full object-cover shadow" alt="Icon">
+                    <h1 class="text-base font-bold text-pink-600">Góc Đặt Hàng Của Bạn</h1>
                 </div>
-                <button onclick="backToHome()" class="bg-emerald-700/50 hover:bg-emerald-700 px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-left"></i> Quay lại
+                <button onclick="backToHome()" class="bg-pink-100 hover:bg-pink-200 text-pink-600 px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-house"></i> Quay lại
                 </button>
             </div>
         </header>
 
         <main class="max-w-2xl mx-auto px-4 mt-8">
-            <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-xl border border-white p-6 sm:p-8">
+            <div class="pastel-card rounded-[30px] shadow-xl p-6 sm:p-8 relative">
+                <!-- Icon trang trí form -->
+                <img src="https://i.pinimg.com/736x/24/30/59/243059932e8608874832bde529f03529.jpg" class="absolute -top-8 right-6 w-16 h-16 object-cover rounded-full shadow-md floating-sticker bg-white p-1" alt="Sticker">
+
                 <div class="text-center mb-6">
-                    <h2 class="text-xl font-extrabold text-slate-800">Form Đăng Ký Đơn Hàng Mới</h2>
-                    <p class="text-xs text-slate-500 mt-1">Điền thông tin chi tiết sản phẩm và địa chỉ nhận hàng của bạn</p>
+                    <h2 class="text-xl font-extrabold text-pink-600">Phiếu Gửi Thông Tin Đơn Hàng</h2>
+                    <p class="text-xs text-slate-500 mt-1">Điền đầy đủ thông tin để shop lên đơn cho bạn nha!</p>
                 </div>
 
                 <form onsubmit="submitCustomerOrder(event)" class="space-y-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Họ và Tên Khách Hàng *</label>
-                            <input type="text" id="cusName" required placeholder="Nhập họ tên của bạn" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-slate-50/50">
+                            <label class="block text-xs font-bold text-pink-500 mb-1">Họ và Tên *</label>
+                            <input type="text" id="cusName" required placeholder="Tên của bạn..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Số Điện Thoại Liên Hệ *</label>
-                            <input type="text" id="cusPhone" required placeholder="Số điện thoại nhận hàng" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-slate-50/50">
+                            <label class="block text-xs font-bold text-pink-500 mb-1">Số Điện Thoại *</label>
+                            <input type="text" id="cusPhone" required placeholder="SĐT liên hệ..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80">
                         </div>
                     </div>
 
-                    <!-- Chọn Tỉnh Thành Cũ / Mới hoặc Nhập Tay -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-emerald-50/50 rounded-2xl border border-emerald-100">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
                         <div>
-                            <label class="block text-xs font-bold text-emerald-900 mb-1">Tỉnh / Thành Phố Mới *</label>
-                            <select id="cusProvNew" onchange="toggleCustomInput(this, 'cusProvNewCustom')" class="w-full px-3 py-2.5 rounded-xl border border-emerald-200 text-sm mb-2 bg-white">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Tỉnh / Thành Phố Mới *</label>
+                            <select id="cusProvNew" onchange="toggleCustomInput(this, 'cusProvNewCustom')" class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm mb-2 bg-white">
                                 <option value="">-- Chọn Tỉnh/Thành --</option>
                                 <option value="Hồ Chí Minh">TP. Hồ Chí Minh</option>
                                 <option value="Hà Nội">Hà Nội</option>
@@ -81,43 +105,43 @@
                                 <option value="Đồng Nai">Đồng Nai</option>
                                 <option value="Khác">Khác (Tự nhập tay)...</option>
                             </select>
-                            <input type="text" id="cusProvNewCustom" placeholder="Nhập tên tỉnh/thành..." class="hidden w-full px-3 py-2 rounded-xl border border-emerald-200 text-sm bg-white">
+                            <input type="text" id="cusProvNewCustom" placeholder="Nhập tên tỉnh/thành..." class="hidden w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-emerald-900 mb-1">Tỉnh / Thành Phố Cũ (Nếu có)</label>
-                            <select id="cusProvOld" onchange="toggleCustomInput(this, 'cusProvOldCustom')" class="w-full px-3 py-2.5 rounded-xl border border-emerald-200 text-sm mb-2 bg-white">
+                            <label class="block text-xs font-bold text-pink-600 mb-1">Tỉnh / Thành Phố Cũ (Nếu có)</label>
+                            <select id="cusProvOld" onchange="toggleCustomInput(this, 'cusProvOldCustom')" class="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-sm mb-2 bg-white">
                                 <option value="">-- Không có / Chọn Tỉnh cũ --</option>
                                 <option value="Hà Tây cũ">Hà Tây cũ</option>
                                 <option value="Sông Bé cũ">Sông Bé cũ</option>
                                 <option value="Khác">Khác (Tự nhập tay)...</option>
                             </select>
-                            <input type="text" id="cusProvOldCustom" placeholder="Nhập tên tỉnh cũ..." class="hidden w-full px-3 py-2 rounded-xl border border-emerald-200 text-sm bg-white">
+                            <input type="text" id="cusProvOldCustom" placeholder="Nhập tên tỉnh cũ..." class="hidden w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Địa Chỉ Nhận Hàng Chi Tiết *</label>
-                        <textarea id="cusAddress" required rows="2" placeholder="Số nhà, tên đường, phường/xã..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-slate-50/50"></textarea>
+                        <label class="block text-xs font-bold text-pink-500 mb-1">Địa Chỉ Nhận Hàng Chi Tiết *</label>
+                        <textarea id="cusAddress" required rows="2" placeholder="Số nhà, tên đường, phường/xã..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80"></textarea>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Tên Sản Phẩm / Link Đặt Hàng *</label>
-                        <input type="text" id="cusProduct" required placeholder="Mô tả sản phẩm hoặc dán link Taobao/1688..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-slate-50/50">
+                        <label class="block text-xs font-bold text-pink-500 mb-1">Tên Sản Phẩm / Link Đặt Hàng *</label>
+                        <input type="text" id="cusProduct" required placeholder="Dán link sản phẩm hoặc mô tả..." class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm focus:ring-2 focus:ring-pink-400 focus:outline-none bg-white/80">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Số Lượng</label>
-                            <input type="number" id="cusQty" value="1" min="1" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50/50">
+                            <label class="block text-xs font-bold text-pink-500 mb-1">Số Lượng</label>
+                            <input type="number" id="cusQty" value="1" min="1" class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm bg-white/80">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Ghi Chú Thêm (Màu sắc, size...)</label>
-                            <input type="text" id="cusNote" placeholder="Ví dụ: Màu đen, size L" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-slate-50/50">
+                            <label class="block text-xs font-bold text-pink-500 mb-1">Ghi Chú Thêm (Màu, size...)</label>
+                            <input type="text" id="cusNote" placeholder="Ví dụ: Màu hồng, size M" class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-sm bg-white/80">
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold rounded-2xl shadow-lg shadow-emerald-500/25 transition text-base mt-4">
-                        Gửi Đơn Hàng Ngay <i class="fa-solid fa-paper-plane ml-2"></i>
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-2xl shadow-lg shadow-pink-300/50 transition text-base mt-4 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Gửi Đơn Hàng Ngay
                     </button>
                 </form>
             </div>
@@ -126,565 +150,4 @@
 
     <!-- PHẦN 3: GIAO DIỆN CHỦ SHOP (ADMIN) -->
     <div id="adminPortal" class="hidden min-h-screen">
-        <header class="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 text-white shadow-xl">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-chart-pie"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-extrabold">Bảng Điều Hành & Doanh Thu Shop</h1>
-                        <p class="text-xs text-indigo-200">Quản lý chi phí Trung - Việt & Lợi nhuận</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3">
-                    <button onclick="openSettingsModal()" class="bg-white/10 hover:bg-white/20 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 border border-white/20">
-                        <i class="fa-solid fa-gear"></i> Cài Đặt Tỷ Giá
-                    </button>
-                    <button onclick="openAdminModal()" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg shadow-emerald-500/30 transition flex items-center gap-2">
-                        <i class="fa-solid fa-plus"></i> Thêm Đơn Thủ Công
-                    </button>
-                    <button onclick="backToHome()" class="bg-rose-500/80 hover:bg-rose-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2">
-                        <i class="fa-solid fa-right-from-bracket"></i> Thoát
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <main class="max-w-7xl mx-auto px-4 py-6">
-            <!-- Thống kê Dashboard -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-slate-200/60 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Tổng Đơn Hàng</p>
-                        <h3 id="statTotalOrders" class="text-2xl font-extrabold text-slate-900 mt-1">0</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
-                        <i class="fa-solid fa-receipt"></i>
-                    </div>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-slate-200/60 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Tổng Doanh Thu</p>
-                        <h3 id="statTotalRevenue" class="text-2xl font-extrabold text-slate-900 mt-1">0 đ</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
-                        <i class="fa-solid fa-wallet"></i>
-                    </div>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-slate-200/60 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Tổng Chi Phí (Vốn+Cước)</p>
-                        <h3 id="statTotalCost" class="text-2xl font-extrabold text-amber-600 mt-1">0 đ</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
-                    </div>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-slate-200/60 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Lợi Nhuận Ròng</p>
-                        <h3 id="statTotalProfit" class="text-2xl font-extrabold text-indigo-600 mt-1">0 đ</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tìm kiếm & Lọc -->
-            <div class="bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-sm border border-slate-200/60 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="w-full md:w-1/3 relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </span>
-                    <input type="text" id="searchInput" oninput="filterOrders()" placeholder="Tìm theo mã đơn, khách hàng, SĐT..." class="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                </div>
-                <div class="w-full md:w-auto flex items-center gap-3">
-                    <select id="statusFilter" onchange="filterOrders()" class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                        <option value="">Tất cả trạng thái</option>
-                        <option value="Mới tạo">Mới tạo</option>
-                        <option value="Đã đặt TQ">Đã đặt TQ</option>
-                        <option value="Đang về VN">Đang về VN</option>
-                        <option value="Đã giao">Đã giao</option>
-                        <option value="Đã hủy">Đã hủy</option>
-                    </select>
-                    <button onclick="exportJSON()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-2xl text-sm font-bold transition flex items-center gap-2">
-                        <i class="fa-solid fa-download"></i> Xuất Dữ Liệu
-                    </button>
-                </div>
-            </div>
-
-            <!-- Bảng danh sách đơn hàng -->
-            <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-sm border border-slate-200/60 overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
-                                <th class="p-4">Mã Đơn / Khách Hàng</th>
-                                <th class="p-4">Sản Phẩm & Địa Chỉ</th>
-                                <th class="p-4">Tỉnh / Thành</th>
-                                <th class="p-4 text-right">Tiền Gốc (¥ / đ)</th>
-                                <th class="p-4 text-right">Cân & Phí TV</th>
-                                <th class="p-4 text-right">Bán & Lợi Nhuận</th>
-                                <th class="p-4 text-center">Trạng Thái</th>
-                                <th class="p-4 text-center">Hành Động</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminOrderTable" class="divide-y divide-slate-100 text-sm"></tbody>
-                    </table>
-                </div>
-                <div id="adminEmpty" class="hidden text-center py-16">
-                    <i class="fa-solid fa-box-open text-5xl text-slate-300 mb-3"></i>
-                    <p class="text-slate-500 font-medium">Chưa có đơn hàng nào trong hệ thống.</p>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- MODAL THÀNH CÔNG CHO KHÁCH (HIỆN MÃ ĐƠN) -->
-    <div id="successModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl shadow-2xl p-6 max-w-sm w-full text-center">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-inner">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <h3 class="text-xl font-extrabold text-slate-900 mb-1">Đặt Đơn Thành Công!</h3>
-            <p class="text-xs text-slate-500 mb-4">Mã đơn hàng của bạn đã được tạo tự động:</p>
-            <div class="bg-slate-100 p-3 rounded-2xl border border-slate-200 mb-6">
-                <span id="displayOrderCode" class="text-lg font-mono font-bold text-indigo-600"></span>
-            </div>
-            <button onclick="closeSuccessModal()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition">
-                Hoàn Tất & Về Trang Chủ
-            </button>
-        </div>
-    </div>
-
-    <!-- MODAL ADMIN: THÊM / SỬA CHI TIẾT ĐƠN & TÍNH LỢI NHUẬN -->
-    <div id="adminModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div class="p-5 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white z-10">
-                <h3 id="adminModalTitle" class="text-lg font-extrabold text-slate-900">Chi Tiết Đơn Hàng & Tính Toán</h3>
-                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
-            </div>
-            <form id="adminOrderForm" onsubmit="saveAdminOrder(event)" class="p-6 space-y-4">
-                <input type="hidden" id="editId">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Mã Đơn</label>
-                        <input type="text" id="admCode" required class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono font-bold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Trạng Thái</label>
-                        <select id="admStatus" class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-semibold">
-                            <option value="Mới tạo">Mới tạo</option>
-                            <option value="Đã đặt TQ">Đã đặt TQ</option>
-                            <option value="Đang về VN">Đang về VN</option>
-                            <option value="Đã giao">Đã giao</option>
-                            <option value="Đã hủy">Đã hủy</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Khách Hàng</label>
-                        <input type="text" id="admName" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Số Điện Thoại</label>
-                        <input type="text" id="admPhone" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 p-3 bg-slate-50 rounded-2xl border border-slate-200">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Tỉnh Mới</label>
-                        <input type="text" id="admProvNew" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Tỉnh Cũ</label>
-                        <input type="text" id="admProvOld" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Địa Chỉ</label>
-                    <textarea id="admAddress" rows="2" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Sản Phẩm</label>
-                    <input type="text" id="admProduct" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
-                </div>
-
-                <div class="grid grid-cols-3 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Giá Gốc (¥)</label>
-                        <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Cân Nặng (kg)</label>
-                        <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Giá Bán (VNĐ)</label>
-                        <input type="number" id="admSellPrice" required oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Phụ Phí Khác (VNĐ)</label>
-                        <input type="number" id="admExtra" value="0" oninput="calcPreview()" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm">
-                    </div>
-                    <div class="bg-indigo-50 p-3 rounded-2xl border border-indigo-100 flex flex-col justify-center">
-                        <span class="text-[11px] text-indigo-600 font-bold uppercase">Lợi Nhuận Dự Kiến:</span>
-                        <span id="admPreviewProfit" class="text-base font-extrabold text-indigo-700">0 đ</span>
-                    </div>
-                </div>
-
-                <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
-                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50">Hủy</button>
-                    <button type="submit" class="px-5 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-600/25">Lưu Lại</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL CÀI ĐẶT TỶ GIÁ & CƯỚC -->
-    <div id="settingsModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm">
-            <div class="p-5 border-b border-slate-100 flex justify-between items-center">
-                <h3 class="text-base font-extrabold text-slate-900">Cài Đặt Tỷ Giá & Cước</h3>
-                <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
-            </div>
-            <div class="p-6 space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)</label>
-                    <input type="number" id="setRate" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm font-bold">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Cước Cân Trung - Việt (VNĐ / kg)</label>
-                    <input type="number" id="setShipping" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm font-bold">
-                </div>
-                <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
-                    <button onclick="closeSettingsModal()" class="px-4 py-2 border rounded-xl text-sm font-bold text-slate-600">Đóng</button>
-                    <button onclick="saveSettings()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-lg">Lưu Cài Đặt</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT HỆ THỐNG -->
-    <script>
-        let settings = JSON.parse(localStorage.getItem('shop_settings')) || { rate: 3500, shippingRate: 25000 };
-        let orders = JSON.parse(localStorage.getItem('shop_orders')) || [
-            {
-                id: 'ORD-5821', code: 'ORD-5821', customerName: 'Trần Thị Mai', customerPhone: '0988123456',
-                provinceNew: 'Hồ Chí Minh', provinceOld: 'Sông Bé cũ', customerAddress: '45 Nguyễn Huệ, Quận 1',
-                productName: 'Túi xách nữ nội địa TQ', costYuan: 150, weightKg: 0.7, sellPriceVnd: 680000, extraFee: 15000, status: 'Đang về VN'
-            }
-        ];
-
-        function formatCurrency(num) {
-            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(num).replace('₫', 'đ');
-        }
-
-        // Chuyển màn hình
-        function backToHome() {
-            document.getElementById('roleSelectScreen').classList.remove('hidden');
-            document.getElementById('customerPortal').classList.add('hidden');
-            document.getElementById('adminPortal').classList.add('hidden');
-        }
-
-        function openCustomerPortal() {
-            document.getElementById('roleSelectScreen').classList.add('hidden');
-            document.getElementById('customerPortal').classList.remove('hidden');
-        }
-
-        function promptAdminLogin() {
-            let pass = prompt("Nhập mật khẩu quản trị (Mặc định: admin123):");
-            if (pass === "admin123") {
-                document.getElementById('roleSelectScreen').classList.add('hidden');
-                document.getElementById('adminPortal').classList.remove('hidden');
-                initAdmin();
-            } else if (pass !== null) {
-                alert("Mật khẩu không chính xác!");
-            }
-        }
-
-        // Xử lý ẩn hiện custom input tỉnh thành
-        function toggleCustomInput(selectEl, customInputId) {
-            let customInput = document.getElementById(customInputId);
-            if (selectEl.value === 'Khác') {
-                customInput.classList.remove('hidden');
-                customInput.focus();
-            } else {
-                customInput.classList.add('hidden');
-                customInput.value = '';
-            }
-        }
-
-        // Khách hàng gửi đơn
-        function submitCustomerOrder(e) {
-            e.preventDefault();
-            let pNew = document.getElementById('cusProvNew').value;
-            if(pNew === 'Khác') pNew = document.getElementById('cusProvNewCustom').value;
-
-            let pOld = document.getElementById('cusProvOld').value;
-            if(pOld === 'Khác') pOld = document.getElementById('cusProvOldCustom').value;
-
-            let newCode = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
-            let qty = parseInt(document.getElementById('cusQty').value) || 1;
-            let productStr = document.getElementById('cusProduct').value + (qty > 1 ? ` (SL: ${qty})` : '') + (document.getElementById('cusNote').value ? ` - ${document.getElementById('cusNote').value}` : '');
-
-            let orderObj = {
-                id: newCode,
-                code: newCode,
-                customerName: document.getElementById('cusName').value,
-                customerPhone: document.getElementById('cusPhone').value,
-                provinceNew: pNew,
-                provinceOld: pOld,
-                customerAddress: document.getElementById('cusAddress').value,
-                productName: productStr,
-                costYuan: 0, weightKg: 0.5, sellPriceVnd: 0, extraFee: 0, status: 'Mới tạo'
-            };
-
-            orders.unshift(orderObj);
-            localStorage.setItem('shop_orders', JSON.stringify(orders));
-
-            document.getElementById('displayOrderCode').innerText = newCode;
-            document.getElementById('successModal').classList.remove('hidden');
-            document.getElementById('successModal').classList.add('flex');
-        }
-
-        function closeSuccessManager() {
-            document.getElementById('successModal').classList.add('hidden');
-            document.getElementById('successModal').classList.remove('flex');
-            document.querySelector('#customerPortal form').reset();
-            backToHome();
-        }
-        
-        function closeSuccessModal() {
-            closeSuccessManager();
-        }
-
-        // Phần Admin
-        function initAdmin() {
-            renderAdminOrders();
-            updateDashboard();
-        }
-
-        function renderAdminOrders(listFilter = null) {
-            let list = listFilter || orders;
-            let tbody = document.getElementById('adminOrderTable');
-            let emptyDiv = document.getElementById('adminEmpty');
-            tbody.innerHTML = '';
-
-            if (list.length === 0) {
-                emptyDiv.classList.remove('hidden');
-                return;
-            } else {
-                emptyDiv.classList.add('hidden');
-            }
-
-            list.forEach(o => {
-                let yuanVnd = o.costYuan * settings.rate;
-                let shipFee = o.weightKg * settings.shippingRate;
-                let totalCost = yuanVnd + shipFee + (o.extraFee || 0);
-                let profit = o.sellPriceVnd - totalCost;
-
-                let badgeColor = 'bg-slate-100 text-slate-700';
-                if(o.status === 'Mới tạo') badgeColor = 'bg-blue-50 text-blue-700 font-bold';
-                if(o.status === 'Đã đặt TQ') badgeColor = 'bg-amber-50 text-amber-700 font-bold';
-                if(o.status === 'Đang về VN') badgeColor = 'bg-purple-50 text-purple-700 font-bold';
-                if(o.status === 'Đã giao') badgeColor = 'bg-emerald-50 text-emerald-700 font-bold';
-                if(o.status === 'Đã hủy') badgeColor = 'bg-rose-50 text-rose-700 font-bold';
-
-                let tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50/80 transition";
-                tr.innerHTML = `
-                    <td class="p-4">
-                        <div class="font-extrabold text-indigo-600">${o.code}</div>
-                        <div class="font-bold text-slate-900">${o.customerName}</div>
-                        <div class="text-xs text-slate-400">${o.customerPhone || 'Chưa có SĐT'}</div>
-                    </td>
-                    <td class="p-4">
-                        <div class="font-medium text-slate-800">${o.productName}</div>
-                        <div class="text-xs text-slate-400 truncate max-w-xs">${o.customerAddress || ''}</div>
-                    </td>
-                    <td class="p-4">
-                        <div class="text-xs font-bold text-slate-800">${o.provinceNew || 'Chưa cập nhật'}</div>
-                        ${o.provinceOld ? `<div class="text-[11px] text-amber-600 font-semibold">(Cũ: ${o.provinceOld})</div>` : ''}
-                    </td>
-                    <td class="p-4 text-right">
-                        <div class="font-bold text-slate-800">${o.costYuan} ¥</div>
-                        <div class="text-xs text-slate-400">~ ${formatCurrency(yuanVnd)}</div>
-                    </td>
-                    <td class="p-4 text-right">
-                        <div class="font-bold text-slate-800">${o.weightKg} kg</div>
-                        <div class="text-xs text-slate-400">Cước: ${formatCurrency(shipFee)}</div>
-                    </td>
-                    <td class="p-4 text-right">
-                        <div class="font-extrabold text-slate-900">${formatCurrency(o.sellPriceVnd)}</div>
-                        <div class="text-xs font-extrabold ${profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}">
-                            Lãi: ${formatCurrency(profit)}
-                        </div>
-                    </td>
-                    <td class="p-4 text-center">
-                        <span class="px-3 py-1 rounded-full text-xs ${badgeColor}">${o.status}</span>
-                    </td>
-                    <td class="p-4 text-center">
-                        <div class="flex items-center justify-center gap-2">
-                            <button onclick="openAdminModal('${o.id}')" class="w-8 h-8 bg-slate-100 hover:bg-indigo-100 text-slate-600 hover:text-indigo-600 rounded-xl flex items-center justify-center transition" title="Sửa/Tính toán">
-                                <i class="fa-solid fa-pen text-xs"></i>
-                            </button>
-                            <button onclick="deleteOrder('${o.id}')" class="w-8 h-8 bg-slate-100 hover:bg-rose-100 text-slate-600 hover:text-rose-600 rounded-xl flex items-center justify-center transition" title="Xóa">
-                                <i class="fa-solid fa-trash text-xs"></i>
-                            </button>
-                        </div>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function updateDashboard() {
-            document.getElementById('statTotalOrders').innerText = orders.length;
-            let rev = orders.reduce((sum, o) => sum + o.sellPriceVnd, 0);
-            let cost = orders.reduce((sum, o) => sum + (o.costYuan * settings.rate) + (o.weightKg * settings.shippingRate) + (o.extraFee || 0), 0);
-            let profit = rev - cost;
-
-            document.getElementById('statTotalRevenue').innerText = formatCurrency(rev);
-            document.getElementById('statTotalCost').innerText = formatCurrency(cost);
-            document.getElementById('statTotalProfit').innerText = formatCurrency(profit);
-        }
-
-        function openAdminModal(id = null) {
-            document.getElementById('adminModal').classList.remove('hidden');
-            document.getElementById('adminModal').classList.add('flex');
-            if(id) {
-                let o = orders.find(x => x.id === id);
-                if(o) {
-                    document.getElementById('editId').value = o.id;
-                    document.getElementById('admCode').value = o.code;
-                    document.getElementById('admStatus').value = o.status;
-                    document.getElementById('admName').value = o.customerName;
-                    document.getElementById('admPhone').value = o.customerPhone;
-                    document.getElementById('admProvNew').value = o.provinceNew;
-                    document.getElementById('admProvOld').value = o.provinceOld;
-                    document.getElementById('admAddress').value = o.customerAddress;
-                    document.getElementById('admProduct').value = o.productName;
-                    document.getElementById('admCostYuan').value = o.costYuan;
-                    document.getElementById('admWeight').value = o.weightKg;
-                    document.getElementById('admSellPrice').value = o.sellPriceVnd;
-                    document.getElementById('admExtra').value = o.extraFee || 0;
-                }
-            } else {
-                document.getElementById('adminOrderForm').reset();
-                document.getElementById('editId').value = '';
-                document.getElementById('admCode').value = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
-            }
-            calcPreview();
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.add('hidden');
-            document.getElementById('adminModal').classList.remove('flex');
-        }
-
-        function calcPreview() {
-            let y = parseFloat(document.getElementById('admCostYuan').value) || 0;
-            let w = parseFloat(document.getElementById('admWeight').value) || 0;
-            let s = parseFloat(document.getElementById('admSellPrice').value) || 0;
-            let ex = parseFloat(document.getElementById('admExtra').value) || 0;
-            let total = (y * settings.rate) + (w * settings.shippingRate) + ex;
-            let p = s - total;
-            let el = document.getElementById('admPreviewProfit');
-            el.innerText = formatCurrency(p);
-            el.className = p >= 0 ? "text-base font-extrabold text-emerald-600" : "text-base font-extrabold text-rose-600";
-        }
-
-        function saveAdminOrder(e) {
-            e.preventDefault();
-            let id = document.getElementById('editId').value;
-            let data = {
-                id: id || ('ORD-' + Math.floor(1000 + Math.random() * 9000)),
-                code: document.getElementById('admCode').value,
-                status: document.getElementById('admStatus').value,
-                customerName: document.getElementById('admName').value,
-                customerPhone: document.getElementById('admPhone').value,
-                provinceNew: document.getElementById('admProvNew').value,
-                provinceOld: document.getElementById('admProvOld').value,
-                customerAddress: document.getElementById('admAddress').value,
-                productName: document.getElementById('admProduct').value,
-                costYuan: parseFloat(document.getElementById('admCostYuan').value) || 0,
-                weightKg: parseFloat(document.getElementById('admWeight').value) || 0,
-                sellPriceVnd: parseFloat(document.getElementById('admSellPrice').value) || 0,
-                extraFee: parseFloat(document.getElementById('admExtra').value) || 0
-            };
-
-            let idx = orders.findIndex(x => x.id === id);
-            if(idx !== -1) { orders[idx] = data; } else { orders.unshift(data); }
-
-            localStorage.setItem('shop_orders', JSON.stringify(orders));
-            closeAdminModal();
-            renderAdminOrders();
-            updateDashboard();
-        }
-
-        function deleteOrder(id) {
-            if(confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
-                orders = orders.filter(x => x.id !== id);
-                localStorage.setItem('shop_orders', JSON.stringify(orders));
-                renderAdminOrders();
-                updateDashboard();
-            }
-        }
-
-        function openSettingsModal() {
-            document.getElementById('setRate').value = settings.rate;
-            document.getElementById('setShipping').value = settings.shippingRate;
-            document.getElementById('settingsModal').classList.remove('hidden');
-            document.getElementById('settingsModal').classList.add('flex');
-        }
-
-        function closeSettingsModal() {
-            document.getElementById('settingsModal').classList.add('hidden');
-            document.getElementById('settingsModal').classList.remove('flex');
-        }
-
-        function saveSettings() {
-            settings.rate = parseFloat(document.getElementById('setRate').value) || 3500;
-            settings.shippingRate = parseFloat(document.getElementById('setShipping').value) || 25000;
-            localStorage.setItem('shop_settings', JSON.stringify(settings));
-            closeSettingsModal();
-            renderAdminOrders();
-            updateDashboard();
-            alert("Đã lưu cài đặt tỷ giá thành công!");
-        }
-
-        function filterOrders() {
-            let kw = document.getElementById('searchInput').value.toLowerCase();
-            let st = document.getElementById('statusFilter').value;
-            let filtered = orders.filter(o => {
-                let matchKw = o.code.toLowerCase().includes(kw) || o.customerName.toLowerCase().includes(kw) || (o.customerPhone && o.customerPhone.includes(kw));
-                let matchSt = !st || o.status === st;
-                return matchKw && matchSt;
-            });
-            renderAdminOrders(filtered);
-        }
-
-        function exportJSON() {
-            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(orders, null, 2));
-            let anchor = document.createElement('a');
-            anchor.setAttribute("href", dataStr);
-            anchor.setAttribute("download", "du_lieu_don_hang.json");
-            document.body.appendChild(anchor);
-            anchor.click();
-            anchor.remove();
-        }
-    </script>
-</body>
-</html>
-              
+        <header class="bg-white/70 backdrop-blur-md shadow-sm border-b
