@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đơn Hàng</title>
+<title>Đơn hàng</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -34,7 +34,7 @@ html, body {
     min-height: 100%;
     background: var(--page) !important;
     color: var(--ink) !important;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Be Vietnam Pro', sans-serif;
 }
 
 .hidden {
@@ -42,8 +42,8 @@ html, body {
 }
 
 button {
-    font-family: 'Courier New', monospace;
-    font-weight: 700;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 600;
     color: var(--ink) !important;
     background: #eee7eb !important;
     border: 2px solid #b8adb5 !important;
@@ -78,7 +78,7 @@ input::placeholder, textarea::placeholder {
 label {
     display: block;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 6px;
     color: #786b73;
 }
@@ -108,7 +108,7 @@ h1, h2, h3, p {
 
 .home-title h1 {
     font-size: clamp(22px, 4vw, 32px);
-    font-weight: 900;
+    font-weight: 600;
     letter-spacing: -.6px;
     margin-bottom: 8px;
 }
@@ -117,7 +117,7 @@ h1, h2, h3, p {
     font-size: 11px;
     letter-spacing: 2px;
     color: #827a82;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: none;
 }
 
@@ -161,7 +161,7 @@ h1, h2, h3, p {
 
 .role-card h2 {
     font-size: 19px;
-    font-weight: 900;
+    font-weight: 600;
     margin: 0 0 18px;
 }
 
@@ -227,7 +227,7 @@ h1, h2, h3, p {
 
 .brand h1 {
     font-size: 17px;
-    font-weight: 900;
+    font-weight: 600;
     margin: 0;
     color: #536a78;
 }
@@ -275,15 +275,15 @@ h1, h2, h3, p {
 
 .stat p {
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 600;
     color: #827a82;
-    text-transform: uppercase;
+    text-transform: none;
     margin: 0 0 8px;
 }
 
 .stat strong {
     font-size: 21px;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 .toolbar {
@@ -343,7 +343,7 @@ th, td {
 th {
     font-size: 11px;
     white-space: nowrap;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: .4px;
 }
 
@@ -433,7 +433,7 @@ td .sub {
 .form-title h2 {
     font-size: 23px;
     color: #8c626e;
-    font-weight: 900;
+    font-weight: 600;
     margin-bottom: 7px;
 }
 
@@ -506,7 +506,7 @@ td .sub {
 
 .modal-head h3 {
     font-size: 17px;
-    font-weight: 900;
+    font-weight: 600;
     margin: 0;
 }
 
@@ -552,7 +552,7 @@ td .sub {
 
 .login-title h2 {
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 600;
     color: #536a78;
     margin-bottom: 6px;
 }
@@ -570,7 +570,7 @@ td .sub {
 
 .success-code {
     font-size: 22px;
-    font-weight: 900;
+    font-weight: 600;
     color: #8c626e;
     background: #fcf4f5;
     border: 1px solid #dec4cb;
@@ -665,12 +665,6 @@ td .sub {
         font-size: 18px;
     }
 }
-<style>
-    /* CSS cũ của bạn giữ nguyên */
-
-    /* Dán CSS chỉnh chữ mới ở đây */
-
-</style>
 </style>
 </head>
 
@@ -680,7 +674,7 @@ td .sub {
 <section id="roleSelectScreen" class="page">
   <div class="home-shell">
     <div class="home-title">
-      <h1>CỔNG DỊCH VỤ ĐẶT HÀNG</h1>
+      <h1>Cổng dịch vụ đặt hàng</h1>
       <p>Vui lòng chọn cổng truy cập phù hợp</p>
     </div>
 
@@ -692,10 +686,10 @@ td .sub {
            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCustomerPortal();}">
         <div>
           <img src="https://i.pinimg.com/736x/df/99/3b/df993bf7e87d747090382f0d8b47013e.jpg" alt="Khách hàng">
-          <h2>KHÁCH HÀNG</h2>
+          <h2>Khách hàng</h2>
         </div>
         <button type="button" onclick="event.stopPropagation();openCustomerPortal()">
-          VÀO CỔNG ĐẶT ĐƠN <i class="fa-solid fa-arrow-right"></i>
+          Vào cổng đặt đơn <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
 
@@ -706,17 +700,17 @@ td .sub {
            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();promptAdminLogin();}">
         <div>
           <img src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg" alt="Chủ shop">
-          <h2>CHỦ SHOP</h2>
+          <h2>Chủ shop</h2>
         </div>
         <button type="button" onclick="event.stopPropagation();promptAdminLogin()">
-          VÀO CỔNG QUẢN TRỊ <i class="fa-solid fa-key"></i>
+          Vào cổng quản trị <i class="fa-solid fa-key"></i>
         </button>
       </div>
     </div>
 
     <div class="password-link">
       <button type="button" onclick="changeAdminPasswordPrompt()">
-        <i class="fa-solid fa-lock"></i> ĐỔI MẬT KHẨU CHỦ SHOP
+        <i class="fa-solid fa-lock"></i> Đổi mật khẩu chủ shop
       </button>
     </div>
   </div>
@@ -728,10 +722,10 @@ td .sub {
     <div class="topbar-inner">
       <div class="brand">
         <div class="brand-icon"><i class="fa-solid fa-bag-shopping"></i></div>
-        <h1>GÓC ĐẶT HÀNG KHÁCH HÀNG</h1>
+        <h1>Góc đặt hàng khách hàng</h1>
       </div>
       <button type="button" onclick="backToHome()">
-        <i class="fa-solid fa-house"></i> Trang Chủ
+        <i class="fa-solid fa-house"></i> Trang chủ
       </button>
     </div>
   </header>
@@ -739,7 +733,7 @@ td .sub {
   <main class="content">
     <div class="form-card">
       <div class="form-title">
-        <h2>Phiếu Gửi Thông Tin Order</h2>
+        <h2>Phiếu gửi thông tin order</h2>
         <p>Điền địa chỉ và chi tiết mặt hàng để shop hỗ trợ nha!</p>
       </div>
 
@@ -747,19 +741,19 @@ td .sub {
         <div class="form-grid">
 
           <div class="field">
-            <label for="cusName">Họ và Tên Khách Hàng *</label>
+            <label for="cusName">Họ và tên khách hàng *</label>
             <input id="cusName" required maxlength="100" placeholder="Nhập tên của bạn...">
           </div>
 
           <div class="field">
-            <label for="cusPhone">Số Điện Thoại Liên Hệ *</label>
+            <label for="cusPhone">Số điện thoại liên hệ *</label>
             <input id="cusPhone" type="tel" required maxlength="30" placeholder="Số điện thoại nhận hàng...">
           </div>
 
           <div class="field field-full address-box">
             <div class="form-grid">
               <div class="field">
-                <label for="provinceNew">Tỉnh / Thành Phố *</label>
+                <label for="provinceNew">Tỉnh / thành phố *</label>
                 <select id="provinceNew" required>
                   <option value="">-- Chọn Tỉnh/Thành --</option>
                 </select>
@@ -775,28 +769,28 @@ td .sub {
           </div>
 
           <div class="field field-full">
-            <label for="cusAddress">Quận/Huyện, Phường/Xã & Số Nhà/Tên Đường *</label>
+            <label for="cusAddress">Quận/huyện, phường/xã & số nhà/tên đường *</label>
             <textarea id="cusAddress" rows="2" required placeholder="Ví dụ: Quận 1, Phường Bến Nghé, 123 Nguyễn Huệ..."></textarea>
           </div>
 
           <div class="field field-full">
-            <label for="cusProduct">Mô Tả Sản Phẩm Muốn Đặt *</label>
+            <label for="cusProduct">Mô tả sản phẩm muốn đặt *</label>
             <input id="cusProduct" required placeholder="Ví dụ: Áo khoác màu hồng size L...">
           </div>
 
           <div class="field">
-            <label for="cusQty">Số Lượng</label>
+            <label for="cusQty">Số lượng</label>
             <input type="number" id="cusQty" value="1" min="1">
           </div>
 
           <div class="field">
-            <label for="cusDeliveryNote">Khung Giờ Giao / Ghi Chú Địa Điểm</label>
+            <label for="cusDeliveryNote">Khung giờ giao / ghi chú địa điểm</label>
             <input id="cusDeliveryNote" placeholder="Ví dụ: Giao giờ hành chính, gọi trước 15p...">
           </div>
         </div>
 
         <button id="customerSubmitButton" type="submit" class="submit-order">
-          <i class="fa-solid fa-paper-plane"></i> GỬI ĐƠN HÀNG NGAY
+          <i class="fa-solid fa-paper-plane"></i> Gửi đơn hàng ngay
         </button>
       </form>
     </div>
@@ -810,7 +804,7 @@ td .sub {
       <div class="brand">
         <div class="brand-icon"><i class="fa-solid fa-chart-pie"></i></div>
         <div>
-          <h1>ĐƠN HÀNG</h1>
+          <h1>Đơn hàng</h1>
           <p>Bảng điều hành đơn hàng Trung - Việt</p>
           <div id="syncStatus" class="sync-status">Chưa đăng nhập quản trị</div>
         </div>
@@ -836,19 +830,19 @@ td .sub {
   <main class="content">
     <div class="stats">
       <div class="stat">
-        <p>Tổng Đơn Hàng</p>
+        <p>Tổng đơn hàng</p>
         <strong id="statTotalOrders">0</strong>
       </div>
       <div class="stat">
-        <p>Tổng Doanh Thu</p>
+        <p>Tổng doanh thu</p>
         <strong id="statTotalRevenue">0 đ</strong>
       </div>
       <div class="stat">
-        <p>Tổng Chi Phí</p>
+        <p>Tổng chi phí</p>
         <strong id="statTotalCost">0 đ</strong>
       </div>
       <div class="stat">
-        <p>Lợi Nhuận Ròng</p>
+        <p>Lợi nhuận ròng</p>
         <strong id="statTotalProfit">0 đ</strong>
       </div>
     </div>
@@ -869,7 +863,7 @@ td .sub {
         </select>
 
         <button type="button" onclick="exportJSON()">
-          <i class="fa-solid fa-download"></i> Xuất Dữ Liệu
+          <i class="fa-solid fa-download"></i> Xuất dữ liệu
         </button>
       </div>
     </div>
@@ -879,16 +873,16 @@ td .sub {
         <table>
           <thead>
             <tr>
-              <th>Mã Đơn / Khách Hàng</th>
-              <th>Sản Phẩm & Địa Chỉ</th>
-              <th>Tỉnh / Thành</th>
-              <th class="number">Tiền Gốc (¥ / đ)</th>
-              <th class="number">Cân & Phí TV</th>
-              <th class="number">Bán & Lợi Nhuận</th>
+              <th>Mã đơn / khách hàng</th>
+              <th>Sản phẩm & địa chỉ</th>
+              <th>Tỉnh / thành</th>
+              <th class="number">Tiền gốc (¥ / đ)</th>
+              <th class="number">Cân & phí TV</th>
+              <th class="number">Bán & lợi nhuận</th>
               <th>Kho</th>
-              <th>Ghi Chú Đơn Hàng</th>
-              <th>Trạng Thái</th>
-              <th>Hành Động</th>
+              <th>Ghi chú đơn hàng</th>
+              <th>Trạng thái</th>
+              <th>Hành động</th>
             </tr>
           </thead>
           <tbody id="adminOrderTable"></tbody>
@@ -903,12 +897,12 @@ td .sub {
   </main>
 </section>
 
-<!-- ĐĂNG NHẬP -->
+<!-- Đăng nhập -->
 <div id="adminLoginModal" class="modal hidden">
   <div class="modal-card small">
     <div class="login-title">
       <img class="login-art" src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg" alt="Chủ shop">
-      <h2>ĐĂNG NHẬP CHỦ SHOP</h2>
+      <h2>Đăng nhập chủ shop</h2>
       <p>Đăng nhập để xem và quản lý đơn hàng trên mọi thiết bị</p>
     </div>
 
@@ -926,11 +920,11 @@ td .sub {
       <p id="adminLoginError" class="error hidden"></p>
 
       <button id="adminLoginSubmit" type="submit" style="width:100%;margin-top:14px">
-        ĐĂNG NHẬP
+        Đăng nhập
       </button>
 
       <button type="button" onclick="closeAdminLoginModal()" style="width:100%;margin-top:8px">
-        QUAY LẠI
+        Quay lại
       </button>
     </form>
   </div>
@@ -940,7 +934,7 @@ td .sub {
 <div id="changePasswordModal" class="modal hidden">
   <div class="modal-card small">
     <h2 style="font-size:19px;font-weight:900;color:#536a78">
-      ĐỔI MẬT KHẨU CHỦ SHOP
+      Đổi mật khẩu chủ shop
     </h2>
 
     <p style="font-size:12px;color:var(--muted)">
@@ -966,11 +960,11 @@ td .sub {
       <p id="changePasswordError" class="error hidden"></p>
 
       <button id="changePasswordSubmit" type="submit" style="width:100%;margin-top:14px">
-        CẬP NHẬT MẬT KHẨU
+        Cập nhật mật khẩu
       </button>
 
       <button type="button" onclick="closeChangePasswordModal()" style="width:100%;margin-top:8px">
-        HỦY
+        Hủy
       </button>
     </form>
   </div>
@@ -983,12 +977,12 @@ td .sub {
       <i class="fa-solid fa-circle-check"></i>
     </div>
     <h2 style="font-size:20px;font-weight:900;color:#8c626e">
-      Gửi Đơn Thành Công!
+      Gửi đơn thành công!
     </h2>
     <p style="font-size:12px;color:var(--muted)">Mã đơn hàng của bạn:</p>
     <div id="displayOrderCode" class="success-code"></div>
     <button type="button" onclick="closeSuccessModal()" style="width:100%">
-      HOÀN TẤT
+      Hoàn tất
     </button>
   </div>
 </div>
@@ -997,7 +991,7 @@ td .sub {
 <div id="adminModal" class="modal hidden">
   <div class="modal-card">
     <div class="modal-head">
-      <h3>Chi Tiết Đơn Hàng & Tính Lợi Nhuận</h3>
+      <h3>Chi tiết đơn hàng & tính lợi nhuận</h3>
       <button type="button" onclick="closeAdminModal()">&times;</button>
     </div>
 
@@ -1006,12 +1000,12 @@ td .sub {
 
       <div class="modal-grid">
         <div class="field">
-          <label for="admCode">Mã Đơn</label>
+          <label for="admCode">Mã đơn</label>
           <input id="admCode" required>
         </div>
 
         <div class="field">
-          <label for="admStatus">Trạng Thái</label>
+          <label for="admStatus">Trạng thái</label>
           <select id="admStatus">
             <option>Mới tạo</option>
             <option>Đã đặt TQ</option>
@@ -1022,32 +1016,32 @@ td .sub {
         </div>
 
         <div class="field">
-          <label for="admName">Khách Hàng</label>
+          <label for="admName">Khách hàng</label>
           <input id="admName" required>
         </div>
 
         <div class="field">
-          <label for="admPhone">Số Điện Thoại</label>
+          <label for="admPhone">Số điện thoại</label>
           <input id="admPhone">
         </div>
 
         <div class="field">
-          <label for="admProvNew">Tỉnh Mới</label>
+          <label for="admProvNew">Tỉnh mới</label>
           <input id="admProvNew">
         </div>
 
         <div class="field">
-          <label for="admProvOld">Tỉnh Cũ</label>
+          <label for="admProvOld">Tỉnh cũ</label>
           <input id="admProvOld">
         </div>
 
         <div class="field field-full">
-          <label for="admAddress">Địa Chỉ</label>
+          <label for="admAddress">Địa chỉ</label>
           <textarea id="admAddress" rows="2"></textarea>
         </div>
 
         <div class="field field-full">
-          <label for="admProduct">Sản Phẩm</label>
+          <label for="admProduct">Sản phẩm</label>
           <input id="admProduct" required>
         </div>
 
@@ -1057,39 +1051,39 @@ td .sub {
         </div>
 
         <div class="field">
-          <label for="admOrderNote">Ghi Chú Đơn Hàng</label>
+          <label for="admOrderNote">Ghi chú đơn hàng</label>
           <input id="admOrderNote" placeholder="Nhập ghi chú đơn hàng">
         </div>
 
         <div class="field">
-          <label for="admCostYuan">Giá Gốc (¥)</label>
+          <label for="admCostYuan">Giá gốc (¥)</label>
           <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()">
         </div>
 
         <div class="field">
-          <label for="admWeight">Cân Nặng (kg)</label>
+          <label for="admWeight">Cân nặng (kg)</label>
           <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()">
         </div>
 
         <div class="field">
-          <label for="admSellPrice">Giá Bán (VNĐ)</label>
+          <label for="admSellPrice">Giá bán (VNĐ)</label>
           <input type="number" id="admSellPrice" required oninput="calcPreview()">
         </div>
 
         <div class="field">
-          <label for="admExtra">Phụ Phí Khác (VNĐ)</label>
+          <label for="admExtra">Phụ phí khác (VNĐ)</label>
           <input type="number" id="admExtra" value="0" oninput="calcPreview()">
         </div>
 
         <div class="field field-full" style="background:#f1f6f8;padding:12px;border:1px solid #c4d5dd">
-          <label>Lợi Nhuận Dự Kiến</label>
+          <label>Lợi nhuận dự kiến</label>
           <strong id="admPreviewProfit">0 đ</strong>
         </div>
       </div>
 
       <div class="modal-actions">
-        <button type="button" onclick="closeAdminModal()">HỦY</button>
-        <button id="saveOrderButton" type="submit" class="primary">LƯU LẠI</button>
+        <button type="button" onclick="closeAdminModal()">Hủy</button>
+        <button id="saveOrderButton" type="submit" class="primary">Lưu lại</button>
       </div>
     </form>
   </div>
@@ -1099,23 +1093,23 @@ td .sub {
 <div id="settingsModal" class="modal hidden">
   <div class="modal-card small">
     <div class="modal-head">
-      <h3>Cài Đặt Tỷ Giá & Cước</h3>
+      <h3>Cài đặt tỷ giá & cước</h3>
       <button type="button" onclick="closeSettingsModal()">&times;</button>
     </div>
 
     <div class="field">
-      <label for="setRate">Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)</label>
+      <label for="setRate">Tỷ giá nhân dân tệ (1¥ = ? VNĐ)</label>
       <input type="number" id="setRate">
     </div>
 
     <div class="field" style="margin-top:12px">
-      <label for="setShipping">Cước Cân Trung - Việt (VNĐ / kg)</label>
+      <label for="setShipping">Cước cân Trung - Việt (VNĐ / kg)</label>
       <input type="number" id="setShipping">
     </div>
 
     <div class="modal-actions">
-      <button type="button" onclick="closeSettingsModal()">ĐÓNG</button>
-      <button type="button" onclick="saveSettings()" class="primary">LƯU CÀI ĐẶT</button>
+      <button type="button" onclick="closeSettingsModal()">Đóng</button>
+      <button type="button" onclick="saveSettings()" class="primary">Lưu cài đặt</button>
     </div>
   </div>
 </div>
@@ -1323,7 +1317,7 @@ function openCustomerPortal() {
     el('customerPortal').classList.remove('hidden');
 }
 
-/* ĐĂNG NHẬP CHỦ SHOP */
+/* Đăng nhập CHỦ SHOP */
 function promptAdminLogin() {
     el('adminLoginPassword').value = '';
     el('adminLoginError').classList.add('hidden');
@@ -1359,7 +1353,7 @@ async function submitAdminLogin(event) {
     const error = el('adminLoginError');
 
     button.disabled = true;
-    button.textContent = 'ĐANG ĐĂNG NHẬP...';
+    button.textContent = 'Đang đăng nhập...';
     error.classList.add('hidden');
 
     try {
@@ -1383,7 +1377,7 @@ async function submitAdminLogin(event) {
 
     } finally {
         button.disabled = false;
-        button.textContent = 'ĐĂNG NHẬP';
+        button.textContent = 'Đăng nhập';
     }
 }
 
@@ -1425,7 +1419,7 @@ async function submitPasswordChange(event) {
     }
 
     button.disabled = true;
-    button.textContent = 'ĐANG CẬP NHẬT...';
+    button.textContent = 'Đang cập nhật...';
 
     try {
         await waitForFirebase();
@@ -1442,7 +1436,7 @@ async function submitPasswordChange(event) {
 
     } finally {
         button.disabled = false;
-        button.textContent = 'CẬP NHẬT MẬT KHẨU';
+        button.textContent = 'Cập nhật mật khẩu';
     }
 }
 
@@ -1487,7 +1481,7 @@ async function submitCustomerOrder(event) {
 
     const button = el('customerSubmitButton');
     button.disabled = true;
-    button.innerHTML = 'ĐANG GỬI ĐƠN...';
+    button.innerHTML = 'Đang gửi đơn...';
 
     try {
         const province = el('provinceNew').value;
@@ -1528,7 +1522,7 @@ async function submitCustomerOrder(event) {
 
     } finally {
         button.disabled = false;
-        button.innerHTML = '<i class="fa-solid fa-paper-plane"></i> GỬI ĐƠN HÀNG NGAY';
+        button.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Gửi đơn hàng ngay';
     }
 }
 
@@ -1733,7 +1727,7 @@ async function saveAdminOrder(event) {
 
     const button = el('saveOrderButton');
     button.disabled = true;
-    button.textContent = 'ĐANG LƯU...';
+    button.textContent = 'Đang lưu...';
 
     const id = el('editId').value;
 
@@ -1765,7 +1759,7 @@ async function saveAdminOrder(event) {
 
     } finally {
         button.disabled = false;
-        button.textContent = 'LƯU LẠI';
+        button.textContent = 'Lưu lại';
     }
 }
 
@@ -2049,7 +2043,7 @@ async function startLiveSync() {
     );
 }
 
-/* ĐĂNG NHẬP FIREBASE */
+/* Đăng nhập FIREBASE */
 async function login(password) {
     const result = await signInWithEmailAndPassword(
         auth,
