@@ -1,1992 +1,2160 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đơn Hàng</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
-
-        :root {
-            --page: #f8f4ea;
-            --paper: #fffdf8;
-            --pink: #efdce2;
-            --blue: #dfeaf0;
-            --ink: #514b52;
-            --line: #d8d0d6;
-        }
-
-        html, body {
-            margin: 0;
-            min-height: 100%;
-            background: var(--page) !important;
-            color: var(--ink) !important;
-            font-family: "Plus Jakarta Sans", sans-serif;
-        }
-
-        * {
-            box-shadow: none !important;
-            text-shadow: none !important;
-        }
-
-        body [class~="bg-[#FFF8DC]"] {
-            background-color: var(--page) !important;
-        }
-
-        body .bg-white {
-            background-color: var(--paper) !important;
-        }
-
-        #roleSelectScreen .bg-gradient-to-br {
-            background-image: none !important;
-            border-width: 2px !important;
-            border-radius: 4px !important;
-        }
-
-        #roleSelectScreen .bg-gradient-to-br.from-pink-100 {
-            background-color: #F6E9EC !important;
-            border-color: #DEC5CC !important;
-        }
-
-        #roleSelectScreen .bg-gradient-to-br.from-sky-100 {
-            background-color: #E8EEF2 !important;
-            border-color: #C5D4DC !important;
-        }
-
-        body [class~="bg-pink-50"],
-        body [class~="bg-pink-50/30"] {
-            background-color: #FCF4F5 !important;
-        }
-
-        body [class~="bg-pink-100"],
-        body [class~="bg-pink-100/40"] {
-            background-color: #F6E7EA !important;
-        }
-
-        body [class~="bg-pink-200"],
-        body [class~="bg-pink-400"],
-        body [class~="bg-pink-500"],
-        body [class~="bg-pink-600"] {
-            background-color: #EBD2D9 !important;
-        }
-
-        body [class~="bg-rose-50"] {
-            background-color: #FAF0F1 !important;
-        }
-
-        body [class~="bg-rose-100"],
-        body [class~="bg-rose-600"],
-        body [class~="bg-rose-700"] {
-            background-color: #F0DEE2 !important;
-        }
-
-        body [class~="bg-sky-50"],
-        body [class~="bg-sky-50/50"] {
-            background-color: #F1F6F8 !important;
-        }
-
-        body [class~="bg-sky-100"],
-        body [class~="bg-sky-100/60"],
-        body [class~="bg-sky-500"],
-        body [class~="bg-sky-600"] {
-            background-color: #E3EDF1 !important;
-        }
-
-        body [class~="bg-sky-200"] {
-            background-color: #D4E2E9 !important;
-        }
-
-        body [class~="bg-indigo-50"],
-        body [class~="bg-indigo-100"],
-        body [class~="bg-indigo-600"] {
-            background-color: #EAE5F0 !important;
-        }
-
-        body [class~="bg-emerald-100"],
-        body [class~="bg-emerald-500"],
-        body [class~="bg-emerald-600"] {
-            background-color: #E2EBDD !important;
-        }
-
-        body [class~="bg-amber-100"] {
-            background-color: #F3EBD9 !important;
-        }
-
-        body [class~="bg-purple-100"] {
-            background-color: #EBE4F1 !important;
-        }
-
-        body [class~="bg-slate-50"],
-        body [class~="bg-slate-100"],
-        body [class~="bg-slate-200"] {
-            background-color: #F0ECEE !important;
-        }
-
-        body [class~="text-pink-500"],
-        body [class~="text-pink-600"],
-        body [class~="text-pink-700"],
-        body [class~="text-pink-700/70"] {
-            color: #8C626E !important;
-        }
-
-        body [class~="text-sky-500"],
-        body [class~="text-sky-600"],
-        body [class~="text-sky-700"],
-        body [class~="text-sky-800"],
-        body [class~="text-sky-900"] {
-            color: #536A78 !important;
-        }
-
-        body [class~="text-rose-600"],
-        body [class~="text-rose-700"] {
-            color: #90616A !important;
-        }
-
-        body [class~="text-emerald-600"],
-        body [class~="text-emerald-700"] {
-            color: #58745E !important;
-        }
-
-        body [class~="text-indigo-600"],
-        body [class~="text-indigo-700"] {
-            color: #71647F !important;
-        }
-
-        body [class~="text-amber-600"],
-        body [class~="text-amber-700"] {
-            color: #8B7650 !important;
-        }
-
-        body [class~="text-purple-600"],
-        body [class~="text-purple-700"] {
-            color: #796987 !important;
-        }
-
-        body [class~="text-white"] {
-            color: var(--ink) !important;
-        }
-
-        body [class~="text-slate-400"] {
-            color: #8B858B !important;
-        }
-
-        body [class~="text-slate-500"] {
-            color: #77717A !important;
-        }
-
-        body [class~="text-slate-600"],
-        body [class~="text-slate-700"],
-        body [class~="text-slate-800"],
-        body [class~="text-slate-900"] {
-            color: var(--ink) !important;
-        }
-
-        body [class*="border-pink"] {
-            border-color: #DEC4CB !important;
-        }
-
-        body [class*="border-sky"] {
-            border-color: #C4D5DD !important;
-        }
-
-        body [class*="border-rose"] {
-            border-color: #DFC3C9 !important;
-        }
-
-        body [class*="border-slate"] {
-            border-color: var(--line) !important;
-        }
-
-        body [class*="border-emerald"] {
-            border-color: #CBDCC9 !important;
-        }
-
-        body [class*="border-amber"] {
-            border-color: #E4D7BA !important;
-        }
-
-        body [class*="border-indigo"] {
-            border-color: #D6CDDD !important;
-        }
-
-        body [class*="rounded"] {
-            border-radius: 4px !important;
-        }
-
-        button {
-            color: var(--ink) !important;
-            background-image: none !important;
-            background-color: #EEE7EB !important;
-            border: 2px solid #B8ADB5 !important;
-            border-radius: 2px !important;
-            box-shadow: none !important;
-            text-shadow: none !important;
-            filter: none !important;
-            transform: none !important;
-            transition: none !important;
-            font-family: "Courier New", monospace !important;
-            font-weight: 700 !important;
-            cursor: pointer;
-        }
-
-        button:hover,
-        button:focus,
-        button:active {
-            box-shadow: none !important;
-            filter: none !important;
-            transform: none !important;
-        }
-
-        #roleSelectScreen button[onclick="openCustomerPortal()"] {
-            background-color: #F0DDE3 !important;
-            border-color: #C7A6B1 !important;
-        }
-
-        #roleSelectScreen button[onclick="promptAdminLogin()"] {
-            background-color: #DFEAF0 !important;
-            border-color: #A8BEC9 !important;
-        }
-
-        #roleSelectScreen button[onclick="changeAdminPasswordPrompt()"] {
-            background-color: #F4EFE9 !important;
-        }
-
-        #customerPortal button {
-            background-color: #F0DDE3 !important;
-            border-color: #D2B4BE !important;
-        }
-
-        #adminPortal button {
-            background-color: #DFEAF0 !important;
-            border-color: #B9CBD4 !important;
-        }
-
-        #adminPortal button[onclick="openAdminModal()"] {
-            background-color: #E2EBDD !important;
-            border-color: #BDCFBD !important;
-        }
-
-        #adminPortal button[onclick="backToHome()"] {
-            background-color: #EEE9EC !important;
-            border-color: #C9C0C7 !important;
-        }
-
-        #adminPortal button[title="Xóa"] {
-            background-color: #F4E5E7 !important;
-            border-color: #DFC3C9 !important;
-        }
-
-        #wrongPassModal button,
-        #successModal button {
-            background-color: #F0DDE3 !important;
-            border-color: #D2B4BE !important;
-        }
-
-        #adminModal button,
-        #settingsModal button {
-            background-color: #DFEAF0 !important;
-            border-color: #B9CBD4 !important;
-        }
-
-        #adminModal button[type="submit"],
-        #settingsModal button[onclick="saveSettings()"] {
-            background-color: #E2EBDD !important;
-            border-color: #BDCFBD !important;
-        }
-
-        input,
-        textarea,
-        select {
-            color: var(--ink) !important;
-            background-color: #FFFDF8 !important;
-            border-color: #D5CBD2 !important;
-            border-radius: 3px !important;
-            box-shadow: none !important;
-            outline-color: #C8A8B3;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #9A9299 !important;
-            opacity: 1;
-        }
-
-        table {
-            color: var(--ink) !important;
-        }
-
-        thead tr {
-            background-color: #E6EEF2 !important;
-            color: #536A78 !important;
-        }
-
-        tbody tr:hover {
-            background-color: #F8F5F3 !important;
-        }
-
-        img.role-image {
-            display: block;
-            width: 92px;
-            height: 92px;
-            object-fit: cover;
-            border: 2px solid #CFC4CB;
-            margin: 0 auto 1rem;
-            border-radius: 0 !important;
-        }
-
-        #wrongPassModal {
-            background-color: rgba(81,75,82,.48) !important;
-        }
-
-        #successModal {
-            background-color: rgba(81,75,82,.38) !important;
-        }
-
-        #adminModal,
-        #settingsModal {
-            background-color: rgba(81,75,82,.34) !important;
-        }
-
-        @media (max-width:640px) {
-            img.role-image {
-                width: 80px;
-                height: 80px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đơn Hàng</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --page: #f8f4ea;
+    --paper: #fffdf8;
+    --pink: #f0dde3;
+    --pinkLine: #c7a6b1;
+    --blue: #dfeaf0;
+    --blueLine: #a8bec9;
+    --ink: #514b52;
+    --line: #d8d0d6;
+    --green: #e3ebdf;
+    --red: #f1e0e3;
+}
+
+* {
+    box-sizing: border-box;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--page) !important;
+    color: var(--ink) !important;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+button {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    color: var(--ink) !important;
+    background: #eee7eb !important;
+    border: 2px solid #b8adb5 !important;
+    border-radius: 2px !important;
+    padding: 10px 14px;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+input, textarea, select {
+    width: 100%;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ink) !important;
+    background: var(--paper) !important;
+    border: 1px solid #d5cbd2 !important;
+    border-radius: 3px !important;
+    padding: 11px 12px;
+    outline-color: #c8a8b3;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #9a9299;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #786b73;
+}
+
+h1, h2, h3, p {
+    margin-top: 0;
+}
+
+.page {
+    min-height: 100vh;
+    background: var(--page);
+    padding: 24px 14px 48px;
+}
+
+.home-shell {
+    max-width: 760px;
+    margin: 5vh auto 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 26px;
+}
+
+.home-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.home-title h1 {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 900;
+    letter-spacing: -.6px;
+    margin-bottom: 8px;
+}
+
+.home-title p {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #827a82;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.role-card {
+    min-height: 255px;
+    padding: 26px 20px;
+    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.role-card.customer {
+    background: #f6e9ec;
+    border-color: #dec5cc;
+}
+
+.role-card.owner {
+    background: #e8eef2;
+    border-color: #c5d4dc;
+}
+
+.role-card img {
+    width: 108px;
+    height: 108px;
+    object-fit: cover;
+    border: 2px solid #cfc4cb;
+    margin: 0 auto 14px;
+}
+
+.role-card h2 {
+    font-size: 19px;
+    font-weight: 900;
+    margin: 0 0 18px;
+}
+
+.role-card.customer h2 {
+    color: #8c626e;
+}
+
+.role-card.owner h2 {
+    color: #536a78;
+}
+
+.role-card.customer button {
+    background: var(--pink) !important;
+    border-color: var(--pinkLine) !important;
+    width: 100%;
+}
+
+.role-card.owner button {
+    background: var(--blue) !important;
+    border-color: var(--blueLine) !important;
+    width: 100%;
+}
+
+.password-link {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.password-link button {
+    font-size: 11px;
+    background: #f4efe9 !important;
+}
+
+.topbar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+}
+
+.topbar-inner {
+    width: min(1180px, calc(100% - 28px));
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: var(--blue);
+    color: #536a78;
+}
+
+.brand h1 {
+    font-size: 17px;
+    font-weight: 900;
+    margin: 0;
+    color: #536a78;
+}
+
+.brand p {
+    font-size: 11px;
+    color: #827a82;
+    margin: 3px 0 0;
+}
+
+.top-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.top-actions button {
+    font-size: 11px;
+    background: #e5edf1 !important;
+    border-color: #bccdd5 !important;
+}
+
+.top-actions .add-button {
+    background: var(--green) !important;
+    border-color: #bdcfbd !important;
+}
+
+.content {
+    width: min(1180px, calc(100% - 28px));
+    margin: 24px auto;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.stat {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 17px;
+}
+
+.stat p {
+    font-size: 11px;
+    font-weight: 800;
+    color: #827a82;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+}
+
+.stat strong {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.toolbar {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.toolbar-left {
+    width: min(380px, 100%);
+}
+
+.toolbar-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.toolbar-right button {
+    font-size: 12px;
+}
+
+.table-panel {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    overflow: hidden;
+}
+
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13px;
+}
+
+thead {
+    background: #e6eef2;
+    color: #536a78;
+}
+
+th, td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #e8e2e5;
+    vertical-align: top;
+}
+
+th {
+    font-size: 11px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+tbody tr:hover {
+    background: #f8f5f3;
+}
+
+td .sub {
+    font-size: 11px;
+    color: #827a82;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+.number {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 8px;
+    font-size: 11px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.status-new {
+    background: #f6e7ea;
+    border-color: #dec4cb;
+}
+
+.status-cn {
+    background: #f3ebd9;
+    border-color: #e4d7ba;
+}
+
+.status-transit {
+    background: #ebe4f1;
+    border-color: #d6cddd;
+}
+
+.status-done {
+    background: #e3ebdf;
+    border-color: #cbdcc9;
+}
+
+.status-cancel {
+    background: #f1e0e3;
+    border-color: #dfc3c9;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+}
+
+.actions button {
+    padding: 6px 8px;
+}
+
+.actions .delete {
+    background: var(--red) !important;
+    border-color: #dfc3c9 !important;
+}
+
+.empty {
+    text-align: center;
+    padding: 40px;
+    color: #827a82;
+}
+
+.form-card {
+    max-width: 700px;
+    margin: 26px auto;
+    background: var(--paper);
+    border: 2px solid #dec4cb;
+    padding: 24px;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.form-title h2 {
+    font-size: 23px;
+    color: #8c626e;
+    font-weight: 900;
+    margin-bottom: 7px;
+}
+
+.form-title p {
+    font-size: 12px;
+    color: #827a82;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.field {
+    min-width: 0;
+}
+
+.field-full {
+    grid-column: 1 / -1;
+}
+
+.address-box {
+    padding: 14px;
+    background: #f6e7ea;
+    border: 1px solid #dec4cb;
+}
+
+.submit-order {
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px;
+    background: var(--pink) !important;
+    border-color: var(--pinkLine) !important;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(81,75,82,.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-card {
+    background: var(--paper);
+    border: 2px solid #c4d5dd;
+    width: min(100%, 520px);
+    max-height: 92vh;
+    overflow: auto;
+    padding: 22px;
+}
+
+.modal-card.small {
+    width: min(100%, 390px);
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+}
+
+.modal-head h3 {
+    font-size: 17px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.modal-head button {
+    padding: 5px 10px;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.modal-grid .full {
+    grid-column: 1 / -1;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    margin-top: 16px;
+}
+
+.modal-actions button.primary {
+    background: var(--green) !important;
+    border-color: #bdcfbd !important;
+}
+
+.login-art {
+    width: 82px;
+    height: 82px;
+    object-fit: cover;
+    border: 2px solid #c4d5dd;
+    margin: 0 auto 12px;
+}
+
+.login-title {
+    text-align: center;
+}
+
+.login-title h2 {
+    font-size: 20px;
+    font-weight: 900;
+    color: #536a78;
+    margin-bottom: 6px;
+}
+
+.login-title p {
+    font-size: 12px;
+    color: #827a82;
+}
+
+.error {
+    font-size: 12px;
+    color: #90616a;
+    margin: 8px 0;
+}
+
+.success-code {
+    font-size: 22px;
+    font-weight: 900;
+    color: #8c626e;
+    background: #fcf4f5;
+    border: 1px solid #dec4cb;
+    padding: 14px;
+    margin: 14px 0;
+}
+
+.sync-status {
+    font-size: 11px;
+    color: #58745e;
+    margin-top: 5px;
+}
+
+@media(max-width:760px) {
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .toolbar-left {
+        width: 100%;
+    }
+
+    .toolbar-right {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .toolbar-right select {
+        flex: 1;
+        min-width: 170px;
+    }
+}
+
+@media(max-width:560px) {
+    .home-shell {
+        margin: 10px auto;
+        padding: 18px;
+    }
+
+    .role-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .role-card {
+        min-height: 220px;
+        padding: 20px;
+    }
+
+    .role-card img {
+        width: 92px;
+        height: 92px;
+    }
+
+    .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .top-actions {
+        width: 100%;
+    }
+
+    .top-actions button {
+        flex: 1;
+    }
+
+    .form-card {
+        padding: 18px;
+        margin: 18px auto;
+    }
+
+    .form-grid,
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field-full,
+    .modal-grid .full {
+        grid-column: auto;
+    }
+
+    .modal-card {
+        padding: 17px;
+    }
+
+    .stat strong {
+        font-size: 18px;
+    }
+}
+</style>
 </head>
 
-<body class="text-slate-700 min-h-screen relative overflow-x-hidden">
+<body>
 
-    <!-- TRANG CHỌN VAI TRÒ -->
-    <div id="roleSelectScreen" class="min-h-screen bg-[#FFF8DC] flex items-center justify-center p-4">
-        <div class="bg-white max-w-2xl w-full overflow-hidden border border-slate-200">
+<!-- TRANG CHỌN VAI TRÒ -->
+<section id="roleSelectScreen" class="page">
+  <div class="home-shell">
+    <div class="home-title">
+      <h1>CỔNG DỊCH VỤ ĐẶT HÀNG</h1>
+      <p>Vui lòng chọn cổng truy cập phù hợp</p>
+    </div>
 
-            <div class="text-center pt-8 pb-4 px-6">
-                <h1 class="text-3xl font-black text-slate-800 tracking-tight">
-                    CỔNG DỊCH VỤ ĐẶT HÀNG
-                </h1>
-                <p class="text-xs text-slate-400 font-bold uppercase mt-2 tracking-widest">
-                    Vui lòng chọn cổng truy cập phù hợp
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 p-6 gap-6">
-
-                <!-- KHÁCH HÀNG -->
-                <div class="bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 p-8 border-2 border-pink-200 text-center flex flex-col justify-between">
-                    <div>
-                        <img
-                            class="role-image"
-                            src="https://i.pinimg.com/736x/df/99/3b/df993bf7e87d747090382f0d8b47013e.jpg"
-                            alt="Khách hàng"
-                        >
-                        <h2 class="text-xl font-extrabold text-pink-600 mb-2">
-                            KHÁCH HÀNG
-                        </h2>
-                    </div>
-
-                    <button type="button" onclick="openCustomerPortal()" class="w-full py-3.5 px-4">
-                        Vào Cổng Đặt Đơn
-                        <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-
-                <!-- CHỦ SHOP -->
-                <div class="bg-gradient-to-br from-sky-100 via-indigo-50 to-sky-200 p-8 border-2 border-sky-200 text-center flex flex-col justify-between">
-                    <div>
-                        <img
-                            class="role-image"
-                            src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg"
-                            alt="Chủ shop"
-                        >
-                        <h2 class="text-xl font-extrabold text-sky-600 mb-2">
-                            CHỦ SHOP
-                        </h2>
-                    </div>
-
-                    <button type="button" onclick="promptAdminLogin()" class="w-full py-3.5 px-4">
-                        Vào Cổng Quản Trị
-                        <i class="fa-solid fa-key ml-1"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="text-center pb-6">
-                <button type="button" onclick="changeAdminPasswordPrompt()" class="text-xs px-3 py-2">
-                    <i class="fa-solid fa-lock"></i>
-                    Đổi Mật Khẩu Chủ Shop
-                </button>
-            </div>
+    <div class="role-grid">
+      <div class="role-card customer"
+           role="button"
+           tabindex="0"
+           onclick="openCustomerPortal()"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCustomerPortal();}">
+        <div>
+          <img src="https://i.pinimg.com/736x/df/99/3b/df993bf7e87d747090382f0d8b47013e.jpg" alt="Khách hàng">
+          <h2>KHÁCH HÀNG</h2>
         </div>
-    </div>
+        <button type="button" onclick="event.stopPropagation();openCustomerPortal()">
+          VÀO CỔNG ĐẶT ĐƠN <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
 
-    <!-- GIAO DIỆN KHÁCH HÀNG -->
-    <div id="customerPortal" class="hidden min-h-screen bg-[#FFF8DC] pb-12">
-        <header class="bg-white border-b border-pink-200">
-            <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center gap-3">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-pink-100 text-pink-600 flex items-center justify-center">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                    </div>
-                    <h1 class="text-lg font-black text-pink-600">
-                        GÓC ĐẶT HÀNG KHÁCH HÀNG
-                    </h1>
-                </div>
-
-                <button type="button" onclick="backToHome()" class="px-4 py-2 text-xs">
-                    <i class="fa-solid fa-house"></i> Trang Chủ
-                </button>
-            </div>
-        </header>
-
-        <main class="max-w-2xl mx-auto px-4 mt-8">
-            <div class="bg-white border-2 border-pink-200 p-6 sm:p-8">
-
-                <div class="text-center mb-6">
-                    <h2 class="text-2xl font-black text-pink-600">
-                        Phiếu Gửi Thông Tin Order
-                    </h2>
-                    <p class="text-xs text-slate-400 mt-2">
-                        Điền địa chỉ và chi tiết mặt hàng để shop hỗ trợ nha!
-                    </p>
-                </div>
-
-                <form onsubmit="submitCustomerOrder(event)" class="space-y-4">
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Họ và Tên Khách Hàng *
-                            </label>
-                            <input
-                                type="text"
-                                id="cusName"
-                                required
-                                placeholder="Nhập tên của bạn..."
-                                class="w-full px-4 py-3 border border-pink-200 text-sm"
-                            >
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Số Điện Thoại Liên Hệ *
-                            </label>
-                            <input
-                                type="text"
-                                id="cusPhone"
-                                required
-                                placeholder="Số điện thoại nhận hàng..."
-                                class="w-full px-4 py-3 border border-pink-200 text-sm"
-                            >
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-pink-100/40 border border-pink-200 space-y-3">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                            <div>
-                                <label class="block text-xs font-bold text-pink-700 mb-1">
-                                    Tỉnh / Thành Phố *
-                                </label>
-
-                                <select id="provinceNew" required class="w-full px-3 py-2.5 border text-sm">
-                                    <option value="">-- Chọn Tỉnh/Thành --</option>
-                                    <option value="Cần Thơ">Cần Thơ</option>
-                                    <option value="Đà Nẵng">Đà Nẵng</option>
-                                    <option value="Hà Nội">Hà Nội</option>
-                                    <option value="Hải Phòng">Hải Phòng</option>
-                                    <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
-                                    <option value="Thành phố Hồ Chí Minh">Thành phố Hồ Chí Minh</option>
-                                    <option value="An Giang">An Giang</option>
-                                    <option value="Bắc Ninh">Bắc Ninh</option>
-                                    <option value="Cà Mau">Cà Mau</option>
-                                    <option value="Cao Bằng">Cao Bằng</option>
-                                    <option value="Đắk Lắk">Đắk Lắk</option>
-                                    <option value="Đắk Nông">Đắk Nông</option>
-                                    <option value="Điện Biên">Điện Biên</option>
-                                    <option value="Đồng Nai">Đồng Nai</option>
-                                    <option value="Đồng Tháp">Đồng Tháp</option>
-                                    <option value="Gia Lai">Gia Lai</option>
-                                    <option value="Hà Tĩnh">Hà Tĩnh</option>
-                                    <option value="Hưng Yên">Hưng Yên</option>
-                                    <option value="Khánh Hòa">Khánh Hòa</option>
-                                    <option value="Lai Châu">Lai Châu</option>
-                                    <option value="Lâm Đồng">Lâm Đồng</option>
-                                    <option value="Lạng Sơn">Lạng Sơn</option>
-                                    <option value="Lào Cai">Lào Cai</option>
-                                    <option value="Nghệ An">Nghệ An</option>
-                                    <option value="Ninh Bình">Ninh Bình</option>
-                                    <option value="Phú Thọ">Phú Thọ</option>
-                                    <option value="Quảng Ngãi">Quảng Ngãi</option>
-                                    <option value="Quảng Ninh">Quảng Ninh</option>
-                                    <option value="Quảng Trị">Quảng Trị</option>
-                                    <option value="Sơn La">Sơn La</option>
-                                    <option value="Tây Ninh">Tây Ninh</option>
-                                    <option value="Thái Nguyên">Thái Nguyên</option>
-                                    <option value="Thanh Hóa">Thanh Hóa</option>
-                                    <option value="Vĩnh Long">Vĩnh Long</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-pink-700 mb-1">
-                                    Tỉnh/Thành Cũ
-                                </label>
-
-                                <select id="cusProvOld" class="w-full px-3 py-2.5 border text-sm">
-                                    <option value="">-- Không có / Chọn Tỉnh cũ --</option>
-                                    <option value="An Giang">An Giang</option>
-                                    <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
-                                    <option value="Bắc Giang">Bắc Giang</option>
-                                    <option value="Bắc Kạn">Bắc Kạn</option>
-                                    <option value="Bạc Liêu">Bạc Liêu</option>
-                                    <option value="Bắc Ninh">Bắc Ninh</option>
-                                    <option value="Bến Tre">Bến Tre</option>
-                                    <option value="Bình Định">Bình Định</option>
-                                    <option value="Bình Dương">Bình Dương</option>
-                                    <option value="Bình Phước">Bình Phước</option>
-                                    <option value="Bình Thuận">Bình Thuận</option>
-                                    <option value="Cà Mau">Cà Mau</option>
-                                    <option value="Cần Thơ">Cần Thơ</option>
-                                    <option value="Cao Bằng">Cao Bằng</option>
-                                    <option value="Đà Nẵng">Đà Nẵng</option>
-                                    <option value="Đắk Lắk">Đắk Lắk</option>
-                                    <option value="Đắk Nông">Đắk Nông</option>
-                                    <option value="Điện Biên">Điện Biên</option>
-                                    <option value="Đồng Nai">Đồng Nai</option>
-                                    <option value="Đồng Tháp">Đồng Tháp</option>
-                                    <option value="Gia Lai">Gia Lai</option>
-                                    <option value="Hà Giang">Hà Giang</option>
-                                    <option value="Hà Nam">Hà Nam</option>
-                                    <option value="Hà Nội">Hà Nội</option>
-                                    <option value="Hà Tĩnh">Hà Tĩnh</option>
-                                    <option value="Hải Dương">Hải Dương</option>
-                                    <option value="Hải Phòng">Hải Phòng</option>
-                                    <option value="Hậu Giang">Hậu Giang</option>
-                                    <option value="Hòa Bình">Hòa Bình</option>
-                                    <option value="Hưng Yên">Hưng Yên</option>
-                                    <option value="Khánh Hòa">Khánh Hòa</option>
-                                    <option value="Kiên Giang">Kiên Giang</option>
-                                    <option value="Kon Tum">Kon Tum</option>
-                                    <option value="Lai Châu">Lai Châu</option>
-                                    <option value="Lâm Đồng">Lâm Đồng</option>
-                                    <option value="Lạng Sơn">Lạng Sơn</option>
-                                    <option value="Lào Cai">Lào Cai</option>
-                                    <option value="Long An">Long An</option>
-                                    <option value="Nam Định">Nam Định</option>
-                                    <option value="Nghệ An">Nghệ An</option>
-                                    <option value="Ninh Bình">Ninh Bình</option>
-                                    <option value="Ninh Thuận">Ninh Thuận</option>
-                                    <option value="Phú Thọ">Phú Thọ</option>
-                                    <option value="Phú Yên">Phú Yên</option>
-                                    <option value="Quảng Bình">Quảng Bình</option>
-                                    <option value="Quảng Nam">Quảng Nam</option>
-                                    <option value="Quảng Ngãi">Quảng Ngãi</option>
-                                    <option value="Quảng Ninh">Quảng Ninh</option>
-                                    <option value="Quảng Trị">Quảng Trị</option>
-                                    <option value="Sóc Trăng">Sóc Trăng</option>
-                                    <option value="Sơn La">Sơn La</option>
-                                    <option value="Tây Ninh">Tây Ninh</option>
-                                    <option value="Thái Bình">Thái Bình</option>
-                                    <option value="Thái Nguyên">Thái Nguyên</option>
-                                    <option value="Thanh Hóa">Thanh Hóa</option>
-                                    <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
-                                    <option value="Tiền Giang">Tiền Giang</option>
-                                    <option value="Trà Vinh">Trà Vinh</option>
-                                    <option value="Tuyên Quang">Tuyên Quang</option>
-                                    <option value="Vĩnh Long">Vĩnh Long</option>
-                                    <option value="Vĩnh Phúc">Vĩnh Phúc</option>
-                                    <option value="Yên Bái">Yên Bái</option>
-                                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-pink-600 mb-1">
-                            Quận/Huyện, Phường/Xã & Số Nhà/Tên Đường *
-                        </label>
-                        <textarea
-                            id="cusAddress"
-                            required
-                            rows="2"
-                            placeholder="Ví dụ: Quận 1, Phường Bến Nghé, 123 Nguyễn Huệ..."
-                            class="w-full px-4 py-3 border border-pink-200 text-sm"
-                        ></textarea>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-pink-600 mb-1">
-                            Mô Tả Sản Phẩm Muốn Đặt *
-                        </label>
-                        <input
-                            type="text"
-                            id="cusProduct"
-                            required
-                            placeholder="Ví dụ: Áo khoác màu hồng size L..."
-                            class="w-full px-4 py-3 border border-pink-200 text-sm"
-                        >
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Số Lượng
-                            </label>
-                            <input
-                                type="number"
-                                id="cusQty"
-                                value="1"
-                                min="1"
-                                class="w-full px-4 py-3 border border-pink-200 text-sm"
-                            >
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-pink-600 mb-1">
-                                Khung Giờ Giao / Ghi Chú Địa Điểm
-                            </label>
-                            <input
-                                type="text"
-                                id="cusDeliveryNote"
-                                placeholder="Ví dụ: Giao giờ hành chính, gọi trước 15p..."
-                                class="w-full px-4 py-3 border border-pink-200 text-sm"
-                            >
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full py-4 font-extrabold text-base mt-4">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        Gửi Đơn Hàng Ngay
-                    </button>
-                </form>
-            </div>
-        </main>
-    </div>
-
-    <!-- GIAO DIỆN CHỦ SHOP -->
-    <div id="adminPortal" class="hidden min-h-screen bg-[#FFF8DC] pb-12">
-        <header class="bg-white border-b border-sky-200">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-sky-100 text-sky-700 flex items-center justify-center">
-                        <i class="fa-solid fa-chart-pie"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-black text-sky-700">ĐƠN HÀNG</h1>
-                        <p class="text-xs text-sky-500 font-medium">Bảng điều hành đơn hàng Trung - Việt</p>
-                        <p id="syncStatus" class="text-[11px] text-slate-400 mt-1">Chưa đăng nhập quản trị</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-2.5">
-                    <button type="button" onclick="changeAdminPasswordPrompt()" class="px-3 py-2 text-xs">
-                        <i class="fa-solid fa-key"></i> Đổi MK
-                    </button>
-
-                    <button type="button" onclick="openSettingsModal()" class="px-3 py-2 text-xs">
-                        <i class="fa-solid fa-gear"></i> Tỷ Giá/Cước
-                    </button>
-
-                    <button type="button" onclick="openAdminModal()" class="px-3.5 py-2 text-xs">
-                        <i class="fa-solid fa-plus"></i> Thêm Đơn
-                    </button>
-
-                    <button type="button" onclick="backToHome()" class="px-3 py-2 text-xs">
-                        <i class="fa-solid fa-right-from-bracket"></i> Thoát
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <main class="max-w-7xl mx-auto px-4 py-6">
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white p-5 border-2 border-sky-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase">Tổng Đơn Hàng</p>
-                        <h3 id="statTotalOrders" class="text-2xl font-black text-sky-600 mt-1">0</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-sky-100 text-sky-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-receipt"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 border-2 border-emerald-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase">Tổng Doanh Thu</p>
-                        <h3 id="statTotalRevenue" class="text-2xl font-black text-emerald-600 mt-1">0 đ</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-wallet"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 border-2 border-amber-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase">Tổng Chi Phí</p>
-                        <h3 id="statTotalCost" class="text-2xl font-black text-amber-600 mt-1">0 đ</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 border-2 border-indigo-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400 font-bold uppercase">Lợi Nhuận Ròng</p>
-                        <h3 id="statTotalProfit" class="text-2xl font-black text-indigo-600 mt-1">0 đ</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-4 border border-sky-100 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="w-full md:w-1/3 relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </span>
-                    <input
-                        type="text"
-                        id="searchInput"
-                        oninput="filterOrders()"
-                        placeholder="Tìm kiếm đơn hàng..."
-                        class="w-full pl-11 pr-4 py-2.5 border border-sky-200 text-sm"
-                    >
-                </div>
-
-                <div class="w-full md:w-auto flex flex-wrap items-center gap-3">
-                    <select id="statusFilter" onchange="filterOrders()" class="px-4 py-2.5 border border-sky-200 text-sm font-semibold">
-                        <option value="">Tất cả trạng thái</option>
-                        <option value="Mới tạo">Mới tạo</option>
-                        <option value="Đã đặt TQ">Đã đặt TQ</option>
-                        <option value="Đang về VN">Đang về VN</option>
-                        <option value="Đã giao">Đã giao</option>
-                        <option value="Đã hủy">Đã hủy</option>
-                    </select>
-
-                    <button type="button" onclick="exportJSON()" class="px-4 py-2.5 text-sm">
-                        <i class="fa-solid fa-download"></i> Xuất Dữ Liệu
-                    </button>
-                </div>
-            </div>
-
-            <!-- BẢNG ĐƠN HÀNG -->
-            <div class="bg-white border border-sky-100 overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="text-xs font-bold uppercase tracking-wider border-b border-sky-200">
-                                <th class="p-4">Mã Đơn / Khách Hàng</th>
-                                <th class="p-4">Sản Phẩm & Địa Chỉ</th>
-                                <th class="p-4">Tỉnh / Thành</th>
-                                <th class="p-4 text-right">Tiền Gốc (¥ / đ)</th>
-                                <th class="p-4 text-right">Cân & Phí TV</th>
-                                <th class="p-4 text-right">Bán & Lợi Nhuận</th>
-                                <th class="p-4">Kho</th>
-                                <th class="p-4">Ghi Chú Đơn Hàng</th>
-                                <th class="p-4 text-center">Trạng Thái</th>
-                                <th class="p-4 text-center">Hành Động</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminOrderTable" class="divide-y divide-sky-100 text-sm"></tbody>
-                    </table>
-                </div>
-
-                <div id="adminEmpty" class="hidden text-center py-16">
-                    <i class="fa-solid fa-box-open text-5xl text-sky-300 mb-3"></i>
-                    <p class="text-slate-500 font-medium">Chưa có đơn hàng nào trong hệ thống.</p>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- ĐĂNG NHẬP CHỦ SHOP -->
-    <div id="adminLoginModal" class="hidden fixed inset-0 items-center justify-center p-4 z-[60]" style="background:rgba(81,75,82,.48);">
-        <div class="bg-white border-2 border-sky-200 p-6 w-full max-w-sm">
-            <div class="text-center mb-5">
-                <img
-                    src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg"
-                    alt="Chủ shop"
-                    style="width:82px;height:82px;object-fit:cover;margin:0 auto 12px;border:2px solid #C4D5DD;"
-                >
-                <h2 class="text-xl font-bold text-sky-700">ĐĂNG NHẬP CHỦ SHOP</h2>
-                <p class="text-xs text-slate-500 mt-2">Đăng nhập để xem và quản lý đơn hàng</p>
-            </div>
-
-            <form onsubmit="submitAdminLogin(event)" class="space-y-3">
-                <div>
-                    <label class="block text-xs font-bold mb-1">Email Chủ shop</label>
-                    <input
-                        type="email"
-                        id="adminLoginEmail"
-                        value="lylee1907@gmail.com"
-                        readonly
-                        class="w-full px-3 py-3 border text-sm"
-                    >
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold mb-1">Mật khẩu</label>
-                    <input
-                        type="password"
-                        id="adminLoginPassword"
-                        required
-                        autocomplete="current-password"
-                        placeholder="Nhập mật khẩu Firebase"
-                        class="w-full px-3 py-3 border text-sm"
-                        style="font-size:16px;"
-                    >
-                </div>
-
-                <p id="adminLoginError" class="hidden text-sm" style="color:#90616A;"></p>
-
-                <button id="adminLoginSubmit" type="submit" class="w-full py-3">
-                    ĐĂNG NHẬP
-                </button>
-
-                <button type="button" onclick="closeAdminLoginModal()" class="w-full py-3">
-                    QUAY LẠI
-                </button>
-            </form>
+      <div class="role-card owner"
+           role="button"
+           tabindex="0"
+           onclick="promptAdminLogin()"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();promptAdminLogin();}">
+        <div>
+          <img src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg" alt="Chủ shop">
+          <h2>CHỦ SHOP</h2>
         </div>
+        <button type="button" onclick="event.stopPropagation();promptAdminLogin()">
+          VÀO CỔNG QUẢN TRỊ <i class="fa-solid fa-key"></i>
+        </button>
+      </div>
     </div>
 
-    <!-- ĐỔI MẬT KHẨU -->
-    <div id="changePasswordModal" class="hidden fixed inset-0 items-center justify-center p-4 z-[60]" style="background:rgba(81,75,82,.48);">
-        <div class="bg-white border-2 border-sky-200 p-6 w-full max-w-sm">
-            <h2 class="text-lg font-bold text-sky-700 mb-2">ĐỔI MẬT KHẨU CHỦ SHOP</h2>
-            <p class="text-xs text-slate-500 mb-4">Mật khẩu mới sẽ dùng chung trên tất cả thiết bị.</p>
+    <div class="password-link">
+      <button type="button" onclick="changeAdminPasswordPrompt()">
+        <i class="fa-solid fa-lock"></i> ĐỔI MẬT KHẨU CHỦ SHOP
+      </button>
+    </div>
+  </div>
+</section>
 
-            <form onsubmit="submitPasswordChange(event)" class="space-y-3">
-                <div>
-                    <label class="block text-xs font-bold mb-1">Mật khẩu hiện tại</label>
-                    <input type="password" id="currentAdminPassword" required autocomplete="current-password" class="w-full px-3 py-3 border text-sm" style="font-size:16px;">
-                </div>
+<!-- GIAO DIỆN KHÁCH HÀNG -->
+<section id="customerPortal" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        <h1>GÓC ĐẶT HÀNG KHÁCH HÀNG</h1>
+      </div>
+      <button type="button" onclick="backToHome()">
+        <i class="fa-solid fa-house"></i> Trang Chủ
+      </button>
+    </div>
+  </header>
 
-                <div>
-                    <label class="block text-xs font-bold mb-1">Mật khẩu mới (ít nhất 6 ký tự)</label>
-                    <input type="password" id="newAdminPassword" required minlength="6" autocomplete="new-password" class="w-full px-3 py-3 border text-sm" style="font-size:16px;">
-                </div>
+  <main class="content">
+    <div class="form-card">
+      <div class="form-title">
+        <h2>Phiếu Gửi Thông Tin Order</h2>
+        <p>Điền địa chỉ và chi tiết mặt hàng để shop hỗ trợ nha!</p>
+      </div>
 
-                <div>
-                    <label class="block text-xs font-bold mb-1">Nhập lại mật khẩu mới</label>
-                    <input type="password" id="confirmAdminPassword" required minlength="6" autocomplete="new-password" class="w-full px-3 py-3 border text-sm" style="font-size:16px;">
-                </div>
+      <form id="customerOrderForm" onsubmit="submitCustomerOrder(event)">
+        <div class="form-grid">
 
-                <p id="changePasswordError" class="hidden text-sm" style="color:#90616A;"></p>
+          <div class="field">
+            <label for="cusName">Họ và Tên Khách Hàng *</label>
+            <input id="cusName" required maxlength="100" placeholder="Nhập tên của bạn...">
+          </div>
 
-                <button type="submit" id="changePasswordSubmit" class="w-full py-3">
-                    CẬP NHẬT MẬT KHẨU
-                </button>
+          <div class="field">
+            <label for="cusPhone">Số Điện Thoại Liên Hệ *</label>
+            <input id="cusPhone" type="tel" required maxlength="30" placeholder="Số điện thoại nhận hàng...">
+          </div>
 
-                <button type="button" onclick="closeChangePasswordModal()" class="w-full py-3">
-                    HỦY
-                </button>
-            </form>
+          <div class="field field-full address-box">
+            <div class="form-grid">
+              <div class="field">
+                <label for="provinceNew">Tỉnh / Thành Phố *</label>
+                <select id="provinceNew" required>
+                  <option value="">-- Chọn Tỉnh/Thành --</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="cusProvOld">Tỉnh/Thành Cũ</label>
+                <select id="cusProvOld">
+                  <option value="">-- Không có / Chọn Tỉnh cũ --</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field field-full">
+            <label for="cusAddress">Quận/Huyện, Phường/Xã & Số Nhà/Tên Đường *</label>
+            <textarea id="cusAddress" rows="2" required placeholder="Ví dụ: Quận 1, Phường Bến Nghé, 123 Nguyễn Huệ..."></textarea>
+          </div>
+
+          <div class="field field-full">
+            <label for="cusProduct">Mô Tả Sản Phẩm Muốn Đặt *</label>
+            <input id="cusProduct" required placeholder="Ví dụ: Áo khoác màu hồng size L...">
+          </div>
+
+          <div class="field">
+            <label for="cusQty">Số Lượng</label>
+            <input type="number" id="cusQty" value="1" min="1">
+          </div>
+
+          <div class="field">
+            <label for="cusDeliveryNote">Khung Giờ Giao / Ghi Chú Địa Điểm</label>
+            <input id="cusDeliveryNote" placeholder="Ví dụ: Giao giờ hành chính, gọi trước 15p...">
+          </div>
         </div>
-    </div>
 
-    <!-- MODAL THÀNH CÔNG -->
-    <div id="successModal" class="hidden fixed inset-0 items-center justify-center p-4 z-50">
-        <div class="bg-white border-2 border-pink-200 p-6 max-w-sm w-full text-center">
-            <div class="w-16 h-16 bg-pink-100 text-pink-500 flex items-center justify-center text-3xl mx-auto mb-4">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <h3 class="text-xl font-extrabold text-pink-600 mb-1">Gửi Đơn Thành Công!</h3>
-            <p class="text-xs text-slate-500 mb-4">Mã đơn hàng của bạn:</p>
-            <div class="bg-pink-50 p-3 border border-pink-200 mb-6">
-                <span id="displayOrderCode" class="text-xl font-mono font-black text-pink-600"></span>
-            </div>
-            <button type="button" onclick="closeSuccessModal()" class="w-full py-3.5 font-bold">
-                Hoàn Tất
-            </button>
+        <button id="customerSubmitButton" type="submit" class="submit-order">
+          <i class="fa-solid fa-paper-plane"></i> GỬI ĐƠN HÀNG NGAY
+        </button>
+      </form>
+    </div>
+  </main>
+</section>
+
+<!-- GIAO DIỆN CHỦ SHOP -->
+<section id="adminPortal" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-chart-pie"></i></div>
+        <div>
+          <h1>ĐƠN HÀNG</h1>
+          <p>Bảng điều hành đơn hàng Trung - Việt</p>
+          <div id="syncStatus" class="sync-status">Chưa đăng nhập quản trị</div>
         </div>
+      </div>
+
+      <div class="top-actions">
+        <button type="button" onclick="changeAdminPasswordPrompt()">
+          <i class="fa-solid fa-key"></i> Đổi MK
+        </button>
+        <button type="button" onclick="openSettingsModal()">
+          <i class="fa-solid fa-gear"></i> Tỷ Giá/Cước
+        </button>
+        <button type="button" class="add-button" onclick="openAdminModal()">
+          <i class="fa-solid fa-plus"></i> Thêm Đơn
+        </button>
+        <button type="button" onclick="backToHome()">
+          <i class="fa-solid fa-right-from-bracket"></i> Thoát
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="stats">
+      <div class="stat">
+        <p>Tổng Đơn Hàng</p>
+        <strong id="statTotalOrders">0</strong>
+      </div>
+      <div class="stat">
+        <p>Tổng Doanh Thu</p>
+        <strong id="statTotalRevenue">0 đ</strong>
+      </div>
+      <div class="stat">
+        <p>Tổng Chi Phí</p>
+        <strong id="statTotalCost">0 đ</strong>
+      </div>
+      <div class="stat">
+        <p>Lợi Nhuận Ròng</p>
+        <strong id="statTotalProfit">0 đ</strong>
+      </div>
     </div>
 
-    <!-- MODAL THÊM / SỬA ĐƠN -->
-    <div id="adminModal" class="hidden fixed inset-0 items-center justify-center p-4 z-50">
-        <div class="bg-white border-2 border-sky-200 w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div class="p-5 border-b border-sky-100 flex justify-between items-center sticky top-0 bg-white z-10">
-                <h3 class="text-lg font-extrabold text-sky-700">
-                    Chi Tiết Đơn Hàng & Tính Lợi Nhuận
-                </h3>
-                <button type="button" onclick="closeAdminModal()" class="text-xl font-bold">&times;</button>
-            </div>
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <input id="searchInput" type="search" oninput="filterOrders()" placeholder="Tìm mã đơn, tên, SĐT, sản phẩm, kho...">
+      </div>
 
-            <form id="adminOrderForm" onsubmit="saveAdminOrder(event)" class="p-6 space-y-4">
-                <input type="hidden" id="editId">
+      <div class="toolbar-right">
+        <select id="statusFilter" onchange="filterOrders()">
+          <option value="">Tất cả trạng thái</option>
+          <option>Mới tạo</option>
+          <option>Đã đặt TQ</option>
+          <option>Đang về VN</option>
+          <option>Đã giao</option>
+          <option>Đã hủy</option>
+        </select>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Mã Đơn</label>
-                        <input type="text" id="admCode" required class="w-full px-3 py-2.5 border text-sm font-mono font-bold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Trạng Thái</label>
-                        <select id="admStatus" class="w-full px-3 py-2.5 border text-sm">
-                            <option value="Mới tạo">Mới tạo</option>
-                            <option value="Đã đặt TQ">Đã đặt TQ</option>
-                            <option value="Đang về VN">Đang về VN</option>
-                            <option value="Đã giao">Đã giao</option>
-                            <option value="Đã hủy">Đã hủy</option>
-                        </select>
-                    </div>
-                </div>
+        <button type="button" onclick="exportJSON()">
+          <i class="fa-solid fa-download"></i> Xuất Dữ Liệu
+        </button>
+      </div>
+    </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Khách Hàng</label>
-                        <input type="text" id="admName" required class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Số Điện Thoại</label>
-                        <input type="text" id="admPhone" class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                </div>
+    <div class="table-panel">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Mã Đơn / Khách Hàng</th>
+              <th>Sản Phẩm & Địa Chỉ</th>
+              <th>Tỉnh / Thành</th>
+              <th class="number">Tiền Gốc (¥ / đ)</th>
+              <th class="number">Cân & Phí TV</th>
+              <th class="number">Bán & Lợi Nhuận</th>
+              <th>Kho</th>
+              <th>Ghi Chú Đơn Hàng</th>
+              <th>Trạng Thái</th>
+              <th>Hành Động</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrderTable"></tbody>
+        </table>
+      </div>
 
-                <div class="grid grid-cols-2 gap-4 p-3 bg-sky-50/50 border border-sky-100">
-                    <div>
-                        <label class="block text-xs font-bold text-sky-800 mb-1">Tỉnh Mới</label>
-                        <input type="text" id="admProvNew" class="w-full px-3 py-2 border text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-sky-800 mb-1">Tỉnh Cũ</label>
-                        <input type="text" id="admProvOld" class="w-full px-3 py-2 border text-sm">
-                    </div>
-                </div>
+      <div id="adminEmpty" class="empty hidden">
+        <i class="fa-solid fa-box-open"></i>
+        <p>Chưa có đơn hàng nào trong hệ thống.</p>
+      </div>
+    </div>
+  </main>
+</section>
 
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Địa Chỉ</label>
-                    <textarea id="admAddress" rows="2" class="w-full px-3 py-2.5 border text-sm"></textarea>
-                </div>
+<!-- ĐĂNG NHẬP -->
+<div id="adminLoginModal" class="modal hidden">
+  <div class="modal-card small">
+    <div class="login-title">
+      <img class="login-art" src="https://i.pinimg.com/736x/ed/d3/1d/edd31d6806f3499daae289b899691909.jpg" alt="Chủ shop">
+      <h2>ĐĂNG NHẬP CHỦ SHOP</h2>
+      <p>Đăng nhập để xem và quản lý đơn hàng trên mọi thiết bị</p>
+    </div>
 
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Sản Phẩm</label>
-                    <input type="text" id="admProduct" required class="w-full px-3 py-2.5 border text-sm">
-                </div>
+    <form onsubmit="submitAdminLogin(event)">
+      <div class="field">
+        <label>Email Chủ shop</label>
+        <input id="adminLoginEmail" type="email" value="lylee1907@gmail.com" readonly>
+      </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Kho</label>
-                        <input type="text" id="admWarehouse" placeholder="Ví dụ: Kho Hà Nội / Kho TQ" class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Ghi Chú Đơn Hàng</label>
-                        <input type="text" id="admOrderNote" placeholder="Nhập ghi chú đơn hàng..." class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                </div>
+      <div class="field" style="margin-top:12px">
+        <label for="adminLoginPassword">Mật khẩu</label>
+        <input id="adminLoginPassword" type="password" required autocomplete="current-password" placeholder="Nhập mật khẩu Firebase" style="font-size:16px">
+      </div>
 
-                <div class="grid grid-cols-3 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Giá Gốc (¥)</label>
-                        <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Cân Nặng (kg)</label>
-                        <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Giá Bán (VNĐ)</label>
-                        <input type="number" id="admSellPrice" required oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                </div>
+      <p id="adminLoginError" class="error hidden"></p>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">Phụ Phí Khác (VNĐ)</label>
-                        <input type="number" id="admExtra" value="0" oninput="calcPreview()" class="w-full px-3 py-2.5 border text-sm">
-                    </div>
-                    <div class="bg-sky-50 p-3 border border-sky-200 flex flex-col justify-center">
-                        <span class="text-xs text-sky-700 font-bold uppercase">Lợi Nhuận Dự Kiến:</span>
-                        <span id="admPreviewProfit" class="text-base font-extrabold text-sky-800">0 đ</span>
-                    </div>
-                </div>
+      <button id="adminLoginSubmit" type="submit" style="width:100%;margin-top:14px">
+        ĐĂNG NHẬP
+      </button>
 
-                <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
-                    <button type="button" onclick="closeAdminModal()" class="px-4 py-2.5 text-sm">Hủy</button>
-                    <button type="submit" class="px-5 py-2.5 text-sm font-bold">Lưu Lại</button>
-                </div>
-            </form>
+      <button type="button" onclick="closeAdminLoginModal()" style="width:100%;margin-top:8px">
+        QUAY LẠI
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ĐỔI MẬT KHẨU -->
+<div id="changePasswordModal" class="modal hidden">
+  <div class="modal-card small">
+    <h2 style="font-size:19px;font-weight:900;color:#536a78">
+      ĐỔI MẬT KHẨU CHỦ SHOP
+    </h2>
+
+    <p style="font-size:12px;color:var(--muted)">
+      Mật khẩu mới sẽ dùng chung trên tất cả thiết bị.
+    </p>
+
+    <form onsubmit="submitPasswordChange(event)">
+      <div class="field">
+        <label for="currentAdminPassword">Mật khẩu hiện tại</label>
+        <input id="currentAdminPassword" type="password" required autocomplete="current-password" style="font-size:16px">
+      </div>
+
+      <div class="field" style="margin-top:10px">
+        <label for="newAdminPassword">Mật khẩu mới (ít nhất 6 ký tự)</label>
+        <input id="newAdminPassword" type="password" required minlength="6" autocomplete="new-password" style="font-size:16px">
+      </div>
+
+      <div class="field" style="margin-top:10px">
+        <label for="confirmAdminPassword">Nhập lại mật khẩu mới</label>
+        <input id="confirmAdminPassword" type="password" required minlength="6" autocomplete="new-password" style="font-size:16px">
+      </div>
+
+      <p id="changePasswordError" class="error hidden"></p>
+
+      <button id="changePasswordSubmit" type="submit" style="width:100%;margin-top:14px">
+        CẬP NHẬT MẬT KHẨU
+      </button>
+
+      <button type="button" onclick="closeChangePasswordModal()" style="width:100%;margin-top:8px">
+        HỦY
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- THÀNH CÔNG -->
+<div id="successModal" class="modal hidden">
+  <div class="modal-card small" style="text-align:center;border-color:#dec4cb">
+    <div style="font-size:34px;color:#8c626e;margin-bottom:8px">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <h2 style="font-size:20px;font-weight:900;color:#8c626e">
+      Gửi Đơn Thành Công!
+    </h2>
+    <p style="font-size:12px;color:var(--muted)">Mã đơn hàng của bạn:</p>
+    <div id="displayOrderCode" class="success-code"></div>
+    <button type="button" onclick="closeSuccessModal()" style="width:100%">
+      HOÀN TẤT
+    </button>
+  </div>
+</div>
+
+<!-- THÊM / SỬA ĐƠN -->
+<div id="adminModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>Chi Tiết Đơn Hàng & Tính Lợi Nhuận</h3>
+      <button type="button" onclick="closeAdminModal()">&times;</button>
+    </div>
+
+    <form id="adminOrderForm" onsubmit="saveAdminOrder(event)">
+      <input type="hidden" id="editId">
+
+      <div class="modal-grid">
+        <div class="field">
+          <label for="admCode">Mã Đơn</label>
+          <input id="admCode" required>
         </div>
+
+        <div class="field">
+          <label for="admStatus">Trạng Thái</label>
+          <select id="admStatus">
+            <option>Mới tạo</option>
+            <option>Đã đặt TQ</option>
+            <option>Đang về VN</option>
+            <option>Đã giao</option>
+            <option>Đã hủy</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="admName">Khách Hàng</label>
+          <input id="admName" required>
+        </div>
+
+        <div class="field">
+          <label for="admPhone">Số Điện Thoại</label>
+          <input id="admPhone">
+        </div>
+
+        <div class="field">
+          <label for="admProvNew">Tỉnh Mới</label>
+          <input id="admProvNew">
+        </div>
+
+        <div class="field">
+          <label for="admProvOld">Tỉnh Cũ</label>
+          <input id="admProvOld">
+        </div>
+
+        <div class="field field-full">
+          <label for="admAddress">Địa Chỉ</label>
+          <textarea id="admAddress" rows="2"></textarea>
+        </div>
+
+        <div class="field field-full">
+          <label for="admProduct">Sản Phẩm</label>
+          <input id="admProduct" required>
+        </div>
+
+        <div class="field">
+          <label for="admWarehouse">Kho</label>
+          <input id="admWarehouse" placeholder="Ví dụ: Kho Hà Nội / Kho TQ">
+        </div>
+
+        <div class="field">
+          <label for="admOrderNote">Ghi Chú Đơn Hàng</label>
+          <input id="admOrderNote" placeholder="Nhập ghi chú đơn hàng">
+        </div>
+
+        <div class="field">
+          <label for="admCostYuan">Giá Gốc (¥)</label>
+          <input type="number" step="0.01" id="admCostYuan" required oninput="calcPreview()">
+        </div>
+
+        <div class="field">
+          <label for="admWeight">Cân Nặng (kg)</label>
+          <input type="number" step="0.01" id="admWeight" required oninput="calcPreview()">
+        </div>
+
+        <div class="field">
+          <label for="admSellPrice">Giá Bán (VNĐ)</label>
+          <input type="number" id="admSellPrice" required oninput="calcPreview()">
+        </div>
+
+        <div class="field">
+          <label for="admExtra">Phụ Phí Khác (VNĐ)</label>
+          <input type="number" id="admExtra" value="0" oninput="calcPreview()">
+        </div>
+
+        <div class="field field-full" style="background:#f1f6f8;padding:12px;border:1px solid #c4d5dd">
+          <label>Lợi Nhuận Dự Kiến</label>
+          <strong id="admPreviewProfit">0 đ</strong>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" onclick="closeAdminModal()">HỦY</button>
+        <button id="saveOrderButton" type="submit" class="primary">LƯU LẠI</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CÀI ĐẶT TỶ GIÁ -->
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-card small">
+    <div class="modal-head">
+      <h3>Cài Đặt Tỷ Giá & Cước</h3>
+      <button type="button" onclick="closeSettingsModal()">&times;</button>
     </div>
 
-    <!-- MODAL CÀI ĐẶT -->
-    <div id="settingsModal" class="hidden fixed inset-0 items-center justify-center p-4 z-50">
-        <div class="bg-white border-2 border-sky-200 w-full max-w-sm">
-            <div class="p-5 border-b border-sky-100 flex justify-between items-center">
-                <h3 class="text-base font-extrabold text-sky-700">
-                    Cài Đặt Tỷ Giá & Cước
-                </h3>
-                <button type="button" onclick="closeSettingsModal()" class="text-xl font-bold">&times;</button>
-            </div>
+    <div class="field">
+      <label for="setRate">Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)</label>
+      <input type="number" id="setRate">
+    </div>
 
-            <div class="p-6 space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">
-                        Tỷ Giá Nhân Dân Tệ (1¥ = ? VNĐ)
-                    </label>
-                    <input type="number" id="setRate" class="w-full px-3 py-2.5 border text-sm font-bold">
-                </div>
+    <div class="field" style="margin-top:12px">
+      <label for="setShipping">Cước Cân Trung - Việt (VNĐ / kg)</label>
+      <input type="number" id="setShipping">
+    </div>
 
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">
-                        Cước Cân Trung - Việt (VNĐ / kg)
-                    </label>
-                    <input type="number" id="setShipping" class="w-full px-3 py-2.5 border text-sm font-bold">
-                </div>
+    <div class="modal-actions">
+      <button type="button" onclick="closeSettingsModal()">ĐÓNG</button>
+      <button type="button" onclick="saveSettings()" class="primary">LƯU CÀI ĐẶT</button>
+    </div>
+  </div>
+</div>
 
-                <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
-                    <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 text-sm">Đóng</button>
-                    <button type="button" onclick="saveSettings()" class="px-4 py-2 text-sm font-bold">
-                        Lưu Cài Đặt
+<script>
+window.firebaseCloudReady = new Promise(resolve => {
+    window.resolveFirebaseCloud = resolve;
+});
+
+let settings = JSON.parse(localStorage.getItem('shop_settings') || 'null') || {
+    rate: 3500,
+    shippingRate: 25000
+};
+
+let orders = [];
+
+try {
+    const cached = JSON.parse(localStorage.getItem('shop_orders') || '[]');
+    orders = Array.isArray(cached) ? cached : [];
+} catch (e) {
+    orders = [];
+}
+
+const ADMIN_EMAIL = 'lylee1907@gmail.com';
+
+/* DANH SÁCH TỈNH / THÀNH MỚI */
+const NEW_PROVINCES = [
+    'Cần Thơ',
+    'Đà Nẵng',
+    'Hà Nội',
+    'Hải Phòng',
+    'Thừa Thiên Huế',
+    'Thành phố Hồ Chí Minh',
+    'An Giang',
+    'Bắc Ninh',
+    'Cà Mau',
+    'Cao Bằng',
+    'Đắk Lắk',
+    'Đắk Nông',
+    'Điện Biên',
+    'Đồng Nai',
+    'Đồng Tháp',
+    'Gia Lai',
+    'Hà Tĩnh',
+    'Hưng Yên',
+    'Khánh Hòa',
+    'Lai Châu',
+    'Lâm Đồng',
+    'Lạng Sơn',
+    'Lào Cai',
+    'Nghệ An',
+    'Ninh Bình',
+    'Phú Thọ',
+    'Quảng Ngãi',
+    'Quảng Ninh',
+    'Quảng Trị',
+    'Sơn La',
+    'Tây Ninh',
+    'Thái Nguyên',
+    'Thanh Hóa',
+    'Vĩnh Long',
+    'Khác'
+];
+
+/* DANH SÁCH TỈNH / THÀNH CŨ */
+const OLD_PROVINCES = [
+    'An Giang',
+    'Bà Rịa - Vũng Tàu',
+    'Bắc Giang',
+    'Bắc Kạn',
+    'Bạc Liêu',
+    'Bắc Ninh',
+    'Bến Tre',
+    'Bình Định',
+    'Bình Dương',
+    'Bình Phước',
+    'Bình Thuận',
+    'Cà Mau',
+    'Cần Thơ',
+    'Cao Bằng',
+    'Đà Nẵng',
+    'Đắk Lắk',
+    'Đắk Nông',
+    'Điện Biên',
+    'Đồng Nai',
+    'Đồng Tháp',
+    'Gia Lai',
+    'Hà Giang',
+    'Hà Nam',
+    'Hà Nội',
+    'Hà Tĩnh',
+    'Hải Dương',
+    'Hải Phòng',
+    'Hậu Giang',
+    'Hòa Bình',
+    'Hưng Yên',
+    'Khánh Hòa',
+    'Kiên Giang',
+    'Kon Tum',
+    'Lai Châu',
+    'Lâm Đồng',
+    'Lạng Sơn',
+    'Lào Cai',
+    'Long An',
+    'Nam Định',
+    'Nghệ An',
+    'Ninh Bình',
+    'Ninh Thuận',
+    'Phú Thọ',
+    'Phú Yên',
+    'Quảng Bình',
+    'Quảng Nam',
+    'Quảng Ngãi',
+    'Quảng Ninh',
+    'Quảng Trị',
+    'Sóc Trăng',
+    'Sơn La',
+    'Tây Ninh',
+    'Thái Bình',
+    'Thái Nguyên',
+    'Thanh Hóa',
+    'Thừa Thiên Huế',
+    'Tiền Giang',
+    'Trà Vinh',
+    'Tuyên Quang',
+    'Vĩnh Long',
+    'Vĩnh Phúc',
+    'Yên Bái',
+    'TP. Hồ Chí Minh'
+];
+
+function el(id) {
+    return document.getElementById(id);
+}
+
+function fillProvinceSelects() {
+    const newer = el('provinceNew');
+    const older = el('cusProvOld');
+
+    NEW_PROVINCES.forEach(value => {
+        newer.add(new Option(value, value));
+    });
+
+    OLD_PROVINCES.forEach(value => {
+        older.add(new Option(value, value));
+    });
+}
+
+fillProvinceSelects();
+
+function formatCurrency(value) {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(Number(value) || 0).replace('₫', 'đ');
+}
+
+function setSyncStatus(message, isError = false) {
+    const node = el('syncStatus');
+
+    if (node) {
+        node.textContent = message;
+        node.style.color = isError ? '#90616a' : '#58745e';
+    }
+}
+
+function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char]);
+}
+
+function escapeJS(value) {
+    return String(value ?? '')
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'");
+}
+
+function showModal(id) {
+    el(id).classList.remove('hidden');
+}
+
+function hideModal(id) {
+    el(id).classList.add('hidden');
+}
+
+/* TRANG CHỦ */
+function backToHome() {
+    el('roleSelectScreen').classList.remove('hidden');
+    el('customerPortal').classList.add('hidden');
+    el('adminPortal').classList.add('hidden');
+
+    if (window.firebaseCloud) {
+        window.firebaseCloud.logoutAdmin().catch(console.error);
+    }
+}
+
+function openCustomerPortal() {
+    el('roleSelectScreen').classList.add('hidden');
+    el('adminPortal').classList.add('hidden');
+    el('customerPortal').classList.remove('hidden');
+}
+
+/* ĐĂNG NHẬP CHỦ SHOP */
+function promptAdminLogin() {
+    el('adminLoginPassword').value = '';
+    el('adminLoginError').classList.add('hidden');
+    showModal('adminLoginModal');
+
+    setTimeout(() => el('adminLoginPassword').focus(), 100);
+}
+
+function closeAdminLoginModal() {
+    hideModal('adminLoginModal');
+}
+
+async function waitForFirebase() {
+    if (!window.firebaseCloud && window.firebaseCloudReady) {
+        await Promise.race([
+            window.firebaseCloudReady,
+            new Promise((_, reject) => setTimeout(
+                () => reject(new Error('Firebase tải quá lâu. Kiểm tra mạng rồi tải lại trang.')),
+                12000
+            ))
+        ]);
+    }
+
+    if (!window.firebaseCloud) {
+        throw new Error('Firebase chưa tải được. Kiểm tra Internet và tải lại trang.');
+    }
+}
+
+async function submitAdminLogin(event) {
+    event.preventDefault();
+
+    const button = el('adminLoginSubmit');
+    const error = el('adminLoginError');
+
+    button.disabled = true;
+    button.textContent = 'ĐANG ĐĂNG NHẬP...';
+    error.classList.add('hidden');
+
+    try {
+        await waitForFirebase();
+        await window.firebaseCloud.login(el('adminLoginPassword').value);
+
+        closeAdminLoginModal();
+
+        el('roleSelectScreen').classList.add('hidden');
+        el('customerPortal').classList.add('hidden');
+        el('adminPortal').classList.remove('hidden');
+
+        initAdmin();
+        setSyncStatus('Đang kết nối và đồng bộ với Firebase...');
+
+    } catch (e) {
+        console.error(e);
+        error.textContent = getFriendlyFirebaseError(e);
+        error.classList.remove('hidden');
+        el('adminLoginPassword').value = '';
+
+    } finally {
+        button.disabled = false;
+        button.textContent = 'ĐĂNG NHẬP';
+    }
+}
+
+/* ĐỔI MẬT KHẨU */
+function changeAdminPasswordPrompt() {
+    el('currentAdminPassword').value = '';
+    el('newAdminPassword').value = '';
+    el('confirmAdminPassword').value = '';
+    el('changePasswordError').classList.add('hidden');
+
+    showModal('changePasswordModal');
+}
+
+function closeChangePasswordModal() {
+    hideModal('changePasswordModal');
+}
+
+async function submitPasswordChange(event) {
+    event.preventDefault();
+
+    const current = el('currentAdminPassword').value;
+    const newPass = el('newAdminPassword').value;
+    const confirm = el('confirmAdminPassword').value;
+    const error = el('changePasswordError');
+    const button = el('changePasswordSubmit');
+
+    error.classList.add('hidden');
+
+    if (newPass.length < 6) {
+        error.textContent = 'Mật khẩu mới cần ít nhất 6 ký tự.';
+        error.classList.remove('hidden');
+        return;
+    }
+
+    if (newPass !== confirm) {
+        error.textContent = 'Hai lần nhập mật khẩu mới không trùng nhau.';
+        error.classList.remove('hidden');
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = 'ĐANG CẬP NHẬT...';
+
+    try {
+        await waitForFirebase();
+        await window.firebaseCloud.changePassword(current, newPass);
+
+        closeChangePasswordModal();
+        backToHome();
+
+        alert('Đổi mật khẩu thành công. Bà dùng mật khẩu mới trên mọi thiết bị nhé.');
+
+    } catch (e) {
+        error.textContent = getFriendlyFirebaseError(e);
+        error.classList.remove('hidden');
+
+    } finally {
+        button.disabled = false;
+        button.textContent = 'CẬP NHẬT MẬT KHẨU';
+    }
+}
+
+function getFriendlyFirebaseError(error) {
+    const code = error?.code || '';
+    const message = error?.message || '';
+
+    if ([
+        'auth/invalid-credential',
+        'auth/invalid-login-credentials',
+        'auth/wrong-password',
+        'auth/user-not-found'
+    ].includes(code)) {
+        return 'Email hoặc mật khẩu chưa đúng.';
+    }
+
+    if (code === 'auth/too-many-requests') {
+        return 'Có quá nhiều lần thử. Vui lòng thử lại sau.';
+    }
+
+    if (code === 'auth/unauthorized-domain') {
+        return 'Chưa thêm tabilu1.github.io vào Authorized domains.';
+    }
+
+    if (code === 'auth/network-request-failed') {
+        return 'Không kết nối được mạng. Kiểm tra Internet rồi thử lại.';
+    }
+
+    if (
+        code === 'permission-denied' ||
+        message.toLowerCase().includes('insufficient permissions')
+    ) {
+        return 'Firebase từ chối quyền. Kiểm tra Firestore Rules và email Chủ shop.';
+    }
+
+    return message || 'Có lỗi xảy ra. Kiểm tra Console để biết thêm chi tiết.';
+}
+
+/* KHÁCH GỬI ĐƠN LÊN FIREBASE */
+async function submitCustomerOrder(event) {
+    event.preventDefault();
+
+    const button = el('customerSubmitButton');
+    button.disabled = true;
+    button.innerHTML = 'ĐANG GỬI ĐƠN...';
+
+    try {
+        const province = el('provinceNew').value;
+        const qty = parseInt(el('cusQty').value, 10) || 1;
+        const product = el('cusProduct').value.trim();
+
+        const code = 'ORD-' +
+            Date.now().toString().slice(-8) +
+            Math.floor(10 + Math.random() * 90);
+
+        const order = {
+            id: '',
+            code: code,
+            customerName: el('cusName').value.trim(),
+            customerPhone: el('cusPhone').value.trim(),
+            provinceNew: province,
+            provinceOld: el('cusProvOld').value,
+            customerAddress: el('cusAddress').value.trim() + ', ' + province,
+            productName: product + (qty > 1 ? ` (SL: ${qty})` : ''),
+            warehouse: '',
+            orderNote: el('cusDeliveryNote').value.trim(),
+            costYuan: 0,
+            weightKg: 0.5,
+            sellPriceVnd: 0,
+            extraFee: 0,
+            status: 'Mới tạo'
+        };
+
+        await waitForFirebase();
+        await window.firebaseCloud.createOrder(order);
+
+        el('displayOrderCode').textContent = code;
+        showModal('successModal');
+
+    } catch (e) {
+        console.error(e);
+        alert('Chưa gửi được đơn hàng lên hệ thống. ' + getFriendlyFirebaseError(e));
+
+    } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="fa-solid fa-paper-plane"></i> GỬI ĐƠN HÀNG NGAY';
+    }
+}
+
+function closeSuccessModal() {
+    hideModal('successModal');
+    el('customerOrderForm').reset();
+    backToHome();
+}
+
+/* NHẬN DỮ LIỆU TỪ FIRESTORE */
+function receiveCloudOrders(remote) {
+    orders = Array.isArray(remote) ? remote : [];
+    localStorage.setItem('shop_orders', JSON.stringify(orders));
+
+    renderAdminOrders();
+    updateDashboard();
+
+    setSyncStatus('Đã đồng bộ • ' + orders.length + ' đơn hàng');
+}
+
+function receiveCloudSettings(remote) {
+    settings = {
+        rate: Number(remote.rate) || 3500,
+        shippingRate: Number(remote.shippingRate) || 25000
+    };
+
+    localStorage.setItem('shop_settings', JSON.stringify(settings));
+
+    renderAdminOrders();
+    updateDashboard();
+}
+
+function initAdmin() {
+    renderAdminOrders();
+    updateDashboard();
+}
+
+function getProfit(order) {
+    return (Number(order.sellPriceVnd) || 0)
+        - ((Number(order.costYuan) || 0) * settings.rate)
+        - ((Number(order.weightKg) || 0) * settings.shippingRate)
+        - (Number(order.extraFee) || 0);
+}
+
+function statusClass(status) {
+    return ({
+        'Mới tạo': 'status-new',
+        'Đã đặt TQ': 'status-cn',
+        'Đang về VN': 'status-transit',
+        'Đã giao': 'status-done',
+        'Đã hủy': 'status-cancel'
+    })[status] || '';
+}
+
+/* HIỂN THỊ BẢNG ĐƠN HÀNG */
+function renderAdminOrders(list = orders) {
+    const tbody = el('adminOrderTable');
+
+    tbody.innerHTML = '';
+    el('adminEmpty').classList.toggle('hidden', list.length !== 0);
+
+    list.forEach(order => {
+        const yuanVnd = (Number(order.costYuan) || 0) * settings.rate;
+        const ship = (Number(order.weightKg) || 0) * settings.shippingRate;
+        const profit = getProfit(order);
+
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+            <td>
+                <strong>${escapeHTML(order.code)}</strong>
+                <div class="sub">${escapeHTML(order.customerName)}</div>
+                <div class="sub">${escapeHTML(order.customerPhone || 'Chưa có SĐT')}</div>
+            </td>
+
+            <td>
+                ${escapeHTML(order.productName)}
+                <div class="sub">${escapeHTML(order.customerAddress || '')}</div>
+            </td>
+
+            <td>
+                ${escapeHTML(order.provinceNew || 'Chưa cập nhật')}
+                ${order.provinceOld ? `<div class="sub">Cũ: ${escapeHTML(order.provinceOld)}</div>` : ''}
+            </td>
+
+            <td class="number">
+                ${Number(order.costYuan) || 0} ¥
+                <div class="sub">~ ${formatCurrency(yuanVnd)}</div>
+            </td>
+
+            <td class="number">
+                ${Number(order.weightKg) || 0} kg
+                <div class="sub">Cước: ${formatCurrency(ship)}</div>
+            </td>
+
+            <td class="number">
+                <strong>${formatCurrency(order.sellPriceVnd)}</strong>
+                <div class="sub">Lãi: ${formatCurrency(profit)}</div>
+            </td>
+
+            <td>${escapeHTML(order.warehouse || '—')}</td>
+            <td>${escapeHTML(order.orderNote || '—')}</td>
+
+            <td>
+                <span class="status ${statusClass(order.status)}">
+                    ${escapeHTML(order.status || 'Mới tạo')}
+                </span>
+            </td>
+
+            <td>
+                <div class="actions">
+                    <button type="button" title="Sửa" onclick="openAdminModal('${escapeJS(order.id)}')">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                    <button type="button" class="delete" title="Xóa" onclick="deleteOrder('${escapeJS(order.id)}')">
+                        <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
-            </div>
-        </div>
-    </div>
+            </td>
+        `;
 
-    <!-- JAVASCRIPT ỨNG DỤNG -->
-    <script>
-        let settings = JSON.parse(localStorage.getItem('shop_settings')) || {
+        tbody.appendChild(tr);
+    });
+}
+
+/* THỐNG KÊ */
+function updateDashboard() {
+    const revenue = orders.reduce(
+        (sum, order) => sum + (Number(order.sellPriceVnd) || 0),
+        0
+    );
+
+    const cost = orders.reduce(
+        (sum, order) =>
+            sum
+            + (Number(order.costYuan) || 0) * settings.rate
+            + (Number(order.weightKg) || 0) * settings.shippingRate
+            + (Number(order.extraFee) || 0),
+        0
+    );
+
+    el('statTotalOrders').textContent = orders.length;
+    el('statTotalRevenue').textContent = formatCurrency(revenue);
+    el('statTotalCost').textContent = formatCurrency(cost);
+    el('statTotalProfit').textContent = formatCurrency(revenue - cost);
+}
+
+/* THÊM / SỬA ĐƠN */
+function openAdminModal(id = null) {
+    el('adminOrderForm').reset();
+    el('editId').value = id || '';
+
+    if (id) {
+        const order = orders.find(item => item.id === id);
+        if (!order) return;
+
+        el('admCode').value = order.code || '';
+        el('admStatus').value = order.status || 'Mới tạo';
+        el('admName').value = order.customerName || '';
+        el('admPhone').value = order.customerPhone || '';
+        el('admProvNew').value = order.provinceNew || '';
+        el('admProvOld').value = order.provinceOld || '';
+        el('admAddress').value = order.customerAddress || '';
+        el('admProduct').value = order.productName || '';
+        el('admWarehouse').value = order.warehouse || '';
+        el('admOrderNote').value = order.orderNote || '';
+        el('admCostYuan').value = order.costYuan ?? 0;
+        el('admWeight').value = order.weightKg ?? 0;
+        el('admSellPrice').value = order.sellPriceVnd ?? 0;
+        el('admExtra').value = order.extraFee ?? 0;
+
+    } else {
+        el('admCode').value = 'ORD-' +
+            Date.now().toString().slice(-8) +
+            Math.floor(10 + Math.random() * 90);
+
+        el('admStatus').value = 'Mới tạo';
+    }
+
+    calcPreview();
+    showModal('adminModal');
+}
+
+function closeAdminModal() {
+    hideModal('adminModal');
+}
+
+function calcPreview() {
+    const yuan = Number(el('admCostYuan').value) || 0;
+    const weight = Number(el('admWeight').value) || 0;
+    const sell = Number(el('admSellPrice').value) || 0;
+    const extra = Number(el('admExtra').value) || 0;
+
+    el('admPreviewProfit').textContent = formatCurrency(
+        sell - yuan * settings.rate - weight * settings.shippingRate - extra
+    );
+}
+
+async function saveAdminOrder(event) {
+    event.preventDefault();
+
+    const button = el('saveOrderButton');
+    button.disabled = true;
+    button.textContent = 'ĐANG LƯU...';
+
+    const id = el('editId').value;
+
+    const data = {
+        id: id,
+        code: el('admCode').value.trim(),
+        status: el('admStatus').value,
+        customerName: el('admName').value.trim(),
+        customerPhone: el('admPhone').value.trim(),
+        provinceNew: el('admProvNew').value.trim(),
+        provinceOld: el('admProvOld').value.trim(),
+        customerAddress: el('admAddress').value.trim(),
+        productName: el('admProduct').value.trim(),
+        warehouse: el('admWarehouse').value.trim(),
+        orderNote: el('admOrderNote').value.trim(),
+        costYuan: Number(el('admCostYuan').value) || 0,
+        weightKg: Number(el('admWeight').value) || 0,
+        sellPriceVnd: Number(el('admSellPrice').value) || 0,
+        extraFee: Number(el('admExtra').value) || 0
+    };
+
+    try {
+        await window.firebaseCloud.saveOrder(data);
+        closeAdminModal();
+
+    } catch (e) {
+        console.error(e);
+        alert('Không lưu được đơn hàng. ' + getFriendlyFirebaseError(e));
+
+    } finally {
+        button.disabled = false;
+        button.textContent = 'LƯU LẠI';
+    }
+}
+
+async function deleteOrder(id) {
+    if (!confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')) return;
+
+    try {
+        await window.firebaseCloud.deleteOrder(id);
+
+    } catch (e) {
+        console.error(e);
+        alert('Không xóa được đơn hàng. ' + getFriendlyFirebaseError(e));
+    }
+}
+
+/* CÀI ĐẶT TỶ GIÁ */
+function openSettingsModal() {
+    el('setRate').value = settings.rate;
+    el('setShipping').value = settings.shippingRate;
+    showModal('settingsModal');
+}
+
+function closeSettingsModal() {
+    hideModal('settingsModal');
+}
+
+async function saveSettings() {
+    const next = {
+        rate: Number(el('setRate').value) || 3500,
+        shippingRate: Number(el('setShipping').value) || 25000
+    };
+
+    try {
+        await window.firebaseCloud.saveSettings(next);
+        closeSettingsModal();
+
+    } catch (e) {
+        console.error(e);
+        alert('Không lưu được cài đặt. ' + getFriendlyFirebaseError(e));
+    }
+}
+
+/* TÌM KIẾM VÀ XUẤT DỮ LIỆU */
+function filterOrders() {
+    const query = el('searchInput').value.toLowerCase().trim();
+    const status = el('statusFilter').value;
+
+    const filtered = orders.filter(order => {
+        const matchesKeyword = [
+            order.code,
+            order.customerName,
+            order.customerPhone,
+            order.productName,
+            order.orderNote,
+            order.warehouse
+        ].some(value =>
+            String(value || '').toLowerCase().includes(query)
+        );
+
+        return matchesKeyword && (!status || order.status === status);
+    });
+
+    renderAdminOrders(filtered);
+}
+
+function exportJSON() {
+    const blob = new Blob(
+        [JSON.stringify(orders, null, 2)],
+        { type: 'application/json;charset=utf-8' }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+
+    anchor.href = url;
+    anchor.download = 'du_lieu_don_hang_tabilu.json';
+
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+
+    URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- FIREBASE MODULE -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    updatePassword,
+    EmailAuthProvider,
+    reauthenticateWithCredential
+} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
+
+import {
+    getFirestore,
+    collection,
+    doc,
+    setDoc,
+    deleteDoc,
+    getDocs,
+    getDoc,
+    writeBatch,
+    onSnapshot
+} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
+
+const firebaseConfig = {
+    apiKey: 'AIzaSyD43HzCQuv2Ja0LEG8m3IEdHqHnHTieDJY',
+    authDomain: 'tabilu-bc927.firebaseapp.com',
+    projectId: 'tabilu-bc927',
+    storageBucket: 'tabilu-bc927.firebasestorage.app',
+    messagingSenderId: '671951652662',
+    appId: '1:671951652662:web:8eb3cfabef2ccf111dd597',
+    measurementId: 'G-MYQJL2RYTQ'
+};
+
+const ADMIN_EMAIL = 'lylee1907@gmail.com';
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let stopOrdersListener = null;
+let stopSettingsListener = null;
+
+function newDocId() {
+    return 'order_'
+        + Date.now().toString().padStart(13, '0')
+        + '_'
+        + Math.random().toString(36).slice(2, 9);
+}
+
+function normalizeOrder(raw, id) {
+    return {
+        id: String(id || raw.id || newDocId()),
+        code: String(raw.code || ''),
+        customerName: String(raw.customerName || ''),
+        customerPhone: String(raw.customerPhone || ''),
+        provinceNew: String(raw.provinceNew || ''),
+        provinceOld: String(raw.provinceOld || ''),
+        customerAddress: String(raw.customerAddress || ''),
+        productName: String(raw.productName || ''),
+        warehouse: String(raw.warehouse || ''),
+        orderNote: String(raw.orderNote || ''),
+        costYuan: Number(raw.costYuan) || 0,
+        weightKg: Number(raw.weightKg) || 0,
+        sellPriceVnd: Number(raw.sellPriceVnd) || 0,
+        extraFee: Number(raw.extraFee) || 0,
+        status: String(raw.status || 'Mới tạo')
+    };
+}
+
+/* TẠO ID CŨ ỔN ĐỊNH ĐỂ KHÔNG GHI ĐÈ ĐƠN KHÁC THIẾT BỊ */
+function legacyId(raw) {
+    const text = JSON.stringify(raw);
+    let hash = 2166136261;
+
+    for (let i = 0; i < text.length; i++) {
+        hash ^= text.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+    }
+
+    return 'legacy_' + (hash >>> 0).toString(16);
+}
+
+/* CHUYỂN ĐƠN LOCALSTORAGE LÊN FIRESTORE */
+async function migrateLocalOrders() {
+    let oldOrders = [];
+
+    try {
+        const parsed = JSON.parse(localStorage.getItem('shop_orders') || '[]');
+        if (Array.isArray(parsed)) oldOrders = parsed;
+    } catch (e) {
+        console.warn('Không đọc được đơn cũ:', e);
+    }
+
+    if (!oldOrders.length) return 0;
+
+    const existing = await getDocs(collection(db, 'orders'));
+    const seen = new Set(existing.docs.map(item => item.id));
+    const pending = [];
+
+    for (const item of oldOrders) {
+        const id = legacyId(item);
+
+        if (seen.has(id)) continue;
+
+        seen.add(id);
+        pending.push({
+            id: id,
+            data: normalizeOrder(item, id)
+        });
+    }
+
+    for (let i = 0; i < pending.length; i += 400) {
+        const batch = writeBatch(db);
+
+        pending.slice(i, i + 400).forEach(item => {
+            batch.set(doc(db, 'orders', item.id), item.data);
+        });
+
+        await batch.commit();
+    }
+
+    return pending.length;
+}
+
+/* ĐỒNG BỘ THỜI GIAN THỰC */
+async function startLiveSync() {
+    if (stopOrdersListener) stopOrdersListener();
+    if (stopSettingsListener) stopSettingsListener();
+
+    const migrated = await migrateLocalOrders();
+
+    if (migrated > 0 && window.setSyncStatus) {
+        window.setSyncStatus('Đã chuyển ' + migrated + ' đơn cũ lên Firebase.');
+        alert('Đã chuyển ' + migrated + ' đơn cũ lên Firebase!');
+    }
+
+    const settingsRef = doc(db, 'settings', 'main');
+    const settingsSnap = await getDoc(settingsRef);
+
+    if (!settingsSnap.exists()) {
+        let local = {
             rate: 3500,
             shippingRate: 25000
         };
 
-        // Đọc dữ liệu cũ trên thiết bị này để chuyển lên Firestore khi Chủ shop đăng nhập.
-        let orders = [];
         try {
-            const savedOrders = JSON.parse(localStorage.getItem('shop_orders') || '[]');
-            orders = Array.isArray(savedOrders) ? savedOrders : [];
-        } catch (error) {
-            console.warn('Không đọc được đơn cũ:', error);
-            orders = [];
-        }
-
-        const ADMIN_EMAIL = 'lylee1907@gmail.com';
-
-        function formatCurrency(num) {
-            return new Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            }).format(Number(num) || 0).replace('₫', 'đ');
-        }
-
-        function setSyncStatus(message, isError = false) {
-            const el = document.getElementById('syncStatus');
-            if (!el) return;
-            el.innerText = message;
-            el.style.color = isError ? '#90616A' : '#58745E';
-        }
-
-        function backToHome() {
-            document.getElementById('roleSelectScreen').classList.remove('hidden');
-            document.getElementById('customerPortal').classList.add('hidden');
-            document.getElementById('adminPortal').classList.add('hidden');
-
-            if (window.firebaseCloud) {
-                window.firebaseCloud.logoutAdmin().catch(error => console.warn('Đăng xuất:', error));
-            }
-        }
-
-        function openCustomerPortal() {
-            document.getElementById('roleSelectScreen').classList.add('hidden');
-            document.getElementById('customerPortal').classList.remove('hidden');
-            document.getElementById('adminPortal').classList.add('hidden');
-        }
-
-        // Mở ô đăng nhập riêng, tương thích tốt hơn với điện thoại.
-        function promptAdminLogin() {
-            const modal = document.getElementById('adminLoginModal');
-            const input = document.getElementById('adminLoginPassword');
-            const error = document.getElementById('adminLoginError');
-
-            input.value = '';
-            error.classList.add('hidden');
-            error.innerText = '';
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-
-            setTimeout(() => input.focus(), 100);
-        }
-
-        function closeAdminLoginModal() {
-            const modal = document.getElementById('adminLoginModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        async function submitAdminLogin(event) {
-            event.preventDefault();
-
-            const button = document.getElementById('adminLoginSubmit');
-            const errorEl = document.getElementById('adminLoginError');
-            const password = document.getElementById('adminLoginPassword').value;
-
-            button.disabled = true;
-            button.innerText = 'ĐANG ĐĂNG NHẬP...';
-            errorEl.classList.add('hidden');
-
-            try {
-                if (!window.firebaseCloud) {
-                    throw new Error('Firebase chưa tải xong. Hãy tải lại trang và thử lại.');
-                }
-
-                await window.firebaseCloud.login(password);
-
-                closeAdminLoginModal();
-
-                document.getElementById('roleSelectScreen').classList.add('hidden');
-                document.getElementById('customerPortal').classList.add('hidden');
-                document.getElementById('adminPortal').classList.remove('hidden');
-
-                initAdmin();
-                setSyncStatus('Đang đồng bộ trực tuyến với Firebase');
-            } catch (error) {
-                console.error('Lỗi đăng nhập Firebase:', error);
-                errorEl.innerText = getFriendlyFirebaseError(error);
-                errorEl.classList.remove('hidden');
-                document.getElementById('adminLoginPassword').value = '';
-            } finally {
-                button.disabled = false;
-                button.innerText = 'ĐĂNG NHẬP';
-            }
-        }
-
-        function changeAdminPasswordPrompt() {
-            document.getElementById('currentAdminPassword').value = '';
-            document.getElementById('newAdminPassword').value = '';
-            document.getElementById('confirmAdminPassword').value = '';
-            document.getElementById('changePasswordError').classList.add('hidden');
-
-            const modal = document.getElementById('changePasswordModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeChangePasswordModal() {
-            const modal = document.getElementById('changePasswordModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        async function submitPasswordChange(event) {
-            event.preventDefault();
-
-            const currentPassword = document.getElementById('currentAdminPassword').value;
-            const newPassword = document.getElementById('newAdminPassword').value;
-            const confirmPassword = document.getElementById('confirmAdminPassword').value;
-            const errorEl = document.getElementById('changePasswordError');
-            const button = document.getElementById('changePasswordSubmit');
-
-            errorEl.classList.add('hidden');
-
-            if (newPassword.length < 6) {
-                errorEl.innerText = 'Mật khẩu mới cần ít nhất 6 ký tự.';
-                errorEl.classList.remove('hidden');
-                return;
-            }
-
-            if (newPassword !== confirmPassword) {
-                errorEl.innerText = 'Hai lần nhập mật khẩu mới không trùng nhau.';
-                errorEl.classList.remove('hidden');
-                return;
-            }
-
-            button.disabled = true;
-            button.innerText = 'ĐANG CẬP NHẬT...';
-
-            try {
-                if (!window.firebaseCloud) {
-                    throw new Error('Firebase chưa tải xong. Hãy tải lại trang.');
-                }
-
-                await window.firebaseCloud.changePassword(currentPassword, newPassword);
-
-                closeChangePasswordModal();
-                backToHome();
-
-                alert('Đã đổi mật khẩu Firebase thành công. Mật khẩu mới dùng được trên mọi thiết bị.');
-            } catch (error) {
-                errorEl.innerText = getFriendlyFirebaseError(error);
-                errorEl.classList.remove('hidden');
-            } finally {
-                button.disabled = false;
-                button.innerText = 'CẬP NHẬT MẬT KHẨU';
-            }
-        }
-
-        function getFriendlyFirebaseError(error) {
-            const code = error && error.code ? error.code : '';
-            const message = error && error.message ? error.message : '';
-
-            if (
-                code === 'auth/invalid-credential' ||
-                code === 'auth/invalid-login-credentials' ||
-                code === 'auth/wrong-password' ||
-                code === 'auth/user-not-found'
-            ) {
-                return 'Email hoặc mật khẩu chưa đúng. Bà kiểm tra lại nhé.';
-            }
-
-            if (code === 'auth/too-many-requests') {
-                return 'Có quá nhiều lần thử. Vui lòng thử lại sau.';
-            }
-
-            if (code === 'auth/unauthorized-domain') {
-                return 'Tên miền GitHub Pages chưa được thêm vào Authorized domains trong Firebase Authentication.';
-            }
-
-            if (
-                code === 'permission-denied' ||
-                message.toLowerCase().includes('insufficient permissions')
-            ) {
-                return 'Firebase từ chối quyền truy cập. Bà kiểm tra lại Firestore Rules và email Chủ shop trong Rules nhé.';
-            }
-
-            if (code === 'auth/network-request-failed') {
-                return 'Không kết nối được mạng. Kiểm tra Internet rồi thử lại.';
-            }
-
-            return message || 'Có lỗi xảy ra. Mở Console để xem chi tiết.';
-        }
-
-        // KHÁCH GỬI ĐƠN TRỰC TIẾP LÊN FIRESTORE
-        async function submitCustomerOrder(event) {
-            event.preventDefault();
-
-            const submitButton = event.submitter ||
-                document.querySelector('#customerPortal button[type="submit"]');
-
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.innerText = 'ĐANG GỬI ĐƠN...';
-            }
-
-            try {
-                const province = document.getElementById('provinceNew').value;
-                const oldProvince = document.getElementById('cusProvOld').value;
-                const addressDetail = document.getElementById('cusAddress').value.trim();
-                const fullAddress = `${addressDetail}, ${province}`;
-
-                const orderCode = 'ORD-' +
-                    Date.now().toString().slice(-7) +
-                    Math.floor(10 + Math.random() * 90);
-
-                const quantity = parseInt(document.getElementById('cusQty').value, 10) || 1;
-                const product = document.getElementById('cusProduct').value.trim();
-                const productDescription = product + (quantity > 1 ? ` (SL: ${quantity})` : '');
-                const deliveryNote = document.getElementById('cusDeliveryNote').value.trim();
-
-                const order = {
-                    id: '',
-                    code: orderCode,
-                    customerName: document.getElementById('cusName').value.trim(),
-                    customerPhone: document.getElementById('cusPhone').value.trim(),
-                    provinceNew: province,
-                    provinceOld: oldProvince,
-                    customerAddress: fullAddress,
-                    productName: productDescription,
-                    warehouse: '',
-                    orderNote: deliveryNote,
-                    costYuan: 0,
-                    weightKg: 0.5,
-                    sellPriceVnd: 0,
-                    extraFee: 0,
-                    status: 'Mới tạo'
-                };
-
-                if (!window.firebaseCloud) {
-                    throw new Error('Firebase chưa tải xong. Vui lòng tải lại trang rồi gửi đơn lại.');
-                }
-
-                await window.firebaseCloud.createOrder(order);
-
-                document.getElementById('displayOrderCode').innerText = orderCode;
-                document.getElementById('successModal').classList.remove('hidden');
-                document.getElementById('successModal').classList.add('flex');
-
-            } catch (error) {
-                console.error('Không gửi được đơn hàng:', error);
-                alert('Chưa gửi được đơn hàng lên hệ thống. ' + getFriendlyFirebaseError(error));
-            } finally {
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Gửi Đơn Hàng Ngay';
-                }
-            }
-        }
-
-        function closeSuccessModal() {
-            document.getElementById('successModal').classList.add('hidden');
-            document.getElementById('successModal').classList.remove('flex');
-            document.querySelector('#customerPortal form').reset();
-            backToHome();
-        }
-
-        function initAdmin() {
-            renderAdminOrders();
-            updateDashboard();
-        }
-
-        // Firebase gọi hàm này khi Firestore thay đổi.
-        window.receiveCloudOrders = function(remoteOrders) {
-            orders = Array.isArray(remoteOrders) ? remoteOrders : [];
-            localStorage.setItem('shop_orders', JSON.stringify(orders));
-
-            renderAdminOrders();
-            updateDashboard();
-
-            setSyncStatus('Đã đồng bộ • ' + orders.length + ' đơn hàng');
-        };
-
-        window.receiveCloudSettings = function(remoteSettings) {
-            settings = {
-                rate: Number(remoteSettings.rate) || 3500,
-                shippingRate: Number(remoteSettings.shippingRate) || 25000
+            local = {
+                ...local,
+                ...JSON.parse(localStorage.getItem('shop_settings') || '{}')
             };
-
-            localStorage.setItem('shop_settings', JSON.stringify(settings));
-
-            renderAdminOrders();
-            updateDashboard();
-        };
-
-        function escapeHTML(value) {
-            return String(value ?? '').replace(/[&<>"']/g, char => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;'
-            })[char]);
-        }
-
-        function escapeJS(value) {
-            return String(value ?? '')
-                .replace(/\\/g, '\\\\')
-                .replace(/'/g, "\\'");
-        }
-
-        // HIỂN THỊ BẢNG ĐƠN HÀNG
-        function renderAdminOrders(listFilter = null) {
-            const list = listFilter || orders;
-            const tbody = document.getElementById('adminOrderTable');
-            const emptyDiv = document.getElementById('adminEmpty');
-
-            tbody.innerHTML = '';
-
-            if (list.length === 0) {
-                emptyDiv.classList.remove('hidden');
-                return;
-            }
-
-            emptyDiv.classList.add('hidden');
-
-            list.forEach(order => {
-                const yuanVnd = (Number(order.costYuan) || 0) * settings.rate;
-                const shipFee = (Number(order.weightKg) || 0) * settings.shippingRate;
-                const totalCost = yuanVnd + shipFee + (Number(order.extraFee) || 0);
-                const profit = (Number(order.sellPriceVnd) || 0) - totalCost;
-
-                let badgeColor = 'bg-slate-100 text-slate-700';
-
-                if (order.status === 'Mới tạo') badgeColor = 'bg-pink-100 text-pink-700 font-bold';
-                if (order.status === 'Đã đặt TQ') badgeColor = 'bg-amber-100 text-amber-700 font-bold';
-                if (order.status === 'Đang về VN') badgeColor = 'bg-purple-100 text-purple-700 font-bold';
-                if (order.status === 'Đã giao') badgeColor = 'bg-emerald-100 text-emerald-700 font-bold';
-                if (order.status === 'Đã hủy') badgeColor = 'bg-rose-100 text-rose-700 font-bold';
-
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-sky-50/50 transition';
-
-                tr.innerHTML = `
-                    <td class="p-4">
-                        <div class="font-black text-sky-600">${escapeHTML(order.code)}</div>
-                        <div class="font-bold text-slate-900">${escapeHTML(order.customerName)}</div>
-                        <div class="text-xs text-slate-400">${escapeHTML(order.customerPhone || 'Chưa có SĐT')}</div>
-                    </td>
-
-                    <td class="p-4">
-                        <div class="font-medium text-slate-800">${escapeHTML(order.productName)}</div>
-                        <div class="text-xs text-slate-400 break-words max-w-xs">${escapeHTML(order.customerAddress || '')}</div>
-                    </td>
-
-                    <td class="p-4">
-                        <div class="text-xs font-bold text-slate-800">${escapeHTML(order.provinceNew || 'Chưa cập nhật')}</div>
-                        ${order.provinceOld ? `<div class="text-[11px] text-amber-600 font-semibold">(Cũ: ${escapeHTML(order.provinceOld)})</div>` : ''}
-                    </td>
-
-                    <td class="p-4 text-right">
-                        <div class="font-bold text-slate-800">${Number(order.costYuan) || 0} ¥</div>
-                        <div class="text-xs text-slate-400">~ ${formatCurrency(yuanVnd)}</div>
-                    </td>
-
-                    <td class="p-4 text-right">
-                        <div class="font-bold text-slate-800">${Number(order.weightKg) || 0} kg</div>
-                        <div class="text-xs text-slate-400">Cước: ${formatCurrency(shipFee)}</div>
-                    </td>
-
-                    <td class="p-4 text-right">
-                        <div class="font-black text-slate-900">${formatCurrency(order.sellPriceVnd)}</div>
-                        <div class="text-xs font-black ${profit >= 0 ? 'text-emerald-600' : 'text-rose-600'}">
-                            Lãi: ${formatCurrency(profit)}
-                        </div>
-                    </td>
-
-                    <td class="p-4">
-                        <div class="text-xs font-semibold text-slate-700">${escapeHTML(order.warehouse || '—')}</div>
-                    </td>
-
-                    <td class="p-4">
-                        <div class="text-xs text-slate-600 min-w-40">${escapeHTML(order.orderNote || '—')}</div>
-                    </td>
-
-                    <td class="p-4 text-center">
-                        <span class="px-3 py-1 rounded-full text-xs ${badgeColor}">
-                            ${escapeHTML(order.status || '')}
-                        </span>
-                    </td>
-
-                    <td class="p-4 text-center">
-                        <div class="flex items-center justify-center gap-2">
-                            <button
-                                type="button"
-                                onclick="openAdminModal('${escapeJS(order.id)}')"
-                                class="w-8 h-8 bg-sky-100 text-sky-700"
-                                title="Sửa"
-                            >
-                                <i class="fa-solid fa-pen text-xs"></i>
-                            </button>
-
-                            <button
-                                type="button"
-                                onclick="deleteOrder('${escapeJS(order.id)}')"
-                                class="w-8 h-8 bg-rose-100 text-rose-700"
-                                title="Xóa"
-                            >
-                                <i class="fa-solid fa-trash text-xs"></i>
-                            </button>
-                        </div>
-                    </td>
-                `;
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        function updateDashboard() {
-            document.getElementById('statTotalOrders').innerText = orders.length;
-
-            const revenue = orders.reduce((sum, order) => {
-                return sum + (Number(order.sellPriceVnd) || 0);
-            }, 0);
-
-            const cost = orders.reduce((sum, order) => {
-                return sum
-                    + ((Number(order.costYuan) || 0) * settings.rate)
-                    + ((Number(order.weightKg) || 0) * settings.shippingRate)
-                    + (Number(order.extraFee) || 0);
-            }, 0);
-
-            document.getElementById('statTotalRevenue').innerText = formatCurrency(revenue);
-            document.getElementById('statTotalCost').innerText = formatCurrency(cost);
-            document.getElementById('statTotalProfit').innerText = formatCurrency(revenue - cost);
-        }
-
-        function openAdminModal(orderId = null) {
-            document.getElementById('adminModal').classList.remove('hidden');
-            document.getElementById('adminModal').classList.add('flex');
-
-            if (orderId) {
-                const order = orders.find(item => item.id === orderId);
-                if (!order) return;
-
-                document.getElementById('editId').value = order.id;
-                document.getElementById('admCode').value = order.code || '';
-                document.getElementById('admStatus').value = order.status || 'Mới tạo';
-                document.getElementById('admName').value = order.customerName || '';
-                document.getElementById('admPhone').value = order.customerPhone || '';
-                document.getElementById('admProvNew').value = order.provinceNew || '';
-                document.getElementById('admProvOld').value = order.provinceOld || '';
-                document.getElementById('admAddress').value = order.customerAddress || '';
-                document.getElementById('admProduct').value = order.productName || '';
-                document.getElementById('admWarehouse').value = order.warehouse || '';
-                document.getElementById('admOrderNote').value = order.orderNote || '';
-                document.getElementById('admCostYuan').value = order.costYuan ?? 0;
-                document.getElementById('admWeight').value = order.weightKg ?? 0;
-                document.getElementById('admSellPrice').value = order.sellPriceVnd ?? 0;
-                document.getElementById('admExtra').value = order.extraFee ?? 0;
-
-            } else {
-                document.getElementById('adminOrderForm').reset();
-                document.getElementById('editId').value = '';
-                document.getElementById('admCode').value =
-                    'ORD-' + Date.now().toString().slice(-7) + Math.floor(10 + Math.random() * 90);
-                document.getElementById('admStatus').value = 'Mới tạo';
-            }
-
-            calcPreview();
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.add('hidden');
-            document.getElementById('adminModal').classList.remove('flex');
-        }
-
-        function calcPreview() {
-            const yuan = parseFloat(document.getElementById('admCostYuan').value) || 0;
-            const weight = parseFloat(document.getElementById('admWeight').value) || 0;
-            const salePrice = parseFloat(document.getElementById('admSellPrice').value) || 0;
-            const extra = parseFloat(document.getElementById('admExtra').value) || 0;
-
-            const profit = salePrice -
-                ((yuan * settings.rate) + (weight * settings.shippingRate) + extra);
-
-            const el = document.getElementById('admPreviewProfit');
-            el.innerText = formatCurrency(profit);
-            el.className = profit >= 0
-                ? 'text-base font-black text-sky-700'
-                : 'text-base font-black text-rose-600';
-        }
-
-        async function saveAdminOrder(event) {
-            event.preventDefault();
-
-            const id = document.getElementById('editId').value;
-
-            const data = {
-                id: id,
-                code: document.getElementById('admCode').value.trim(),
-                status: document.getElementById('admStatus').value,
-                customerName: document.getElementById('admName').value.trim(),
-                customerPhone: document.getElementById('admPhone').value.trim(),
-                provinceNew: document.getElementById('admProvNew').value.trim(),
-                provinceOld: document.getElementById('admProvOld').value.trim(),
-                customerAddress: document.getElementById('admAddress').value.trim(),
-                productName: document.getElementById('admProduct').value.trim(),
-                warehouse: document.getElementById('admWarehouse').value.trim(),
-                orderNote: document.getElementById('admOrderNote').value.trim(),
-                costYuan: parseFloat(document.getElementById('admCostYuan').value) || 0,
-                weightKg: parseFloat(document.getElementById('admWeight').value) || 0,
-                sellPriceVnd: parseFloat(document.getElementById('admSellPrice').value) || 0,
-                extraFee: parseFloat(document.getElementById('admExtra').value) || 0
-            };
-
-            const saveButton = document.querySelector('#adminOrderForm button[type="submit"]');
-            saveButton.disabled = true;
-            saveButton.innerText = 'ĐANG LƯU...';
-
-            try {
-                if (!window.firebaseCloud) {
-                    throw new Error('Firebase chưa sẵn sàng. Tải lại trang rồi thử lại.');
-                }
-
-                const savedId = await window.firebaseCloud.saveOrder(data);
-                data.id = savedId;
-
-                const idx = orders.findIndex(item => item.id === savedId);
-
-                if (idx >= 0) {
-                    orders[idx] = data;
-                } else {
-                    orders.unshift(data);
-                }
-
-                closeAdminModal();
-                renderAdminOrders();
-                updateDashboard();
-
-            } catch (error) {
-                console.error('Lỗi lưu đơn:', error);
-                alert('Không lưu được đơn hàng lên Firebase. ' + getFriendlyFirebaseError(error));
-            } finally {
-                saveButton.disabled = false;
-                saveButton.innerText = 'Lưu Lại';
-            }
-        }
-
-        async function deleteOrder(id) {
-            if (!confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')) return;
-
-            try {
-                await window.firebaseCloud.deleteOrder(id);
-            } catch (error) {
-                console.error('Lỗi xóa đơn:', error);
-                alert('Không xóa được đơn hàng. ' + getFriendlyFirebaseError(error));
-            }
-        }
-
-        function openSettingsModal() {
-            document.getElementById('setRate').value = settings.rate;
-            document.getElementById('setShipping').value = settings.shippingRate;
-
-            document.getElementById('settingsModal').classList.remove('hidden');
-            document.getElementById('settingsModal').classList.add('flex');
-        }
-
-        function closeSettingsModal() {
-            document.getElementById('settingsModal').classList.add('hidden');
-            document.getElementById('settingsModal').classList.remove('flex');
-        }
-
-        async function saveSettings() {
-            const nextSettings = {
-                rate: parseFloat(document.getElementById('setRate').value) || 3500,
-                shippingRate: parseFloat(document.getElementById('setShipping').value) || 25000
-            };
-
-            try {
-                await window.firebaseCloud.saveSettings(nextSettings);
-
-                settings = nextSettings;
-                localStorage.setItem('shop_settings', JSON.stringify(settings));
-
-                closeSettingsModal();
-                renderAdminOrders();
-                updateDashboard();
-
-                alert('Đã lưu tỷ giá và cước vận chuyển lên Firebase!');
-
-            } catch (error) {
-                console.error('Lỗi lưu cài đặt:', error);
-                alert('Không lưu được cài đặt. ' + getFriendlyFirebaseError(error));
-            }
-        }
-
-        function filterOrders() {
-            const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
-            const status = document.getElementById('statusFilter').value;
-
-            const filtered = orders.filter(order => {
-                const searchText = [
-                    order.code,
-                    order.customerName,
-                    order.customerPhone,
-                    order.productName,
-                    order.orderNote,
-                    order.warehouse
-                ].map(value => String(value || '').toLowerCase()).join(' ');
-
-                return searchText.includes(keyword) &&
-                    (!status || order.status === status);
-            });
-
-            renderAdminOrders(filtered);
-        }
-
-        function exportJSON() {
-            const data = JSON.stringify(orders, null, 2);
-            const blob = new Blob([data], {
-                type: 'application/json;charset=utf-8'
-            });
-            const url = URL.createObjectURL(blob);
-            const anchor = document.createElement('a');
-
-            anchor.href = url;
-            anchor.download = 'du_lieu_don_hang_tabilu.json';
-
-            document.body.appendChild(anchor);
-            anchor.click();
-            anchor.remove();
-
-            URL.revokeObjectURL(url);
-        }
-    </script>
-
-    <!-- FIREBASE MODULE: ĐỒNG BỘ NHIỀU THIẾT BỊ -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
-
-        import {
-            getAuth,
-            signInWithEmailAndPassword,
-            signOut,
-            updatePassword
-        } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
-
-        import {
-            getFirestore,
-            collection,
-            doc,
-            setDoc,
-            deleteDoc,
-            getDocs,
-            getDoc,
-            writeBatch,
-            onSnapshot
-        } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
-
-        // CẤU HÌNH FIREBASE CỦA PROJECT TABILU
-        const firebaseConfig = {
-            apiKey: "AIzaSyD43HzCQuv2Ja0LEG8m3IEdHqHnHTieDJY",
-            authDomain: "tabilu-bc927.firebaseapp.com",
-            projectId: "tabilu-bc927",
-            storageBucket: "tabilu-bc927.firebasestorage.app",
-            messagingSenderId: "671951652662",
-            appId: "1:671951652662:web:8eb3cfabef2ccf111dd597",
-            measurementId: "G-MYQJL2RYTQ"
-        };
-
-        const ADMIN_EMAIL = 'lylee1907@gmail.com';
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        let stopOrdersListener = null;
-        let stopSettingsListener = null;
-
-        function createLocalDocumentId() {
-            return 'order_' +
-                Date.now().toString().padStart(13, '0') +
-                '_' +
-                Math.random().toString(36).slice(2, 9);
-        }
-
-        // Chuẩn hóa dữ liệu để khớp với Firestore Rules.
-        function normalizeOrder(raw, documentId) {
-            return {
-                id: String(documentId || raw.id || createLocalDocumentId()),
-                code: String(raw.code || ''),
-                customerName: String(raw.customerName || ''),
-                customerPhone: String(raw.customerPhone || ''),
-                provinceNew: String(raw.provinceNew || ''),
-                provinceOld: String(raw.provinceOld || ''),
-                customerAddress: String(raw.customerAddress || ''),
-                productName: String(raw.productName || ''),
-                warehouse: String(raw.warehouse || ''),
-                orderNote: String(raw.orderNote || ''),
-                costYuan: Number(raw.costYuan) || 0,
-                weightKg: Number(raw.weightKg) || 0,
-                sellPriceVnd: Number(raw.sellPriceVnd) || 0,
-                extraFee: Number(raw.extraFee) || 0,
-                status: String(raw.status || 'Mới tạo')
-            };
-        }
-
-        // Chuyển các đơn cũ ở máy đang đăng nhập lên cloud nếu chưa có.
-        async function migrateLocalOrdersOnce() {
-            let localOrders = [];
-
-            try {
-                const parsed = JSON.parse(localStorage.getItem('shop_orders') || '[]');
-                if (Array.isArray(parsed)) localOrders = parsed;
-            } catch (error) {
-                console.warn('Không đọc được cache đơn hàng cũ:', error);
-            }
-
-            if (!localOrders.length) return 0;
-
-            const existingSnapshot = await getDocs(collection(db, 'orders'));
-            const existingIds = new Set(existingSnapshot.docs.map(item => item.id));
-            const pending = [];
-            const seen = new Set(existingIds);
-
-            for (const oldOrder of localOrders) {
-                const id = String(oldOrder.id || createLocalDocumentId())
-                    .replace(/[\/\\?#\[\]]/g, '_')
-                    .slice(0, 120);
-
-                if (!id || seen.has(id)) continue;
-
-                seen.add(id);
-                pending.push({
-                    id,
-                    data: normalizeOrder(oldOrder, id)
-                });
-            }
-
-            // Chia batch để không vượt giới hạn số thao tác mỗi lần ghi.
-            for (let index = 0; index < pending.length; index += 400) {
-                const batch = writeBatch(db);
-
-                pending.slice(index, index + 400).forEach(item => {
-                    batch.set(doc(db, 'orders', item.id), item.data);
-                });
-
-                await batch.commit();
-            }
-
-            return pending.length;
-        }
-
-        async function startLiveSync() {
-            if (stopOrdersListener) stopOrdersListener();
-            if (stopSettingsListener) stopSettingsListener();
-
-            const migratedCount = await migrateLocalOrdersOnce();
-
-            if (migratedCount && window.setSyncStatus) {
-                window.setSyncStatus('Đã chuyển ' + migratedCount + ' đơn cũ lên Firebase...');
-            }
-
-            const settingsRef = doc(db, 'settings', 'main');
-            const settingsSnapshot = await getDoc(settingsRef);
-
-            if (!settingsSnapshot.exists()) {
-                let localSettings = {
-                    rate: 3500,
-                    shippingRate: 25000
-                };
-
-                try {
-                    localSettings = {
-                        ...localSettings,
-                        ...JSON.parse(localStorage.getItem('shop_settings') || '{}')
-                    };
-                } catch (_) {}
-
-                await setDoc(settingsRef, {
-                    rate: Number(localSettings.rate) || 3500,
-                    shippingRate: Number(localSettings.shippingRate) || 25000
-                });
-            }
-
-            // Lắng nghe đơn hàng theo thời gian thực.
-            stopOrdersListener = onSnapshot(
-                collection(db, 'orders'),
-                snapshot => {
-                    const records = snapshot.docs.map(item =>
-                        normalizeOrder(item.data(), item.id)
-                    );
-
-                    records.sort((a, b) => b.id.localeCompare(a.id));
-
-                    if (window.receiveCloudOrders) {
-                        window.receiveCloudOrders(records);
-                    }
-                },
-                error => {
-                    console.error('Firestore orders listener:', error);
-
-                    if (window.setSyncStatus) {
-                        window.setSyncStatus('Lỗi đọc đơn hàng: ' + error.message, true);
-                    }
-                }
+        } catch (e) {}
+
+        await setDoc(settingsRef, {
+            rate: Number(local.rate) || 3500,
+            shippingRate: Number(local.shippingRate) || 25000
+        });
+    }
+
+    stopOrdersListener = onSnapshot(
+        collection(db, 'orders'),
+        snapshot => {
+            const list = snapshot.docs.map(item =>
+                normalizeOrder(item.data(), item.id)
             );
 
-            // Lắng nghe tỷ giá và phí vận chuyển.
-            stopSettingsListener = onSnapshot(
-                settingsRef,
-                snapshot => {
-                    if (snapshot.exists() && window.receiveCloudSettings) {
-                        window.receiveCloudSettings(snapshot.data());
-                    }
-                },
-                error => {
-                    console.error('Firestore settings listener:', error);
-                }
-            );
-        }
+            list.sort((a, b) => b.id.localeCompare(a.id));
 
-        // Đăng nhập bằng Firebase Authentication.
-        async function login(password) {
-            const credential = await signInWithEmailAndPassword(
-                auth,
-                ADMIN_EMAIL,
-                password
-            );
-
-            const signedInEmail = (credential.user.email || '').toLowerCase();
-
-            if (signedInEmail !== ADMIN_EMAIL.toLowerCase()) {
-                await signOut(auth);
-                throw new Error('Tài khoản này không phải tài khoản Chủ shop được cấp quyền.');
+            if (window.receiveCloudOrders) {
+                window.receiveCloudOrders(list);
             }
+        },
+        error => {
+            console.error('Firestore orders:', error);
 
-            try {
-                await startLiveSync();
-            } catch (error) {
-                await signOut(auth);
-                throw error;
+            if (window.setSyncStatus) {
+                window.setSyncStatus(
+                    'Lỗi đồng bộ đơn: ' + error.message,
+                    true
+                );
             }
         }
+    );
 
-        async function logoutAdmin() {
-            if (stopOrdersListener) {
-                stopOrdersListener();
-                stopOrdersListener = null;
+    stopSettingsListener = onSnapshot(
+        settingsRef,
+        snapshot => {
+            if (snapshot.exists() && window.receiveCloudSettings) {
+                window.receiveCloudSettings(snapshot.data());
             }
-
-            if (stopSettingsListener) {
-                stopSettingsListener();
-                stopSettingsListener = null;
-            }
-
-            if (auth.currentUser) {
-                await signOut(auth);
-            }
+        },
+        error => {
+            console.error('Firestore settings:', error);
         }
+    );
+}
 
-        // Khách gửi đơn mới lên Firestore.
-        async function createOrder(order) {
-            const id = createLocalDocumentId();
-            const payload = normalizeOrder(order, id);
+/* ĐĂNG NHẬP FIREBASE */
+async function login(password) {
+    const result = await signInWithEmailAndPassword(
+        auth,
+        ADMIN_EMAIL,
+        password
+    );
 
-            await setDoc(doc(db, 'orders', id), payload);
+    const email = (result.user.email || '').toLowerCase();
 
-            return id;
-        }
+    if (email !== ADMIN_EMAIL.toLowerCase()) {
+        await signOut(auth);
+        throw new Error('Tài khoản không phải Chủ shop được cấp quyền.');
+    }
 
-        // Chủ shop thêm mới hoặc chỉnh sửa đơn.
-        async function saveOrder(order) {
-            const id = order.id || createLocalDocumentId();
-            const payload = normalizeOrder(order, id);
+    try {
+        await startLiveSync();
+    } catch (error) {
+        await signOut(auth);
+        throw error;
+    }
+}
 
-            await setDoc(doc(db, 'orders', id), payload);
+/* ĐĂNG XUẤT */
+async function logoutAdmin() {
+    if (stopOrdersListener) {
+        stopOrdersListener();
+        stopOrdersListener = null;
+    }
 
-            return id;
-        }
+    if (stopSettingsListener) {
+        stopSettingsListener();
+        stopSettingsListener = null;
+    }
 
-        async function deleteOrderFromCloud(id) {
-            await deleteDoc(doc(db, 'orders', String(id)));
-        }
+    if (auth.currentUser) {
+        await signOut(auth);
+    }
+}
 
-        // Đồng bộ tỷ giá và phí vận chuyển.
-        async function saveSettingsToCloud(nextSettings) {
-            await setDoc(doc(db, 'settings', 'main'), {
-                rate: Number(nextSettings.rate) || 3500,
-                shippingRate: Number(nextSettings.shippingRate) || 25000
-            });
-        }
+/* KHÁCH TẠO ĐƠN */
+async function createOrder(order) {
+    const id = newDocId();
+    const payload = normalizeOrder(order, id);
 
-        // Đổi mật khẩu chung trên Firebase Authentication.
-        async function changePassword(currentPassword, newPassword) {
-            const credential = await signInWithEmailAndPassword(
-                auth,
-                ADMIN_EMAIL,
-                currentPassword
-            );
+    await setDoc(doc(db, 'orders', id), payload);
 
-            if ((credential.user.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
-                await signOut(auth);
-                throw new Error('Không đúng tài khoản Chủ shop.');
-            }
+    return id;
+}
 
-            await updatePassword(credential.user, newPassword);
-            await logoutAdmin();
-        }
+/* CHỦ SHOP LƯU HOẶC SỬA ĐƠN */
+async function saveOrder(order) {
+    const id = order.id || newDocId();
+    const payload = normalizeOrder(order, id);
 
-        // Các hàm được giao diện HTML gọi.
-        window.firebaseCloud = {
-            login,
-            logoutAdmin,
-            createOrder,
-            saveOrder,
-            deleteOrder: deleteOrderFromCloud,
-            saveSettings: saveSettingsToCloud,
-            changePassword
-        };
-    </script>
+    await setDoc(doc(db, 'orders', id), payload);
+
+    return id;
+}
+
+/* XÓA ĐƠN */
+async function removeOrder(id) {
+    await deleteDoc(doc(db, 'orders', String(id)));
+}
+
+/* LƯU TỶ GIÁ */
+async function saveSettings(value) {
+    await setDoc(doc(db, 'settings', 'main'), {
+        rate: Number(value.rate) || 3500,
+        shippingRate: Number(value.shippingRate) || 25000
+    });
+}
+
+/* ĐỔI MẬT KHẨU */
+async function changePassword(current, newPass) {
+    let user = auth.currentUser;
+
+    if (!user) {
+        const result = await signInWithEmailAndPassword(
+            auth,
+            ADMIN_EMAIL,
+            current
+        );
+        user = result.user;
+    } else {
+        const credential = EmailAuthProvider.credential(
+            ADMIN_EMAIL,
+            current
+        );
+
+        await reauthenticateWithCredential(user, credential);
+    }
+
+    await updatePassword(user, newPass);
+    await logoutAdmin();
+}
+
+/* KẾT NỐI HTML VỚI FIREBASE */
+window.firebaseCloud = {
+    login,
+    logoutAdmin,
+    createOrder,
+    saveOrder,
+    deleteOrder: removeOrder,
+    saveSettings,
+    changePassword
+};
+
+if (window.resolveFirebaseCloud) {
+    window.resolveFirebaseCloud();
+}
+</script>
+
 </body>
 </html>
